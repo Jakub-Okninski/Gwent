@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gwent App", "Gwent App.csproj", "{046865B0-691A-40B1-A6E1-C6D7A83C1CAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gwent App", "Gwent App.csproj", "{046865B0-691A-40B1-A6E1-C6D7A83C1CAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gwent Library", "..\Gwent Library\Gwent Library.csproj", "{A9FFAA34-4BB9-4BB7-8D4C-E500AA4D62B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gwent Library", "..\Gwent Library\Gwent Library.csproj", "{A9FFAA34-4BB9-4BB7-8D4C-E500AA4D62B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

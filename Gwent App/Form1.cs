@@ -6,5 +6,10 @@ namespace Gwent_App
         {
             InitializeComponent();
         }
+
+        private void pictureBoxKartaSpecjalnaGracz1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
