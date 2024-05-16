@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class WeatherCard : SpecialCard
+    public interface IBezPola
     {
-        public WeatherCard(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
-        {
-        }
     }
 }

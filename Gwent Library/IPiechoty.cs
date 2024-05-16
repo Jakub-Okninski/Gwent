@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-
-    //bohaterowie
-    public class NeutralCard
+    public interface IPiechoty
     {
     }
 }

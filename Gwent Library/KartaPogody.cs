@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class CardPack : List<Card>
+    public abstract class KartaPogody : KartaSpecjalna
     {
-        public override string ToString()
+        public KartaPogody(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
-            return string.Join("\n ", this.Select(card => card.ToString()));
         }
     }
 }

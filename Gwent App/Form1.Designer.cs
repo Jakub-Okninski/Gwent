@@ -49,8 +49,6 @@
             pictureBoxZdjecieGracz2 = new PictureBox();
             labelImieGracz1 = new Label();
             labelImieGracz2 = new Label();
-            labelFrakcjaGracz1 = new Label();
-            labelFrakcjaGracz2 = new Label();
             pictureBoxPunktyTlo1 = new PictureBox();
             labelPunktySumaGracz1 = new Label();
             pictureBoxPunktyTlo2 = new PictureBox();
@@ -65,6 +63,13 @@
             pictureBoxZdjecieWszystkichKartGracza2 = new PictureBox();
             labelLiczbaKartPozaGraGracza1 = new Label();
             labelLiczbaKartPozaGraGracza2 = new Label();
+            panelRoguOblezniczeGracz1 = new Panel();
+            panelRoguDystansGracz1 = new Panel();
+            panelRoguZwarcieGracz1 = new Panel();
+            panelRoguZwarcieGracz2 = new Panel();
+            panelRoguDystansGracz2 = new Panel();
+            panelRoguOblezniczeGracz2 = new Panel();
+            panelWspolnePole = new Panel();
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).BeginInit();
@@ -227,7 +232,7 @@
             // labelImieGracz1
             // 
             labelImieGracz1.AutoSize = true;
-            labelImieGracz1.Location = new Point(154, 521);
+            labelImieGracz1.Location = new Point(154, 547);
             labelImieGracz1.Name = "labelImieGracz1";
             labelImieGracz1.Size = new Size(30, 15);
             labelImieGracz1.TabIndex = 18;
@@ -241,24 +246,6 @@
             labelImieGracz2.Size = new Size(30, 15);
             labelImieGracz2.TabIndex = 19;
             labelImieGracz2.Text = "Imie";
-            // 
-            // labelFrakcjaGracz1
-            // 
-            labelFrakcjaGracz1.AutoSize = true;
-            labelFrakcjaGracz1.Location = new Point(154, 547);
-            labelFrakcjaGracz1.Name = "labelFrakcjaGracz1";
-            labelFrakcjaGracz1.Size = new Size(44, 15);
-            labelFrakcjaGracz1.TabIndex = 20;
-            labelFrakcjaGracz1.Text = "Frakcja";
-            // 
-            // labelFrakcjaGracz2
-            // 
-            labelFrakcjaGracz2.AutoSize = true;
-            labelFrakcjaGracz2.Location = new Point(154, 236);
-            labelFrakcjaGracz2.Name = "labelFrakcjaGracz2";
-            labelFrakcjaGracz2.Size = new Size(44, 15);
-            labelFrakcjaGracz2.TabIndex = 21;
-            labelFrakcjaGracz2.Text = "Frakcja";
             // 
             // pictureBoxPunktyTlo1
             // 
@@ -314,6 +301,7 @@
             // 
             // pictureBoxPierwszyPunktGracz2
             // 
+            pictureBoxPierwszyPunktGracz2.BackColor = Color.White;
             pictureBoxPierwszyPunktGracz2.Location = new Point(254, 250);
             pictureBoxPierwszyPunktGracz2.Name = "pictureBoxPierwszyPunktGracz2";
             pictureBoxPierwszyPunktGracz2.Size = new Size(38, 34);
@@ -369,20 +357,76 @@
             labelLiczbaKartPozaGraGracza1.TabIndex = 34;
             labelLiczbaKartPozaGraGracza1.Text = "0";
             // 
-            // label1
+            // labelLiczbaKartPozaGraGracza2
             // 
             labelLiczbaKartPozaGraGracza2.AutoSize = true;
             labelLiczbaKartPozaGraGracza2.Location = new Point(1519, 129);
-            labelLiczbaKartPozaGraGracza2.Name = "label1";
+            labelLiczbaKartPozaGraGracza2.Name = "labelLiczbaKartPozaGraGracza2";
             labelLiczbaKartPozaGraGracza2.Size = new Size(13, 15);
             labelLiczbaKartPozaGraGracza2.TabIndex = 35;
             labelLiczbaKartPozaGraGracza2.Text = "0";
+            // 
+            // panelRoguOblezniczeGracz1
+            // 
+            panelRoguOblezniczeGracz1.Location = new Point(444, 649);
+            panelRoguOblezniczeGracz1.Name = "panelRoguOblezniczeGracz1";
+            panelRoguOblezniczeGracz1.Size = new Size(133, 110);
+            panelRoguOblezniczeGracz1.TabIndex = 36;
+            // 
+            // panelRoguDystansGracz1
+            // 
+            panelRoguDystansGracz1.Location = new Point(444, 521);
+            panelRoguDystansGracz1.Name = "panelRoguDystansGracz1";
+            panelRoguDystansGracz1.Size = new Size(133, 110);
+            panelRoguDystansGracz1.TabIndex = 37;
+            // 
+            // panelRoguZwarcieGracz1
+            // 
+            panelRoguZwarcieGracz1.Location = new Point(444, 394);
+            panelRoguZwarcieGracz1.Name = "panelRoguZwarcieGracz1";
+            panelRoguZwarcieGracz1.Size = new Size(133, 110);
+            panelRoguZwarcieGracz1.TabIndex = 38;
+            // 
+            // panelRoguZwarcieGracz2
+            // 
+            panelRoguZwarcieGracz2.Location = new Point(444, 269);
+            panelRoguZwarcieGracz2.Name = "panelRoguZwarcieGracz2";
+            panelRoguZwarcieGracz2.Size = new Size(133, 110);
+            panelRoguZwarcieGracz2.TabIndex = 39;
+            // 
+            // panelRoguDystansGracz2
+            // 
+            panelRoguDystansGracz2.Location = new Point(444, 141);
+            panelRoguDystansGracz2.Name = "panelRoguDystansGracz2";
+            panelRoguDystansGracz2.Size = new Size(133, 110);
+            panelRoguDystansGracz2.TabIndex = 40;
+            // 
+            // panelRoguOblezniczeGracz2
+            // 
+            panelRoguOblezniczeGracz2.Location = new Point(444, 12);
+            panelRoguOblezniczeGracz2.Name = "panelRoguOblezniczeGracz2";
+            panelRoguOblezniczeGracz2.Size = new Size(133, 110);
+            panelRoguOblezniczeGracz2.TabIndex = 41;
+            // 
+            // panel1
+            // 
+            panelWspolnePole.Location = new Point(51, 329);
+            panelWspolnePole.Name = "panel1";
+            panelWspolnePole.Size = new Size(241, 110);
+            panelWspolnePole.TabIndex = 42;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1620, 900);
+            Controls.Add(panelWspolnePole);
+            Controls.Add(panelRoguOblezniczeGracz2);
+            Controls.Add(panelRoguDystansGracz2);
+            Controls.Add(panelRoguZwarcieGracz2);
+            Controls.Add(panelRoguZwarcieGracz1);
+            Controls.Add(panelRoguDystansGracz1);
+            Controls.Add(panelRoguOblezniczeGracz1);
             Controls.Add(labelLiczbaKartPozaGraGracza2);
             Controls.Add(labelLiczbaKartPozaGraGracza1);
             Controls.Add(pictureBoxZdjecieWszystkichKartGracza2);
@@ -390,15 +434,12 @@
             Controls.Add(pictureBoxUsunieteKartyGracz2);
             Controls.Add(pictureBoxUsunieteKartyGracz1);
             Controls.Add(pictureBoxDrugiPunktGracz2);
-            Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(pictureBoxDrugiPunktGracz1);
             Controls.Add(pictureBoxPierwszyPunktGracz1);
             Controls.Add(labelPunktySumaGracz2);
             Controls.Add(pictureBoxPunktyTlo2);
             Controls.Add(labelPunktySumaGracz1);
             Controls.Add(pictureBoxPunktyTlo1);
-            Controls.Add(labelFrakcjaGracz2);
-            Controls.Add(labelFrakcjaGracz1);
             Controls.Add(labelImieGracz2);
             Controls.Add(labelImieGracz1);
             Controls.Add(pictureBoxZdjecieGracz2);
@@ -418,6 +459,7 @@
             Controls.Add(panelOblezniczeGracz2);
             Controls.Add(panelZwarcieGracz1);
             Controls.Add(panelOblezniczeGracz1);
+            Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(backgroundPictureBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
@@ -462,8 +504,6 @@
         private PictureBox pictureBoxZdjecieGracz2;
         private Label labelImieGracz1;
         private Label labelImieGracz2;
-        private Label labelFrakcjaGracz1;
-        private Label labelFrakcjaGracz2;
         private PictureBox pictureBoxPunktyTlo1;
         private Label labelPunktySumaGracz1;
         private PictureBox pictureBoxPunktyTlo2;
@@ -478,5 +518,12 @@
         private PictureBox pictureBoxZdjecieWszystkichKartGracza2;
         private Label labelLiczbaKartPozaGraGracza1;
         private Label labelLiczbaKartPozaGraGracza2;
+        private Panel panelRoguOblezniczeGracz1;
+        private Panel panelRoguDystansGracz1; 
+        private Panel panelRoguZwarcieGracz1;
+        private Panel panelRoguZwarcieGracz2;
+        private Panel panelRoguDystansGracz2;
+        private Panel panelRoguOblezniczeGracz2;
+        private Panel panelWspolnePole;
     }
 }

@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public abstract class Card
+    public abstract class Karta
     {
-        protected Card(string nazwa,  string nazwaZdjecia)
+        public Karta(string nazwa,  string nazwaZdjecia)
         {
             Nazwa = nazwa;
             NazwaZdjecia = nazwaZdjecia;
-      
         }
-
         public string Nazwa {  get; set; }
         public string NazwaZdjecia { get; set; }
 
-    }
-
- 
+    } 
 }

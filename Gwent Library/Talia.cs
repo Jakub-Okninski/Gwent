@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public interface IAgent
+    public class Talia : List<Karta>
     {
-        public void Agentuj()
+        public override string ToString()
         {
-
+            return string.Join("\n ", this.Select(karta => karta.ToString()));
         }
     }
 }

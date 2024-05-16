@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    //dowódca
-    public class CommanderCard
+    public interface IStrzeleckich
     {
     }
 }

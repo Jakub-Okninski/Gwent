@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class SpecialCard : Card
+   public abstract class KartaSpecjalna : Karta
     {
-        public SpecialCard(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
+        public KartaSpecjalna(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
     }

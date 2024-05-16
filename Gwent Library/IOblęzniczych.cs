@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    //wrecz
-    public class MeleeCards
+    public interface IOblęzniczych
     {
     }
 }
