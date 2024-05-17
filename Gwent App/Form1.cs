@@ -1,5 +1,6 @@
 using Gwent_Library;
 using Gwent_Library.Karty;
+using Gwent_Library.TypyKart;
 using System.Windows.Forms;
 
 namespace Gwent_App
@@ -21,6 +22,7 @@ namespace Gwent_App
 
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
+            InitImgPlayer(gracz1, gracz2);
 
 
             //edit xD
@@ -87,7 +89,7 @@ namespace Gwent_App
             panelWspolnePole.AllowDrop = false;
 
             
-            if (karta is IPiechoty)
+            if (karta is IPolaPiechoty)
             {
 
 
@@ -112,7 +114,7 @@ namespace Gwent_App
 
             }
 
-             if (karta is IStrzeleckich)
+             if (karta is IPolaStrzeleckie)
             {
 
 
@@ -139,7 +141,7 @@ namespace Gwent_App
 
             }
 
-             if (karta is IOblêzniczych)
+             if (karta is IPolaOblêznicze)
             {
 
 
@@ -166,7 +168,7 @@ namespace Gwent_App
 
           
 
-            if (karta is IOblêzniczych&& karta is IStrzeleckich && karta is IOblêzniczych)
+            if (karta is IPolaOblêznicze&& karta is IPolaStrzeleckie && karta is IPolaOblêznicze)
             {
 
 
@@ -276,21 +278,35 @@ namespace Gwent_App
                 // Dodaj PictureBox do panelu, do którego zosta³ przeci¹gniêty
                 targetPanel.Controls.Add(pictureBox);
 
-       
+                gra.WykonajRuch(gracz1, pictureBox.Tag as Karta);
 
 
-
-
-
-
+                OdswiezPanel(targetPanel);
                 RefreshCardPositions(sourcePanel);
                 RefreshCardPositions(targetPanel);
             }
 
     
         }
+        private void OdswiezPanel(Panel panel)
+        {
+            OdswiezPunktacje();
+        }
+        private void OdswiezPunktacje()
+        {
+            labelDystansGracz1.Text = gracz1.PunktyStrzeleckie+"";
+            labelZwarcieGracz1.Text = gracz1.PunktyPiechoty + "";
+            labelOblezniczeGracz1.Text = gracz1.PunktyObleznicze + "";
+            labelPunktySumaGracz1.Text = gracz1.PunktySuma+ "";
 
 
+            labelDystansGracz2.Text = gracz2.PunktyStrzeleckie + "";
+            labelZwarcieGracz2.Text = gracz2.PunktyPiechoty + "";
+            labelOblezniczeGracz2.Text = gracz2.PunktyObleznicze + "";
+            labelPunktySumaGracz2.Text = gracz2.PunktySuma+ "";
+
+
+        }
 
         private void GeneratePictureBoxCard(Panel panel)
         {
@@ -335,7 +351,7 @@ namespace Gwent_App
                 // Dodaj etykietê nad PictureBox
                 Label label = new Label();
                 label.Text = cards[i].Nazwa;
-                pictureBox.Tag = cards[i];
+               pictureBox.Tag = cards[i];
                 label.AutoSize = true;
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.BackColor = Color.Transparent;
@@ -407,6 +423,13 @@ namespace Gwent_App
             }
         }
 
+            private void InitImgPlayer(Gracz gracz1, Gracz gracz2)
+        {
+            pictureBoxZdjecieGracz1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxZdjecieGracz1.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\Geralt.PNG");
+            pictureBoxZdjecieGracz2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxZdjecieGracz2.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\Geralt.PNG");
+        }
            private void InitDefaultInfoComponent(Gracz gracz1, Gracz gracz2)
         {
             labelImieGracz1.Text = gracz1.Imie;

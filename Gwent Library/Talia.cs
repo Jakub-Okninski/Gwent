@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class Talia : List<Karta>
+    public class Talia <T> : List<T>
     {
         public override string ToString()
         {

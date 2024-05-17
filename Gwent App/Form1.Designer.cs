@@ -49,9 +49,7 @@
             pictureBoxZdjecieGracz2 = new PictureBox();
             labelImieGracz1 = new Label();
             labelImieGracz2 = new Label();
-            pictureBoxPunktyTlo1 = new PictureBox();
             labelPunktySumaGracz1 = new Label();
-            pictureBoxPunktyTlo2 = new PictureBox();
             labelPunktySumaGracz2 = new Label();
             pictureBoxPierwszyPunktGracz1 = new PictureBox();
             pictureBoxDrugiPunktGracz1 = new PictureBox();
@@ -73,8 +71,6 @@
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPunktyTlo1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPunktyTlo2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).BeginInit();
@@ -247,14 +243,6 @@
             labelImieGracz2.TabIndex = 19;
             labelImieGracz2.Text = "Imie";
             // 
-            // pictureBoxPunktyTlo1
-            // 
-            pictureBoxPunktyTlo1.Location = new Point(285, 550);
-            pictureBoxPunktyTlo1.Name = "pictureBoxPunktyTlo1";
-            pictureBoxPunktyTlo1.Size = new Size(45, 45);
-            pictureBoxPunktyTlo1.TabIndex = 22;
-            pictureBoxPunktyTlo1.TabStop = false;
-            // 
             // labelPunktySumaGracz1
             // 
             labelPunktySumaGracz1.AutoSize = true;
@@ -264,14 +252,6 @@
             labelPunktySumaGracz1.Size = new Size(13, 15);
             labelPunktySumaGracz1.TabIndex = 23;
             labelPunktySumaGracz1.Text = "0";
-            // 
-            // pictureBoxPunktyTlo2
-            // 
-            pictureBoxPunktyTlo2.Location = new Point(285, 173);
-            pictureBoxPunktyTlo2.Name = "pictureBoxPunktyTlo2";
-            pictureBoxPunktyTlo2.Size = new Size(45, 45);
-            pictureBoxPunktyTlo2.TabIndex = 24;
-            pictureBoxPunktyTlo2.TabStop = false;
             // 
             // labelPunktySumaGracz2
             // 
@@ -408,10 +388,10 @@
             panelRoguOblezniczeGracz2.Size = new Size(133, 110);
             panelRoguOblezniczeGracz2.TabIndex = 41;
             // 
-            // panel1
+            // panelWspolnePole
             // 
             panelWspolnePole.Location = new Point(51, 329);
-            panelWspolnePole.Name = "panel1";
+            panelWspolnePole.Name = "panelWspolnePole";
             panelWspolnePole.Size = new Size(241, 110);
             panelWspolnePole.TabIndex = 42;
             // 
@@ -437,9 +417,7 @@
             Controls.Add(pictureBoxDrugiPunktGracz1);
             Controls.Add(pictureBoxPierwszyPunktGracz1);
             Controls.Add(labelPunktySumaGracz2);
-            Controls.Add(pictureBoxPunktyTlo2);
             Controls.Add(labelPunktySumaGracz1);
-            Controls.Add(pictureBoxPunktyTlo1);
             Controls.Add(labelImieGracz2);
             Controls.Add(labelImieGracz1);
             Controls.Add(pictureBoxZdjecieGracz2);
@@ -468,8 +446,6 @@
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPunktyTlo1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxPunktyTlo2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).EndInit();
@@ -504,9 +480,7 @@
         private PictureBox pictureBoxZdjecieGracz2;
         private Label labelImieGracz1;
         private Label labelImieGracz2;
-        private PictureBox pictureBoxPunktyTlo1;
         private Label labelPunktySumaGracz1;
-        private PictureBox pictureBoxPunktyTlo2;
         private Label labelPunktySumaGracz2;
         private PictureBox pictureBoxPierwszyPunktGracz1;
         private PictureBox pictureBoxDrugiPunktGracz1;

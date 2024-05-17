@@ -3,46 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gwent_Library.TypyKart;
 
 namespace Gwent_Library
 {
     public class Gracz 
     {
-        public Gracz(string imie, Talia kartygracza)
+        public Gracz(string imie, Talia<Karta> kartygracza)
         {
             Imie = imie;
             KartyGracza = kartygracza;
-            UsunieteKartyGracza = new Talia();
-            KartyGraczaWRozgrywce = new Talia();
-            KartyPiechotyGracza = new List<IPiechoty>();
-            KartyStrzeleckieGracza = new List<IStrzeleckich>();
-            KartyOblezniczeGracza = new List<IOblęzniczych>();
-            Punkty = 2; 
+            KartyUsunieteGracza = new Talia<Karta>();
+            KartyGraczaWRozgrywce = new Talia<Karta>();
+            KartyPiechotyGracza = new Talia<IPolaPiechoty>();
+            KartyStrzeleckieGracza = new Talia<IPolaStrzeleckie>();
+            KartyOblezniczeGracza = new Talia<IPolaOblęznicze>();
+            KartyJedenorazowe = new Talia<IPolaJednorazowe>();
+            KartyJednostekGracza = new Talia<KartaJednostki>();
 
+            Punkty = 2;
+            PunktySuma = 0;
+            PunktyPiechoty = 0;
+            PunktyStrzeleckie = 0;
+            PunktyObleznicze = 0;
+
+
+    }
+
+
+        public Talia<KartaJednostki> KartyJednoskiGracza()
+        {
+
+            KartyJednostekGracza.Clear();
+            KartyJednostekGracza.AddRange(KartyOblezniczeGracza.OfType<KartaJednostki>());
+            KartyJednostekGracza.AddRange(KartyPiechotyGracza.OfType<KartaJednostki>());
+            KartyJednostekGracza.AddRange(KartyStrzeleckieGracza.OfType<KartaJednostki>());
+
+            return KartyJednostekGracza;
         }
 
+        public override string ToString()
+        {
+            return $"Gracz: {Imie}, Punkty: {Punkty}, PunktySuma: {PunktySuma}, PunktyPiechoty: {PunktyPiechoty}, PunktyStrzeleckie: {PunktyStrzeleckie}, PunktyObleznicze: {PunktyObleznicze}, " +
+                   $"Liczba kart: {KartyGracza.Count}";
+        }
+
+
         public string Imie {  get; set; }   
-        public Talia KartyGracza { get; set; }
-        public Talia UsunieteKartyGracza { get; set; }
-        public Talia KartyGraczaWRozgrywce { get; set; }
+        public Talia<Karta> KartyGracza { get; set; }
 
-        public List<IPiechoty> KartyPiechotyGracza { get; set; }
-        public List<IStrzeleckich> KartyStrzeleckieGracza { get; set; }
-        public List<IOblęzniczych> KartyOblezniczeGracza { get; set; }
 
-        private int punkty;
-        public int Punkty {   get { return punkty; } private set { } }
+        public Talia<Karta> KartyGraczaWRozgrywce { get; set; }
+        public Talia<Karta> KartyUsunieteGracza { get; set; }
+        public Talia<KartaJednostki> KartyJednostekGracza { get; set; }
 
-        private int punktySuma;
-        public int PunktySuma { get { return punktySuma; } protected set { } }
+        public Talia<IPolaPiechoty> KartyPiechotyGracza { get; set; }
+        public Talia<IPolaStrzeleckie> KartyStrzeleckieGracza { get; set; }
+        public Talia<IPolaOblęznicze> KartyOblezniczeGracza { get; set; }
 
-        private int punktyPiechoty;
-        public int PunktyPiechoty { get { return punktyPiechoty; } protected set { } }
-        private int punktyStrzeleckie;
-        public int PunktyStrzeleckie { get { return punktyStrzeleckie; } protected set { } }
+        public Talia<IPolaJednorazowe> KartyJedenorazowe { get; set; }
 
-        private int punktyObleznicze;
-        public int PunktyObleznicze { get { return punktyObleznicze; } protected set { } }
+
+    public int Punkty {  get; set; }
+        public int PunktySuma { get; set; }
+        public int PunktyPiechoty { get; set; }
+        public int PunktyStrzeleckie { get; set; }
+        public int PunktyObleznicze { get; set; }
+
         public void ZmniejszPunkty()
         {
          
@@ -61,7 +88,7 @@ namespace Gwent_Library
             }
 
             Gracz other = (Gracz)obj;
-            return this.Imie.CompareTo(other.Imie) == 0;
+            return Imie.CompareTo(other.Imie) == 0;
         }
     }
 }

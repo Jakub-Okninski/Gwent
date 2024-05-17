@@ -15,6 +15,5 @@ namespace Gwent_Library
         }
         public string Nazwa {  get; set; }
         public string NazwaZdjecia { get; set; }
-
     } 
 }

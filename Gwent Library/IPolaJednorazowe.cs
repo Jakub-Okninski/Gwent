@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public interface IOblęzniczych
+    public interface IPolaJednorazowe
     {
     }
 }
