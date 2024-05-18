@@ -16,9 +16,11 @@ namespace Gwent_Library.Karty
 
         public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
         {
-            if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is Pozoga) || gracz2.Plansza.KartySpecjalne.Any(karta => karta is Pozoga))
+            if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is Pozoga) 
+                || gracz2.Plansza.KartySpecjalne.Any(karta => karta is Pozoga))
             {
                 var wszystkieKarty = new List<KartaJednostki>();
+
                 wszystkieKarty.AddRange(gracz1.Plansza.listaKartJednostek());
                 wszystkieKarty.AddRange(gracz2.Plansza.listaKartJednostek());
                 int maksymalnaSila = wszystkieKarty.Any() ? wszystkieKarty.Max(karta => karta.Sila) : 0;
@@ -32,16 +34,13 @@ namespace Gwent_Library.Karty
                 UsunKartyOPodanejSile(gracz1.Plansza.KartyOblezniczeGracza, maksymalnaSila);
                 UsunKartyOPodanejSile(gracz2.Plansza.KartyOblezniczeGracza, maksymalnaSila);
 
-
                 gracz2.Plansza.KartySpecjalne.RemoveAll(karta => karta is Pozoga);
                 gracz1.Plansza.KartySpecjalne.RemoveAll(karta => karta is Pozoga);
             }
         }
-
-        public void UsunKartyOPodanejSile<T>(Talia<T> lista, int sila) where T : KartaJednostki
+        private void UsunKartyOPodanejSile<T>(Talia<T> lista, int sila) where T : KartaJednostki
         {
             lista.RemoveAll(karta => karta.Sila == sila);
-
         }
     }
 }

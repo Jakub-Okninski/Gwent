@@ -16,4 +16,7 @@ namespace Gwent_Library.Karty
 
        
     }
+  
+
 }
+

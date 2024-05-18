@@ -12,18 +12,15 @@ namespace Gwent_App
             Gracz gracz1 = new Gracz("Jakub", Gra.GenerateCard());
             Gracz gracz2 = new Gracz("Dawid", Gra.GenerateCard());
             Gra gra = new Gra(gracz1,gracz2);
+           
+            
+            System.Diagnostics.Debug.WriteLine("Start Rozgrywki");
+            Form2 form2 = new Form2();
+            Form1 form1 = new Form1(gra, form2);
+            form2.SetForm(gra, form1);
 
+            Application.Run(form1);
 
-            ApplicationConfiguration.Initialize();
-            // Uruchomienie formy 1 w osobnym w¹tku
-            Form2 f2 =  new Form2(gra);
-
-            Thread thread1 = new Thread(() => Application.Run(new Form2(gra)));
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-
-            // Uruchomienie formy 2 w g³ównym w¹tku
-            Application.Run(new Form1(gra,f2));
         }
     }
 }

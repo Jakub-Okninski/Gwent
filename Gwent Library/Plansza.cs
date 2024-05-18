@@ -10,10 +10,8 @@ namespace Gwent_Library
 {
     public class Plansza
     {
-
         public Plansza(Talia<Karta> talia)
         {
-            KartyUsunieteGracza = new Talia<Karta>();
             KartyGraczaWRozgrywce = talia;
             KartyPiechotyGracza = new Talia<KartaPiechoty>();
             KartyStrzeleckieGracza = new Talia<KartaLucznika>();
@@ -23,16 +21,11 @@ namespace Gwent_Library
             PunktyPiechoty = 0;
             PunktyStrzeleckie = 0;
             PunktyObleznicze = 0;
-
         }
-
         public Talia<Karta> KartyGraczaWRozgrywce { get; set; }
-        public Talia<Karta> KartyUsunieteGracza { get; set; }
-
         public Talia<KartaPiechoty> KartyPiechotyGracza { get; set; }
         public Talia<KartaLucznika> KartyStrzeleckieGracza { get; set; }
         public Talia<KartaObleznika> KartyOblezniczeGracza { get; set; }
-
         public Talia<KartaSpecjalna> KartySpecjalne { get; set; }
 
         public int PunktySuma { get; set; }
@@ -42,12 +35,21 @@ namespace Gwent_Library
 
         public Talia<KartaJednostki> listaKartJednostek()
         {
-            Talia < KartaJednostki > lista = new Talia<KartaJednostki>();
+            Talia<KartaJednostki> lista = new Talia<KartaJednostki>();
             lista.AddRange(KartyPiechotyGracza);
             lista.AddRange(KartyStrzeleckieGracza);
             lista.AddRange(KartyOblezniczeGracza);
             return lista;
         }
-       
+        public void ResetujPanel(){
+            PunktySuma = 0;
+            PunktyPiechoty = 0;
+            PunktyStrzeleckie = 0;
+            PunktyObleznicze = 0;
+            KartyPiechotyGracza.Clear();
+            KartyStrzeleckieGracza.Clear();
+            KartyOblezniczeGracza.Clear();
+            KartySpecjalne.Clear();
+        }   
     }
 }

@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+       private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             backgroundPictureBox = new PictureBox();
@@ -55,12 +55,6 @@
             pictureBoxDrugiPunktGracz1 = new PictureBox();
             pictureBoxPierwszyPunktGracz2 = new PictureBox();
             pictureBoxDrugiPunktGracz2 = new PictureBox();
-            pictureBoxUsunieteKartyGracz1 = new PictureBox();
-            pictureBoxUsunieteKartyGracz2 = new PictureBox();
-            pictureBoxZdjecieWszystkichKartGracza1 = new PictureBox();
-            pictureBoxZdjecieWszystkichKartGracza2 = new PictureBox();
-            labelLiczbaKartPozaGraGracza1 = new Label();
-            labelLiczbaKartPozaGraGracza2 = new Label();
             panelRoguOblezniczeGracz1 = new Panel();
             panelRoguDystansGracz1 = new Panel();
             panelRoguZwarcieGracz1 = new Panel();
@@ -75,10 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza2).BeginInit();
             SuspendLayout();
             // 
             // backgroundPictureBox
@@ -94,50 +84,50 @@
             // 
             // panelDystansGracz1
             // 
-            panelDystansGracz1.Location = new Point(583, 521);
+            panelDystansGracz1.Location = new Point(644, 521);
             panelDystansGracz1.Name = "panelDystansGracz1";
-            panelDystansGracz1.Size = new Size(778, 110);
+            panelDystansGracz1.Size = new Size(897, 110);
             panelDystansGracz1.TabIndex = 2;
             // 
             // panelOblezniczeGracz1
             // 
-            panelOblezniczeGracz1.Location = new Point(583, 649);
+            panelOblezniczeGracz1.Location = new Point(644, 649);
             panelOblezniczeGracz1.Name = "panelOblezniczeGracz1";
-            panelOblezniczeGracz1.Size = new Size(778, 110);
+            panelOblezniczeGracz1.Size = new Size(897, 110);
             panelOblezniczeGracz1.TabIndex = 3;
             // 
             // panelZwarcieGracz1
             // 
-            panelZwarcieGracz1.Location = new Point(583, 394);
+            panelZwarcieGracz1.Location = new Point(644, 394);
             panelZwarcieGracz1.Name = "panelZwarcieGracz1";
-            panelZwarcieGracz1.Size = new Size(778, 110);
+            panelZwarcieGracz1.Size = new Size(897, 110);
             panelZwarcieGracz1.TabIndex = 1;
             // 
             // panelOblezniczeGracz2
             // 
-            panelOblezniczeGracz2.Location = new Point(583, 12);
+            panelOblezniczeGracz2.Location = new Point(644, 12);
             panelOblezniczeGracz2.Name = "panelOblezniczeGracz2";
-            panelOblezniczeGracz2.Size = new Size(778, 110);
+            panelOblezniczeGracz2.Size = new Size(897, 110);
             panelOblezniczeGracz2.TabIndex = 4;
             // 
             // panelDystansGracz2
             // 
-            panelDystansGracz2.Location = new Point(583, 141);
+            panelDystansGracz2.Location = new Point(644, 141);
             panelDystansGracz2.Name = "panelDystansGracz2";
-            panelDystansGracz2.Size = new Size(778, 110);
+            panelDystansGracz2.Size = new Size(897, 110);
             panelDystansGracz2.TabIndex = 5;
             // 
             // panelZwarcieGracz2
             // 
-            panelZwarcieGracz2.Location = new Point(583, 269);
+            panelZwarcieGracz2.Location = new Point(644, 269);
             panelZwarcieGracz2.Name = "panelZwarcieGracz2";
-            panelZwarcieGracz2.Size = new Size(778, 110);
+            panelZwarcieGracz2.Size = new Size(897, 110);
             panelZwarcieGracz2.TabIndex = 6;
             // 
             // labelOblezniczeGracz1
             // 
             labelOblezniczeGracz1.AutoSize = true;
-            labelOblezniczeGracz1.Location = new Point(393, 696);
+            labelOblezniczeGracz1.Location = new Point(439, 695);
             labelOblezniczeGracz1.Name = "labelOblezniczeGracz1";
             labelOblezniczeGracz1.Size = new Size(13, 15);
             labelOblezniczeGracz1.TabIndex = 7;
@@ -146,7 +136,7 @@
             // labelDystansGracz1
             // 
             labelDystansGracz1.AutoSize = true;
-            labelDystansGracz1.Location = new Point(393, 566);
+            labelDystansGracz1.Location = new Point(439, 565);
             labelDystansGracz1.Name = "labelDystansGracz1";
             labelDystansGracz1.Size = new Size(13, 15);
             labelDystansGracz1.TabIndex = 8;
@@ -155,7 +145,7 @@
             // labelZwarcieGracz1
             // 
             labelZwarcieGracz1.AutoSize = true;
-            labelZwarcieGracz1.Location = new Point(393, 444);
+            labelZwarcieGracz1.Location = new Point(439, 443);
             labelZwarcieGracz1.Name = "labelZwarcieGracz1";
             labelZwarcieGracz1.Size = new Size(13, 15);
             labelZwarcieGracz1.TabIndex = 9;
@@ -164,7 +154,7 @@
             // labelZwarcieGracz2
             // 
             labelZwarcieGracz2.AutoSize = true;
-            labelZwarcieGracz2.Location = new Point(393, 316);
+            labelZwarcieGracz2.Location = new Point(439, 315);
             labelZwarcieGracz2.Name = "labelZwarcieGracz2";
             labelZwarcieGracz2.Size = new Size(13, 15);
             labelZwarcieGracz2.TabIndex = 10;
@@ -173,7 +163,7 @@
             // labelDystansGracz2
             // 
             labelDystansGracz2.AutoSize = true;
-            labelDystansGracz2.Location = new Point(393, 189);
+            labelDystansGracz2.Location = new Point(439, 188);
             labelDystansGracz2.Name = "labelDystansGracz2";
             labelDystansGracz2.Size = new Size(13, 15);
             labelDystansGracz2.TabIndex = 11;
@@ -182,7 +172,7 @@
             // labelOblezniczeGracz2
             // 
             labelOblezniczeGracz2.AutoSize = true;
-            labelOblezniczeGracz2.Location = new Point(393, 67);
+            labelOblezniczeGracz2.Location = new Point(439, 66);
             labelOblezniczeGracz2.Name = "labelOblezniczeGracz2";
             labelOblezniczeGracz2.Size = new Size(13, 15);
             labelOblezniczeGracz2.TabIndex = 12;
@@ -192,19 +182,19 @@
             // 
             panelGracza.Location = new Point(483, 778);
             panelGracza.Name = "panelGracza";
-            panelGracza.Size = new Size(778, 110);
+            panelGracza.Size = new Size(1019, 110);
             panelGracza.TabIndex = 13;
             // 
             // panelSpecjalnaGracz1
             // 
-            panelSpecjalnaGracz1.Location = new Point(106, 601);
+            panelSpecjalnaGracz1.Location = new Point(131, 602);
             panelSpecjalnaGracz1.Name = "panelSpecjalnaGracz1";
             panelSpecjalnaGracz1.Size = new Size(106, 130);
             panelSpecjalnaGracz1.TabIndex = 14;
             // 
             // panelSpecjalnaGracz2
             // 
-            panelSpecjalnaGracz2.Location = new Point(106, 34);
+            panelSpecjalnaGracz2.Location = new Point(131, 33);
             panelSpecjalnaGracz2.Name = "panelSpecjalnaGracz2";
             panelSpecjalnaGracz2.Size = new Size(106, 130);
             panelSpecjalnaGracz2.TabIndex = 15;
@@ -247,7 +237,7 @@
             // 
             labelPunktySumaGracz1.AutoSize = true;
             labelPunktySumaGracz1.BackColor = Color.LightGray;
-            labelPunktySumaGracz1.Location = new Point(300, 566);
+            labelPunktySumaGracz1.Location = new Point(341, 565);
             labelPunktySumaGracz1.Name = "labelPunktySumaGracz1";
             labelPunktySumaGracz1.Size = new Size(13, 15);
             labelPunktySumaGracz1.TabIndex = 23;
@@ -257,11 +247,12 @@
             // 
             labelPunktySumaGracz2.AutoSize = true;
             labelPunktySumaGracz2.BackColor = Color.LightGray;
-            labelPunktySumaGracz2.Location = new Point(300, 189);
+            labelPunktySumaGracz2.Location = new Point(341, 188);
             labelPunktySumaGracz2.Name = "labelPunktySumaGracz2";
             labelPunktySumaGracz2.Size = new Size(13, 15);
             labelPunktySumaGracz2.TabIndex = 25;
             labelPunktySumaGracz2.Text = "0";
+            labelPunktySumaGracz2.Click += labelPunktySumaGracz2_Click;
             // 
             // pictureBoxPierwszyPunktGracz1
             // 
@@ -296,103 +287,53 @@
             pictureBoxDrugiPunktGracz2.TabIndex = 29;
             pictureBoxDrugiPunktGracz2.TabStop = false;
             // 
-            // pictureBoxUsunieteKartyGracz1
-            // 
-            pictureBoxUsunieteKartyGracz1.Location = new Point(1391, 611);
-            pictureBoxUsunieteKartyGracz1.Name = "pictureBoxUsunieteKartyGracz1";
-            pictureBoxUsunieteKartyGracz1.Size = new Size(100, 133);
-            pictureBoxUsunieteKartyGracz1.TabIndex = 30;
-            pictureBoxUsunieteKartyGracz1.TabStop = false;
-            // 
-            // pictureBoxUsunieteKartyGracz2
-            // 
-            pictureBoxUsunieteKartyGracz2.Location = new Point(1391, 224);
-            pictureBoxUsunieteKartyGracz2.Name = "pictureBoxUsunieteKartyGracz2";
-            pictureBoxUsunieteKartyGracz2.Size = new Size(100, 133);
-            pictureBoxUsunieteKartyGracz2.TabIndex = 31;
-            pictureBoxUsunieteKartyGracz2.TabStop = false;
-            // 
-            // pictureBoxZdjecieWszystkichKartGracza1
-            // 
-            pictureBoxZdjecieWszystkichKartGracza1.Location = new Point(1391, 448);
-            pictureBoxZdjecieWszystkichKartGracza1.Name = "pictureBoxZdjecieWszystkichKartGracza1";
-            pictureBoxZdjecieWszystkichKartGracza1.Size = new Size(100, 133);
-            pictureBoxZdjecieWszystkichKartGracza1.TabIndex = 32;
-            pictureBoxZdjecieWszystkichKartGracza1.TabStop = false;
-            // 
-            // pictureBoxZdjecieWszystkichKartGracza2
-            // 
-            pictureBoxZdjecieWszystkichKartGracza2.Location = new Point(1391, 67);
-            pictureBoxZdjecieWszystkichKartGracza2.Name = "pictureBoxZdjecieWszystkichKartGracza2";
-            pictureBoxZdjecieWszystkichKartGracza2.Size = new Size(100, 133);
-            pictureBoxZdjecieWszystkichKartGracza2.TabIndex = 33;
-            pictureBoxZdjecieWszystkichKartGracza2.TabStop = false;
-            // 
-            // labelLiczbaKartPozaGraGracza1
-            // 
-            labelLiczbaKartPozaGraGracza1.AutoSize = true;
-            labelLiczbaKartPozaGraGracza1.Location = new Point(1519, 504);
-            labelLiczbaKartPozaGraGracza1.Name = "labelLiczbaKartPozaGraGracza1";
-            labelLiczbaKartPozaGraGracza1.Size = new Size(13, 15);
-            labelLiczbaKartPozaGraGracza1.TabIndex = 34;
-            labelLiczbaKartPozaGraGracza1.Text = "0";
-            // 
-            // labelLiczbaKartPozaGraGracza2
-            // 
-            labelLiczbaKartPozaGraGracza2.AutoSize = true;
-            labelLiczbaKartPozaGraGracza2.Location = new Point(1519, 129);
-            labelLiczbaKartPozaGraGracza2.Name = "labelLiczbaKartPozaGraGracza2";
-            labelLiczbaKartPozaGraGracza2.Size = new Size(13, 15);
-            labelLiczbaKartPozaGraGracza2.TabIndex = 35;
-            labelLiczbaKartPozaGraGracza2.Text = "0";
-            // 
             // panelRoguOblezniczeGracz1
             // 
-            panelRoguOblezniczeGracz1.Location = new Point(444, 649);
+            panelRoguOblezniczeGracz1.Location = new Point(505, 649);
             panelRoguOblezniczeGracz1.Name = "panelRoguOblezniczeGracz1";
             panelRoguOblezniczeGracz1.Size = new Size(133, 110);
             panelRoguOblezniczeGracz1.TabIndex = 36;
             // 
             // panelRoguDystansGracz1
             // 
-            panelRoguDystansGracz1.Location = new Point(444, 521);
+            panelRoguDystansGracz1.Location = new Point(505, 521);
             panelRoguDystansGracz1.Name = "panelRoguDystansGracz1";
             panelRoguDystansGracz1.Size = new Size(133, 110);
             panelRoguDystansGracz1.TabIndex = 37;
             // 
             // panelRoguZwarcieGracz1
             // 
-            panelRoguZwarcieGracz1.Location = new Point(444, 394);
+            panelRoguZwarcieGracz1.Location = new Point(505, 394);
             panelRoguZwarcieGracz1.Name = "panelRoguZwarcieGracz1";
             panelRoguZwarcieGracz1.Size = new Size(133, 110);
             panelRoguZwarcieGracz1.TabIndex = 38;
             // 
             // panelRoguZwarcieGracz2
             // 
-            panelRoguZwarcieGracz2.Location = new Point(444, 269);
+            panelRoguZwarcieGracz2.Location = new Point(505, 269);
             panelRoguZwarcieGracz2.Name = "panelRoguZwarcieGracz2";
             panelRoguZwarcieGracz2.Size = new Size(133, 110);
             panelRoguZwarcieGracz2.TabIndex = 39;
             // 
             // panelRoguDystansGracz2
             // 
-            panelRoguDystansGracz2.Location = new Point(444, 141);
+            panelRoguDystansGracz2.Location = new Point(505, 141);
             panelRoguDystansGracz2.Name = "panelRoguDystansGracz2";
             panelRoguDystansGracz2.Size = new Size(133, 110);
             panelRoguDystansGracz2.TabIndex = 40;
             // 
             // panelRoguOblezniczeGracz2
             // 
-            panelRoguOblezniczeGracz2.Location = new Point(444, 12);
+            panelRoguOblezniczeGracz2.Location = new Point(505, 12);
             panelRoguOblezniczeGracz2.Name = "panelRoguOblezniczeGracz2";
             panelRoguOblezniczeGracz2.Size = new Size(133, 110);
             panelRoguOblezniczeGracz2.TabIndex = 41;
             // 
             // panelWspolnePole
             // 
-            panelWspolnePole.Location = new Point(51, 329);
+            panelWspolnePole.Location = new Point(59, 332);
             panelWspolnePole.Name = "panelWspolnePole";
-            panelWspolnePole.Size = new Size(241, 110);
+            panelWspolnePole.Size = new Size(271, 110);
             panelWspolnePole.TabIndex = 42;
             // 
             // Form1
@@ -407,12 +348,6 @@
             Controls.Add(panelRoguZwarcieGracz1);
             Controls.Add(panelRoguDystansGracz1);
             Controls.Add(panelRoguOblezniczeGracz1);
-            Controls.Add(labelLiczbaKartPozaGraGracza2);
-            Controls.Add(labelLiczbaKartPozaGraGracza1);
-            Controls.Add(pictureBoxZdjecieWszystkichKartGracza2);
-            Controls.Add(pictureBoxZdjecieWszystkichKartGracza1);
-            Controls.Add(pictureBoxUsunieteKartyGracz2);
-            Controls.Add(pictureBoxUsunieteKartyGracz1);
             Controls.Add(pictureBoxDrugiPunktGracz2);
             Controls.Add(pictureBoxDrugiPunktGracz1);
             Controls.Add(pictureBoxPierwszyPunktGracz1);
@@ -440,9 +375,9 @@
             Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(backgroundPictureBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form1";
+            Name = "Form2";
             StartPosition = FormStartPosition.Manual;
-            Text = "Gracz 1";
+            Text = "Gracz 2";
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).EndInit();
@@ -450,10 +385,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -486,12 +417,6 @@
         private PictureBox pictureBoxDrugiPunktGracz1;
         private PictureBox pictureBoxPierwszyPunktGracz2;
         private PictureBox pictureBoxDrugiPunktGracz2;
-        private PictureBox pictureBoxUsunieteKartyGracz1;
-        private PictureBox pictureBoxUsunieteKartyGracz2;
-        private PictureBox pictureBoxZdjecieWszystkichKartGracza1;
-        private PictureBox pictureBoxZdjecieWszystkichKartGracza2;
-        private Label labelLiczbaKartPozaGraGracza1;
-        private Label labelLiczbaKartPozaGraGracza2;
         private Panel panelRoguOblezniczeGracz1;
         private Panel panelRoguDystansGracz1;
         private Panel panelRoguZwarcieGracz1;

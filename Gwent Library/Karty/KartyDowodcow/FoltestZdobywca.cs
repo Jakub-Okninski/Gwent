@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gwent_Library.KartyDowodcow
+namespace Gwent_Library.Karty.KartyDowodcow
 {
     public class FoltestZdobywca : KartaDowodcy
     {
@@ -16,7 +16,7 @@ namespace Gwent_Library.KartyDowodcow
 
         public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
         {
-            gracz1.Plansza.KartySpecjalne.Add(new RogDowodcy("RogDowodcy FoltestZdobywca", "RogDowodcy"));    
+            gracz1.Plansza.KartySpecjalne.Add(new RogDowodcy("RogDowodcy FoltestZdobywca", "RogDowodcy") { kartaPolaJednostki = new KartaObleznika("Item", 0, false, "img") });
         }
     }
 }

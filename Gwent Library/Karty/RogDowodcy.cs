@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Gwent_Library.KartyDowodcow;
+using Gwent_Library.Karty.KartyDowodcow;
 using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
@@ -15,34 +15,29 @@ namespace Gwent_Library.Karty
         {
         }
 
-        public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
-        {
-            WykonajRog(gracz1);
-        }
-       
-        private void WykonajRog(Gracz gracz)
+        public override void WykonajAkcje(Gracz gracz, Gracz gracz2)
         {
             var wszystkieKartySpecjalne = gracz.Plansza.KartySpecjalne.Where(karta => karta is RogDowodcy);
             bool spr1 = true, spr2 = true, spr3 = true;
             foreach (RogDowodcy rog in wszystkieKartySpecjalne)
             {
 
-                if (rog.kartaPolaJednostki is KartaPiechoty&& spr1)
+                if (rog.kartaPolaJednostki is KartaPiechoty && spr1)
                 {
-                    KartaPiechoty.PomnozPunkty(gracz);
+                    gracz.Plansza.KartyPiechotyGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
                     spr1 = false;
                 }
                 if (rog.kartaPolaJednostki is KartaLucznika && spr2)
                 {
-                    KartaLucznika.PomnozPunkty(gracz);
+                    gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
                     spr3 = false;
                 }
                 if (rog.kartaPolaJednostki is KartaObleznika && spr3)
                 {
-                    KartaObleznika.PomnozPunkty(gracz);
+                    gracz.Plansza.KartyOblezniczeGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
                     spr3 = false;
                 }
             }
-        }
+        }    
     }
 }

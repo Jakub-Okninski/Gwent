@@ -17,22 +17,11 @@ namespace Gwent_Library.TypyKart
             KartaBohatera = kartaBohatera;
         }
         public bool KartaBohatera { get; set; }
-        public int DomyslnaSila { get; }
         public int Sila { get; set; }
-
-     
-
-        public void UstawDomuslnaWartosc()
+        public int DomyslnaSila { get; }
+        public virtual void DomyslnaWartosc()
         {
             Sila = DomyslnaSila;
         }
-
-
-
     }
-
-
-
-
-
 }

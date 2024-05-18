@@ -11,13 +11,6 @@ namespace Gwent_Library.Karty
     {
         public KartaObleznika(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia) : base(nazwa, sila, kartaBohatera, nazwaZdjecia)
         {
-        }
-       
-      
-
-        public static void PomnozPunkty(Gracz gracz)
-        {
-            gracz.Plansza.KartyOblezniczeGracza.ForEach(karta => karta.Sila *= 2);
-        }
+        }  
     }
 }

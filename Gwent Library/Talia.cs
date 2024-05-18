@@ -12,9 +12,6 @@ namespace Gwent_Library
         public override string ToString()
         {
             return string.Join("\n ", this.Select(karta => karta.ToString()));
-        }
-     
-
-
+        } 
     }
 }

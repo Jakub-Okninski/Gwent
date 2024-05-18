@@ -9,12 +9,10 @@ namespace Gwent_Library.Karty
 {
     public abstract class KartaDowodcy : KartaSpecjalna
     {
-        public string OpisWlasciwosci {  get; set; }
+        public string OpisWlasciwosci {get; set;}
         public KartaDowodcy(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia)
         {
             OpisWlasciwosci = opisWlasciwosci;  
         }
-
-      
     }
 }

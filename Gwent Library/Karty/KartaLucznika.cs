@@ -12,10 +12,5 @@ namespace Gwent_Library.Karty
         public KartaLucznika(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia) : base(nazwa, sila, kartaBohatera, nazwaZdjecia)
         {
         }
-    
-        public static void PomnozPunkty(Gracz gracz)
-        {
-            gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila *= 2);
-        }
     }
 }

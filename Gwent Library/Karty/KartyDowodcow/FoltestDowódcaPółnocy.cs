@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gwent_Library.KartyDowodcow
+namespace Gwent_Library.Karty.KartyDowodcow
 {
     public class FoltestDowódcaPółnocy : KartaDowodcy
     {
@@ -30,7 +30,7 @@ namespace Gwent_Library.KartyDowodcow
         {
             lista.Where(karta => !karta.KartaBohatera)
                .ToList()
-               .ForEach(karta => karta.Sila = karta.DomyslnaSila);
+               .ForEach(karta => karta.DomyslnaWartosc());
         }
     }
 }

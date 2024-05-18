@@ -1,4 +1,5 @@
 ﻿using Gwent_Library.Karty;
+using Gwent_Library.Karty.KartyDowodcow;
 using Gwent_Library.TypyKart;
 using System;
 using System.Collections;
@@ -11,6 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Gwent_Library
 {
+
     public class Gra
     {
         public Gracz gracz1 { get; set; }
@@ -37,6 +39,10 @@ namespace Gwent_Library
             gracz2 = player2;
             ostatniGracz = gracz2;
         }
+
+
+      
+
         public void WykonajRuch(Gracz gracz, Karta karta)
         {
 
@@ -52,16 +58,6 @@ namespace Gwent_Library
             // }
 
         }
-
-
-       
-       
-
-
-
-        
-
-
 
         private void PolozKarte(Gracz gracz, Karta karta)
         {
@@ -97,8 +93,17 @@ namespace Gwent_Library
             }
             PrzliczPunkty(gracz);
 
+            SprawdzStanRozgrywki(gracz);
+
 
         }
+        private void SprawdzStanRozgrywki(Gracz gracz)
+        {
+
+        }
+
+
+    
 
         private void PrzliczPunkty(Gracz gracz)
         {
@@ -131,20 +136,17 @@ namespace Gwent_Library
                 }
             }
 
-
-            var kartyRogDowodcy = gracz.Plansza.KartySpecjalne.OfType<RogDowodcy>();
+            var kartyRogDowodcy = gracz.Plansza.KartySpecjalne.Where(karta => karta is RogDowodcy);
 
             if (kartyRogDowodcy.Any())
             {
                 foreach (var item in kartyRogDowodcy)
                 {
+                    System.Diagnostics.Debug.WriteLine("Log: Stdasdsadasdart xD");
+
                     item.WykonajAkcje(gracz, gracz2);
                 }
             }
-
-
-
-
 
             var kartyPozoga = gracz.Plansza.KartySpecjalne.OfType<Pozoga>();
 
@@ -173,10 +175,6 @@ namespace Gwent_Library
                 }
             }
 
-
-
-
-
             gracz1.Plansza.PunktyPiechoty= PrzeliczPunkty(gracz1.Plansza.KartyPiechotyGracza);
             gracz2.Plansza.PunktyPiechoty = PrzeliczPunkty(gracz2.Plansza.KartyPiechotyGracza);
             gracz1.Plansza.PunktyStrzeleckie = PrzeliczPunkty(gracz1.Plansza.KartyStrzeleckieGracza);
@@ -198,7 +196,7 @@ namespace Gwent_Library
             }
         }
 
-    private void ResetujPunkty(Gracz gracz)
+        private void ResetujPunkty(Gracz gracz)
         {
             UstawDomyslnaWartoscKart(gracz.Plansza.KartyPiechotyGracza);
             UstawDomyslnaWartoscKart(gracz.Plansza.KartyStrzeleckieGracza);
@@ -213,15 +211,15 @@ namespace Gwent_Library
         {
             if(karta.kartaPolaJednostki is KartaPiechoty k )
             {
-                gracz.Plansza.KartyPiechotyGracza.Add(k);
+                gracz.Plansza.KartySpecjalne.Add(karta);
             }
             else if (karta.kartaPolaJednostki is KartaLucznika k2)
             {
-                gracz.Plansza.KartyStrzeleckieGracza.Add(k2);
+                gracz.Plansza.KartySpecjalne.Add(karta);
             }
             else if(karta.kartaPolaJednostki is KartaObleznika k3)
             {
-                gracz.Plansza.KartyOblezniczeGracza.Add(k3);
+                gracz.Plansza.KartySpecjalne.Add(karta);
             }
             else
             {
@@ -254,13 +252,13 @@ namespace Gwent_Library
             Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");          
             Karta UlewnyDeszcz1 = new GestaMgla("Ulewny deszcz 1", "UlewnyDeszcz");          
             Karta CzysteNiebo2 = new CzysteNiebo("Czyste niebo 2", "CzysteNiebo");
-         
+            Karta FoltestZdobywca = new FoltestZdobywca("FoltestZdobywca", "FoltestZdobywca");
 
+            karty.Add(FoltestZdobywca);
             karty.Add(Cirilla);  
             karty.Add(Mroz1);
-                        karty.Add(Pozoga1);
+            karty.Add(Pozoga1);
             karty.Add(Mroz1);
-
             karty.Add(Balista1);
             karty.Add(Geralt);
             karty.Add(UlewnyDeszcz1);    
@@ -271,7 +269,6 @@ namespace Gwent_Library
             karty.Add(Balista2);
             karty.Add(BiednaPierdolonaPiechota1);         
             karty.Add(Detmold);
-       
             return karty;
         }
     }
