@@ -7,12 +7,14 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaDowodcy : KartaSpecjalna, IPolaJednorazowe
+    public abstract class KartaDowodcy : KartaSpecjalna
     {
         public string OpisWlasciwosci {  get; set; }
         public KartaDowodcy(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia)
         {
             OpisWlasciwosci = opisWlasciwosci;  
         }
+
+      
     }
 }

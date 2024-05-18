@@ -89,7 +89,7 @@ namespace Gwent_App
             panelWspolnePole.AllowDrop = false;
 
             
-            if (karta is IPolaPiechoty)
+            if (karta is KartaPiechoty)
             {
 
 
@@ -114,7 +114,7 @@ namespace Gwent_App
 
             }
 
-             if (karta is IPolaStrzeleckie)
+             if (karta is KartaLucznika)
             {
 
 
@@ -141,7 +141,7 @@ namespace Gwent_App
 
             }
 
-             if (karta is IPolaOblêznicze)
+             if (karta is KartaObleznika)
             {
 
 
@@ -168,28 +168,6 @@ namespace Gwent_App
 
           
 
-            if (karta is IPolaOblêznicze&& karta is IPolaStrzeleckie && karta is IPolaOblêznicze)
-            {
-
-
-
-                panelZwarcieGracz1.AllowDrop = true;
-                panelDystansGracz1.AllowDrop = true;
-                panelOblezniczeGracz1.AllowDrop = true;
-
-                panelRoguDystansGracz1.AllowDrop = false;
-                panelRoguOblezniczeGracz1.AllowDrop = false;
-                panelRoguZwarcieGracz1.AllowDrop = false;
-
-                panelSpecjalnaGracz1.AllowDrop = false;
-
-                panelWspolnePole.AllowDrop = false;
-
-
-
-
-
-            }
             if (karta is RogDowodcy)
             {
 
@@ -229,7 +207,7 @@ namespace Gwent_App
 
             }
 
-            if (karta is Pozoga || karta is CzysteNiebo)
+            if (karta is Pozoga || karta is KartaPogody)
             {
 
                 panelZwarcieGracz1.AllowDrop = false;
@@ -294,16 +272,16 @@ namespace Gwent_App
         }
         private void OdswiezPunktacje()
         {
-            labelDystansGracz1.Text = gracz1.PunktyStrzeleckie+"";
-            labelZwarcieGracz1.Text = gracz1.PunktyPiechoty + "";
-            labelOblezniczeGracz1.Text = gracz1.PunktyObleznicze + "";
-            labelPunktySumaGracz1.Text = gracz1.PunktySuma+ "";
+            labelDystansGracz1.Text = gracz1.Plansza.PunktyStrzeleckie+"";
+            labelZwarcieGracz1.Text = gracz1.Plansza.PunktyPiechoty + "";
+            labelOblezniczeGracz1.Text = gracz1.Plansza.PunktyObleznicze + "";
+            labelPunktySumaGracz1.Text = gracz1.Plansza.PunktySuma + "";
 
 
-            labelDystansGracz2.Text = gracz2.PunktyStrzeleckie + "";
-            labelZwarcieGracz2.Text = gracz2.PunktyPiechoty + "";
-            labelOblezniczeGracz2.Text = gracz2.PunktyObleznicze + "";
-            labelPunktySumaGracz2.Text = gracz2.PunktySuma+ "";
+            labelDystansGracz2.Text = gracz2.Plansza.PunktyStrzeleckie + "";
+            labelZwarcieGracz2.Text = gracz2.Plansza.PunktyPiechoty + "";
+            labelOblezniczeGracz2.Text = gracz2.Plansza.PunktyObleznicze + "";
+            labelPunktySumaGracz2.Text = gracz2.Plansza.PunktySuma + "";
 
 
         }

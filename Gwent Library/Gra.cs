@@ -42,7 +42,7 @@ namespace Gwent_Library
 
             // if (ostatniGracz != gracz)
             //  {
-            gracz.KartyGraczaWRozgrywce.Remove(karta);
+            gracz.Plansza.KartyGraczaWRozgrywce.Remove(karta);
             PolozKarte(gracz, karta);
             ostatniGracz = gracz;
             // }
@@ -54,29 +54,12 @@ namespace Gwent_Library
         }
 
 
-        private void PrzeliczPiechote(List<IPolaPiechoty> lista, Gracz gracz)
-        {
-            gracz.PunktyPiechoty = lista.OfType<KartaJednostki>().Sum(karta => karta.Sila);
-            OdswierzSumePunktow(gracz);
-
-        }
-        private void PrzeliczStrzeleckie(List<IPolaStrzeleckie> lista, Gracz gracz)
-        {
-            gracz.PunktyStrzeleckie = lista.OfType<KartaJednostki>().Sum(karta => karta.Sila);
-            OdswierzSumePunktow(gracz);
-        }
-        private void PrzeliczOblęznicze(List<IPolaOblęznicze> lista, Gracz gracz)
-        {
-            gracz.PunktyObleznicze = lista.OfType<KartaJednostki>().Sum(karta => karta.Sila);
-            OdswierzSumePunktow(gracz);
-        }
+       
+       
 
 
 
-        private void OdswierzSumePunktow(Gracz gracz)
-        {
-            gracz.PunktySuma = gracz.PunktyPiechoty + gracz.PunktyStrzeleckie + gracz.PunktyObleznicze;
-        }
+        
 
 
 
@@ -84,150 +67,176 @@ namespace Gwent_Library
         {
 
 
-            if (karta is IPolaPiechoty k)
+            if (karta is KartaPiechoty k)
             {
-                gracz.KartyPiechotyGracza.Add(k);          
+                gracz.Plansza.KartyPiechotyGracza.Add(k);    
             }
-            else if (karta is IPolaStrzeleckie k1)
+            else if (karta is KartaLucznika k1)
             {
-                gracz.KartyStrzeleckieGracza.Add(k1);         
+                gracz.Plansza.KartyStrzeleckieGracza.Add(k1);         
             }
-            else if (karta is IPolaOblęznicze k2)
+            else if (karta is KartaObleznika k2)
             {
-                gracz.KartyOblezniczeGracza.Add(k2);    
+                gracz.Plansza.KartyOblezniczeGracza.Add(k2);    
             }
-            else if (karta is IPolaJednorazowe k3)
+            else if (karta is KartaWszystkichPol k4)
             {
-                gracz.KartyJedenorazowe.Add(k3);
+                DodajKarteDoOdpowiedniejListy(k4, gracz);
             }
+            else if (karta is KartaSpecjalna k3)
+            {
+                gracz.Plansza.KartySpecjalne.Add(k3);
+            }
+            else if (karta is KartaPogody k5)
+            {
+                gracz.Plansza.KartySpecjalne.Add(k5);
+            }
+            else if (karta is KartaDowodcy k6)
+            {
+                gracz.Plansza.KartySpecjalne.Add(k6);
+            }
+            PrzliczPunkty(gracz);
 
-            AktualizujWszystikePunktyTalii();
+
         }
 
-        private void AktualizujWszystikePunktyTalii()
+        private void PrzliczPunkty(Gracz gracz)
         {
-            AktualizujPogode();
-
-
-            AktualizujPozoga();
-
-        }
-
-        private void PrzeliczPunkty()
-        {
-            PrzeliczPiechote(gracz1.KartyPiechotyGracza, gracz1);
-            PrzeliczStrzeleckie(gracz1.KartyStrzeleckieGracza, gracz1);
-            PrzeliczOblęznicze(gracz1.KartyOblezniczeGracza, gracz1);
-
-            PrzeliczPiechote(gracz2.KartyPiechotyGracza, gracz2);
-            PrzeliczStrzeleckie(gracz2.KartyStrzeleckieGracza, gracz2);
-            PrzeliczOblęznicze(gracz2.KartyOblezniczeGracza, gracz2);
-        
-
-        }
-
-        private void AktualizujPozoga()
-        {
-            if (gracz1.KartyJedenorazowe.Any(karta => karta is Pozoga) || gracz2.KartyJedenorazowe.Any(karta => karta is Pozoga))
-            {
-
-                var l1 = gracz1.KartyJednoskiGracza();
-                var l2 = gracz2.KartyJednoskiGracza();
-                var wszystkieKarty = new List<KartaJednostki>();
-                wszystkieKarty.AddRange(l1);
-                wszystkieKarty.AddRange(l2);           
-                int maksymalnaSila = wszystkieKarty.Any() ? wszystkieKarty.Max(karta => karta.Sila) : 0;
-
-      
-
-
-
-                PrzeliczPunkty();
-                System.Diagnostics.Debug.WriteLine("+dasdasdas"+gracz1.KartyPiechotyGracza.Count);
-
-
-            }
-        }
-
-        public void UsunPoSile(Gracz gracz) 
-        {
-
-           
-            foreach(var i in gracz1.KartyJednoskiGracza.)
-
-        }
-        private void AktualizujPogode()
-        {
-      
-            if (gracz1.KartyPiechotyGracza.Any(karta => karta is CzysteNiebo) || gracz2.KartyPiechotyGracza.Any(karta => karta is CzysteNiebo))
-            {
-                UstawSileKartPogody(gracz1.KartyPiechotyGracza.OfType<KartaJednostki>());
-                UstawSileKartPogody(gracz2.KartyPiechotyGracza.OfType<KartaJednostki>());
-                UstawSileKartPogody(gracz1.KartyStrzeleckieGracza.OfType<KartaJednostki>());
-                UstawSileKartPogody(gracz2.KartyStrzeleckieGracza.OfType<KartaJednostki>());
-                UstawSileKartPogody(gracz1.KartyOblezniczeGracza.OfType<KartaJednostki>());
-                UstawSileKartPogody(gracz2.KartyOblezniczeGracza.OfType<KartaJednostki>());
-
-                
-
-
-
-                gracz1.KartyPiechotyGracza.RemoveAll(karta => karta is KartaPogody);
-                gracz2.KartyPiechotyGracza.RemoveAll(karta => karta is KartaPogody);
-                gracz1.KartyStrzeleckieGracza.RemoveAll(karta => karta is KartaPogody);
-                gracz2.KartyStrzeleckieGracza.RemoveAll(karta => karta is KartaPogody);
-                gracz1.KartyOblezniczeGracza.RemoveAll(karta => karta is KartaPogody);
-                gracz2.KartyOblezniczeGracza.RemoveAll(karta => karta is KartaPogody);
-            }
-            else
-            {
-                if (gracz1.KartyPiechotyGracza.Any(karta => karta is TrzaskającyMroz) || gracz2.KartyPiechotyGracza.Any(karta => karta is TrzaskającyMroz))
-                {
-                    UstawSileKartPogody(gracz1.KartyPiechotyGracza.OfType<KartaJednostki>(), 1);
-                    UstawSileKartPogody(gracz2.KartyPiechotyGracza.OfType<KartaJednostki>(), 1);
-                }
-
-                if (gracz1.KartyStrzeleckieGracza.Any(karta => karta is GestaMgla) || gracz2.KartyStrzeleckieGracza.Any(karta => karta is GestaMgla))
-                {
-                    UstawSileKartPogody(gracz1.KartyStrzeleckieGracza.OfType<KartaJednostki>(), 1);
-                    UstawSileKartPogody(gracz2.KartyStrzeleckieGracza.OfType<KartaJednostki>(), 1);
-                }
-                if (gracz1.KartyOblezniczeGracza.Any(karta => karta is UlewnyDeszcz) || gracz2.KartyOblezniczeGracza.Any(karta => karta is UlewnyDeszcz))
-                {
-                    UstawSileKartPogody(gracz1.KartyOblezniczeGracza.OfType<KartaJednostki>(), 1);
-                    UstawSileKartPogody(gracz2.KartyOblezniczeGracza.OfType<KartaJednostki>(), 1);
-                }
-            }
-            PrzeliczPunkty();
-        }
-
+            ResetujPunkty(gracz);
+            var kartyPogody = gracz.Plansza.KartySpecjalne.Where(karta => (karta is KartaPogody&& !(karta is CzysteNiebo)));
    
-
-        private void UstawSileKartPogody(IEnumerable<KartaJednostki> lista, int sila = 0)
-        {
-            if (sila != 0)
+            if (kartyPogody.Any())
             {
-                foreach (var karta in lista)
+                for (int i = kartyPogody.Count() - 1; i >= 0; i--)
                 {
-                    if (!karta.KartaBohatera)
-                    {
-                        karta.Sila = sila;
-                    }
+                    System.Diagnostics.Debug.WriteLine(kartyPogody.ElementAt(i));
+
+             
+                    kartyPogody.ElementAt(i).WykonajAkcje(gracz1, gracz2);
+
                 }
+            }
+
+            kartyPogody = gracz.Plansza.KartySpecjalne.Where(karta => karta is CzysteNiebo);
+
+            if (kartyPogody.Any())
+            {
+                for (int i = kartyPogody.Count() - 1; i >= 0; i--)
+                {
+                    System.Diagnostics.Debug.WriteLine(kartyPogody.ElementAt(i));
+
+
+                    kartyPogody.ElementAt(i).WykonajAkcje(gracz1, gracz2);
+
+                }
+            }
+
+
+            var kartyRogDowodcy = gracz.Plansza.KartySpecjalne.OfType<RogDowodcy>();
+
+            if (kartyRogDowodcy.Any())
+            {
+                foreach (var item in kartyRogDowodcy)
+                {
+                    item.WykonajAkcje(gracz, gracz2);
+                }
+            }
+
+
+
+
+
+            var kartyPozoga = gracz.Plansza.KartySpecjalne.OfType<Pozoga>();
+
+            if (kartyPozoga.Any())
+            {
+                for (int i = kartyPozoga.Count() - 1; i >= 0; i--)
+                {
+                    var item = kartyPozoga.ElementAt(i);
+                    item.WykonajAkcje(gracz1, gracz2);
+                    PrzliczPunkty(gracz);                   
+                }
+            }
+
+            var kartyDowodcy = gracz.Plansza.KartySpecjalne.Where(karta => karta is KartaDowodcy);
+
+            if (kartyDowodcy.Any())
+            {
+                for (int i = kartyDowodcy.Count() - 1; i >= 0; i--)
+                {
+
+
+                    kartyDowodcy.ElementAt(i).WykonajAkcje(gracz1, gracz2);
+                    gracz.Plansza.KartySpecjalne.Remove(kartyDowodcy.ElementAt(i));
+                    PrzliczPunkty(gracz);
+
+                }
+            }
+
+
+
+
+
+            gracz1.Plansza.PunktyPiechoty= PrzeliczPunkty(gracz1.Plansza.KartyPiechotyGracza);
+            gracz2.Plansza.PunktyPiechoty = PrzeliczPunkty(gracz2.Plansza.KartyPiechotyGracza);
+            gracz1.Plansza.PunktyStrzeleckie = PrzeliczPunkty(gracz1.Plansza.KartyStrzeleckieGracza);
+            gracz2.Plansza.PunktyStrzeleckie = PrzeliczPunkty(gracz2.Plansza.KartyStrzeleckieGracza);
+            gracz1.Plansza.PunktyObleznicze = PrzeliczPunkty(gracz1.Plansza.KartyOblezniczeGracza);
+            gracz2.Plansza.PunktyObleznicze = PrzeliczPunkty(gracz2.Plansza.KartyOblezniczeGracza);
+            OdswierzSumePunktow();
+        }
+
+        private int PrzeliczPunkty<T>(Talia<T> list) where T : KartaJednostki
+        {
+            if (list.Any())
+            {
+                return list.Sum(karta => karta.Sila);
             }
             else
             {
-                foreach (var karta in lista)
-                {
-                    if (!karta.KartaBohatera)
-                    {
-                        karta.Sila = karta.DomyslnaSila;
-                    }
-                }
+                return 0; 
             }
-          
         }
 
+    private void ResetujPunkty(Gracz gracz)
+        {
+            UstawDomyslnaWartoscKart(gracz.Plansza.KartyPiechotyGracza);
+            UstawDomyslnaWartoscKart(gracz.Plansza.KartyStrzeleckieGracza);
+            UstawDomyslnaWartoscKart(gracz.Plansza.KartyOblezniczeGracza);
+        }
+
+        public void UstawDomyslnaWartoscKart<T>(Talia<T> karty) where T : KartaJednostki
+        {
+            karty.ForEach(karta => karta.Sila = karta.DomyslnaSila);
+        }
+        private void DodajKarteDoOdpowiedniejListy(KartaWszystkichPol karta, Gracz gracz)
+        {
+            if(karta.kartaPolaJednostki is KartaPiechoty k )
+            {
+                gracz.Plansza.KartyPiechotyGracza.Add(k);
+            }
+            else if (karta.kartaPolaJednostki is KartaLucznika k2)
+            {
+                gracz.Plansza.KartyStrzeleckieGracza.Add(k2);
+            }
+            else if(karta.kartaPolaJednostki is KartaObleznika k3)
+            {
+                gracz.Plansza.KartyOblezniczeGracza.Add(k3);
+            }
+            else
+            {
+                throw new Exception("Błedny Wybor Karty");
+            }
+
+        }
+
+
+
+        private void OdswierzSumePunktow()
+        {
+            gracz1.Plansza.PunktySuma = gracz1.Plansza.PunktyPiechoty + gracz1.Plansza.PunktyStrzeleckie + gracz1.Plansza.PunktyObleznicze;
+            gracz2.Plansza.PunktySuma = gracz2.Plansza.PunktyPiechoty + gracz2.Plansza.PunktyStrzeleckie + gracz2.Plansza.PunktyObleznicze;
+        }
 
         public static Talia<Karta> GenerateCard()
         {
@@ -239,14 +248,13 @@ namespace Gwent_Library
             Karta Balista2 = new KartaObleznika("Balista (II)", 6,  false, "Balista");
             Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota");       
             Karta Detmold = new KartaLucznika("Detmold", 6, false, "Detmold");
-            Karta Manekin1 = new Manekin("Manekin do ćwiczeń 1", "Manekin");       
             Karta Rog3 = new RogDowodcy("Róg dowódcy 3", "Rog");
             Karta Pozoga1 = new Pozoga("Pożoga 1", "Pozoga");         
             Karta Mroz1 = new TrzaskającyMroz("Trzaskający mróz 1", "TrzaskającyMroz");          
             Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");          
             Karta UlewnyDeszcz1 = new GestaMgla("Ulewny deszcz 1", "UlewnyDeszcz");          
             Karta CzysteNiebo2 = new CzysteNiebo("Czyste niebo 2", "CzysteNiebo");
-            Karta FoltestDowodcaPólnocy = new KartaDowodcy("Foltest Dowódca Północy", "FoltestDowodcaPólnocy", "Usuwa aktywne efekty kart pogodowych");
+         
 
             karty.Add(Cirilla);  
             karty.Add(Mroz1);
@@ -258,8 +266,6 @@ namespace Gwent_Library
             karty.Add(UlewnyDeszcz1);    
             karty.Add(Yennefer);        
             karty.Add(CzysteNiebo2);      
-            karty.Add(FoltestDowodcaPólnocy);
-            karty.Add(Manekin1);        
             karty.Add(Rog3);
             karty.Add(GestaMgla1);      
             karty.Add(Balista2);

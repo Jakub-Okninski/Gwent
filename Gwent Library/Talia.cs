@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gwent_Library.TypyKart;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,8 @@ namespace Gwent_Library
         {
             return string.Join("\n ", this.Select(karta => karta.ToString()));
         }
+     
+
+
     }
 }
