@@ -1,14 +1,14 @@
 ﻿namespace Gwent_App
 {
-    partial class Form1
+    partial class Form2
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,8 +23,8 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -55,6 +55,12 @@
             pictureBoxDrugiPunktGracz1 = new PictureBox();
             pictureBoxPierwszyPunktGracz2 = new PictureBox();
             pictureBoxDrugiPunktGracz2 = new PictureBox();
+            pictureBoxUsunieteKartyGracz1 = new PictureBox();
+            pictureBoxUsunieteKartyGracz2 = new PictureBox();
+            pictureBoxZdjecieWszystkichKartGracza1 = new PictureBox();
+            pictureBoxZdjecieWszystkichKartGracza2 = new PictureBox();
+            labelLiczbaKartPozaGraGracza1 = new Label();
+            labelLiczbaKartPozaGraGracza2 = new Label();
             panelRoguOblezniczeGracz1 = new Panel();
             panelRoguDystansGracz1 = new Panel();
             panelRoguZwarcieGracz1 = new Panel();
@@ -69,6 +75,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza2).BeginInit();
             SuspendLayout();
             // 
             // backgroundPictureBox
@@ -286,6 +296,56 @@
             pictureBoxDrugiPunktGracz2.TabIndex = 29;
             pictureBoxDrugiPunktGracz2.TabStop = false;
             // 
+            // pictureBoxUsunieteKartyGracz1
+            // 
+            pictureBoxUsunieteKartyGracz1.Location = new Point(1391, 611);
+            pictureBoxUsunieteKartyGracz1.Name = "pictureBoxUsunieteKartyGracz1";
+            pictureBoxUsunieteKartyGracz1.Size = new Size(100, 133);
+            pictureBoxUsunieteKartyGracz1.TabIndex = 30;
+            pictureBoxUsunieteKartyGracz1.TabStop = false;
+            // 
+            // pictureBoxUsunieteKartyGracz2
+            // 
+            pictureBoxUsunieteKartyGracz2.Location = new Point(1391, 224);
+            pictureBoxUsunieteKartyGracz2.Name = "pictureBoxUsunieteKartyGracz2";
+            pictureBoxUsunieteKartyGracz2.Size = new Size(100, 133);
+            pictureBoxUsunieteKartyGracz2.TabIndex = 31;
+            pictureBoxUsunieteKartyGracz2.TabStop = false;
+            // 
+            // pictureBoxZdjecieWszystkichKartGracza1
+            // 
+            pictureBoxZdjecieWszystkichKartGracza1.Location = new Point(1391, 448);
+            pictureBoxZdjecieWszystkichKartGracza1.Name = "pictureBoxZdjecieWszystkichKartGracza1";
+            pictureBoxZdjecieWszystkichKartGracza1.Size = new Size(100, 133);
+            pictureBoxZdjecieWszystkichKartGracza1.TabIndex = 32;
+            pictureBoxZdjecieWszystkichKartGracza1.TabStop = false;
+            // 
+            // pictureBoxZdjecieWszystkichKartGracza2
+            // 
+            pictureBoxZdjecieWszystkichKartGracza2.Location = new Point(1391, 67);
+            pictureBoxZdjecieWszystkichKartGracza2.Name = "pictureBoxZdjecieWszystkichKartGracza2";
+            pictureBoxZdjecieWszystkichKartGracza2.Size = new Size(100, 133);
+            pictureBoxZdjecieWszystkichKartGracza2.TabIndex = 33;
+            pictureBoxZdjecieWszystkichKartGracza2.TabStop = false;
+            // 
+            // labelLiczbaKartPozaGraGracza1
+            // 
+            labelLiczbaKartPozaGraGracza1.AutoSize = true;
+            labelLiczbaKartPozaGraGracza1.Location = new Point(1519, 504);
+            labelLiczbaKartPozaGraGracza1.Name = "labelLiczbaKartPozaGraGracza1";
+            labelLiczbaKartPozaGraGracza1.Size = new Size(13, 15);
+            labelLiczbaKartPozaGraGracza1.TabIndex = 34;
+            labelLiczbaKartPozaGraGracza1.Text = "0";
+            // 
+            // labelLiczbaKartPozaGraGracza2
+            // 
+            labelLiczbaKartPozaGraGracza2.AutoSize = true;
+            labelLiczbaKartPozaGraGracza2.Location = new Point(1519, 129);
+            labelLiczbaKartPozaGraGracza2.Name = "labelLiczbaKartPozaGraGracza2";
+            labelLiczbaKartPozaGraGracza2.Size = new Size(13, 15);
+            labelLiczbaKartPozaGraGracza2.TabIndex = 35;
+            labelLiczbaKartPozaGraGracza2.Text = "0";
+            // 
             // panelRoguOblezniczeGracz1
             // 
             panelRoguOblezniczeGracz1.Location = new Point(444, 649);
@@ -347,6 +407,12 @@
             Controls.Add(panelRoguZwarcieGracz1);
             Controls.Add(panelRoguDystansGracz1);
             Controls.Add(panelRoguOblezniczeGracz1);
+            Controls.Add(labelLiczbaKartPozaGraGracza2);
+            Controls.Add(labelLiczbaKartPozaGraGracza1);
+            Controls.Add(pictureBoxZdjecieWszystkichKartGracza2);
+            Controls.Add(pictureBoxZdjecieWszystkichKartGracza1);
+            Controls.Add(pictureBoxUsunieteKartyGracz2);
+            Controls.Add(pictureBoxUsunieteKartyGracz1);
             Controls.Add(pictureBoxDrugiPunktGracz2);
             Controls.Add(pictureBoxDrugiPunktGracz1);
             Controls.Add(pictureBoxPierwszyPunktGracz1);
@@ -384,6 +450,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxPierwszyPunktGracz2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxDrugiPunktGracz2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxUsunieteKartyGracz2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieWszystkichKartGracza2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -416,8 +486,14 @@
         private PictureBox pictureBoxDrugiPunktGracz1;
         private PictureBox pictureBoxPierwszyPunktGracz2;
         private PictureBox pictureBoxDrugiPunktGracz2;
+        private PictureBox pictureBoxUsunieteKartyGracz1;
+        private PictureBox pictureBoxUsunieteKartyGracz2;
+        private PictureBox pictureBoxZdjecieWszystkichKartGracza1;
+        private PictureBox pictureBoxZdjecieWszystkichKartGracza2;
+        private Label labelLiczbaKartPozaGraGracza1;
+        private Label labelLiczbaKartPozaGraGracza2;
         private Panel panelRoguOblezniczeGracz1;
-        private Panel panelRoguDystansGracz1; 
+        private Panel panelRoguDystansGracz1;
         private Panel panelRoguZwarcieGracz1;
         private Panel panelRoguZwarcieGracz2;
         private Panel panelRoguDystansGracz2;

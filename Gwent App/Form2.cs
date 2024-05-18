@@ -1,11 +1,11 @@
-using Gwent_Library;
+ï»¿using Gwent_Library;
 using Gwent_Library.Karty;
 using Gwent_Library.TypyKart;
 using System.Windows.Forms;
 
 namespace Gwent_App
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
         public Gracz gracz1;
         public Gracz gracz2;
@@ -14,27 +14,28 @@ namespace Gwent_App
         private PictureBox selectedPictureBox = null;
 
 
-        public Form1(Gra g, Form form2)
+        public Form2(Gra g)
         {
-            gracz1 = g.gracz1;
-            gracz2 = g.gracz2;
+            gracz1 = g.gracz2;
+            gracz2 = g.gracz1;
             gra = g;
 
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
-           
+
+
             //edit xD
 
             GeneratePictureBoxCard(panelGracza);
 
             panelGracza.AllowDrop = true;
-          
+
 
 
             panelGracza.DragEnter += Panel_DragEnter;
             panelGracza.DragDrop += Panel_DragDrop;
-           
+
             panelOblezniczeGracz1.DragEnter += Panel_DragEnter;
             panelOblezniczeGracz1.DragDrop += Panel_DragDrop;
 
@@ -87,7 +88,7 @@ namespace Gwent_App
 
             panelWspolnePole.AllowDrop = false;
 
-            
+
             if (karta is KartaPiechoty)
             {
 
@@ -105,15 +106,15 @@ namespace Gwent_App
                 panelWspolnePole.AllowDrop = false;
 
 
-             
+
 
                 labelDystansGracz1.Text = "1";
-       
+
 
 
             }
 
-             if (karta is KartaLucznika)
+            if (karta is KartaLucznika)
             {
 
 
@@ -133,14 +134,14 @@ namespace Gwent_App
 
 
 
-        
+
                 labelDystansGracz1.Text = "2";
-              
+
 
 
             }
 
-             if (karta is KartaObleznika)
+            if (karta is KartaObleznika)
             {
 
 
@@ -161,11 +162,11 @@ namespace Gwent_App
 
 
                 labelDystansGracz1.Text = "3";
-               
+
 
             }
 
-          
+
 
             if (karta is RogDowodcy)
             {
@@ -182,12 +183,12 @@ namespace Gwent_App
                 panelSpecjalnaGracz1.AllowDrop = false;
 
                 panelWspolnePole.AllowDrop = false;
-             
 
-       
-         
+
+
+
             }
-            if(karta is KartaDowodcy)
+            if (karta is KartaDowodcy)
             {
 
                 panelZwarcieGracz1.AllowDrop = false;
@@ -201,8 +202,8 @@ namespace Gwent_App
                 panelSpecjalnaGracz1.AllowDrop = true;
 
                 panelWspolnePole.AllowDrop = false;
-           
-         
+
+
 
             }
 
@@ -220,8 +221,8 @@ namespace Gwent_App
                 panelSpecjalnaGracz1.AllowDrop = false;
 
                 panelWspolnePole.AllowDrop = true;
-              
-           
+
+
             }
 
             selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
@@ -229,7 +230,7 @@ namespace Gwent_App
 
         private void PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-         
+
         }
 
         private void PictureBox_MouseUp(object sender, MouseEventArgs e)
@@ -250,9 +251,9 @@ namespace Gwent_App
 
             if (pictureBox != null && targetPanel != null && targetPanel != sourcePanel)
             {
-                // Usuñ PictureBox z obecnego panelu
+                // UsuÅ„ PictureBox z obecnego panelu
                 sourcePanel.Controls.Remove(pictureBox);
-                // Dodaj PictureBox do panelu, do którego zosta³ przeci¹gniêty
+                // Dodaj PictureBox do panelu, do ktÃ³rego zostaÅ‚ przeciÄ…gniÄ™ty
                 targetPanel.Controls.Add(pictureBox);
 
                 gra.WykonajRuch(gracz1, pictureBox.Tag as Karta);
@@ -263,7 +264,7 @@ namespace Gwent_App
                 RefreshCardPositions(targetPanel);
             }
 
-    
+
         }
         private void OdswiezPanel(Panel panel)
         {
@@ -271,7 +272,7 @@ namespace Gwent_App
         }
         private void OdswiezPunktacje()
         {
-            labelDystansGracz1.Text = gracz1.Plansza.PunktyStrzeleckie+"";
+            labelDystansGracz1.Text = gracz1.Plansza.PunktyStrzeleckie + "";
             labelZwarcieGracz1.Text = gracz1.Plansza.PunktyPiechoty + "";
             labelOblezniczeGracz1.Text = gracz1.Plansza.PunktyObleznicze + "";
             labelPunktySumaGracz1.Text = gracz1.Plansza.PunktySuma + "";
@@ -290,21 +291,21 @@ namespace Gwent_App
             // Liczba PictureBox do wygenerowania
             int pictureBoxCount = 10;
 
-            // Rozmiar i odstêp pomiêdzy PictureBox
+            // Rozmiar i odstÄ™p pomiÄ™dzy PictureBox
             int pictureBoxWidth = 60;
             int pictureBoxHeight = 90;
             int pictureBoxSpacing = 10;
 
-            // Obliczanie szerokoœci panelu
+            // Obliczanie szerokoÅ›ci panelu
             int panelWidth = panel.ClientSize.Width;
 
-            // Obliczanie szerokoœci zajmowanej przez wszystkie karty oraz odstêpów
+            // Obliczanie szerokoÅ›ci zajmowanej przez wszystkie karty oraz odstÄ™pÃ³w
             int totalWidth = pictureBoxCount * pictureBoxWidth + (pictureBoxCount - 1) * pictureBoxSpacing;
 
-            // Obliczanie pozycji pocz¹tkowej X, aby wyœrodkowaæ karty
+            // Obliczanie pozycji poczÄ…tkowej X, aby wyÅ›rodkowaÄ‡ karty
             int startX = (panelWidth - totalWidth) / 2;
 
-            // Pozycja pocz¹tkowa generowania PictureBox
+            // Pozycja poczÄ…tkowa generowania PictureBox
             int startY = pictureBoxSpacing;
             Karta[] cards = gracz1.KartyGracza.ToArray();
 
@@ -325,51 +326,51 @@ namespace Gwent_App
                 pictureBox.MouseMove += PictureBox_MouseMove;
                 pictureBox.MouseUp += PictureBox_MouseUp;
 
-                // Dodaj etykietê nad PictureBox
+                // Dodaj etykietÄ™ nad PictureBox
                 Label label = new Label();
                 label.Text = cards[i].Nazwa;
-               pictureBox.Tag = cards[i];
+                pictureBox.Tag = cards[i];
                 label.AutoSize = true;
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.BackColor = Color.Transparent;
                 label.Dock = DockStyle.Top;
                 pictureBox.Controls.Add(label);
-             
+
                 panel.Controls.Add(pictureBox);
 
-                // Aktualizacja pozycji X dla nastêpnego PictureBox
+                // Aktualizacja pozycji X dla nastÄ™pnego PictureBox
                 startX += pictureBoxWidth + pictureBoxSpacing;
             }
 
-            // Odœwie¿enie pozycji kart w panelu
+            // OdÅ›wieÅ¼enie pozycji kart w panelu
             RefreshCardPositions(panel, pictureBoxSpacing);
         }
 
         private void RefreshCardPositions(Panel panel, int pictureBoxSpacing = 10)
         {
-            // Obliczanie szerokoœci zajmowanej przez wszystkie karty oraz odstêpów
+            // Obliczanie szerokoÅ›ci zajmowanej przez wszystkie karty oraz odstÄ™pÃ³w
             int totalWidth = panel.Controls.Count * panel.Controls[0].Width + (panel.Controls.Count - 1) * pictureBoxSpacing;
 
-            // Obliczanie szerokoœci panelu
+            // Obliczanie szerokoÅ›ci panelu
             int panelWidth = panel.ClientSize.Width;
 
-            // Obliczanie pozycji pocz¹tkowej X, aby wyœrodkowaæ karty
+            // Obliczanie pozycji poczÄ…tkowej X, aby wyÅ›rodkowaÄ‡ karty
             int startX = (panelWidth - totalWidth) / 2;
 
-            // Pozycja pocz¹tkowa Y
+            // Pozycja poczÄ…tkowa Y
             int startY = pictureBoxSpacing;
 
-            // Sprawdzenie, czy karty nie zmieszcz¹ siê w jednym rzêdzie
+            // Sprawdzenie, czy karty nie zmieszczÄ… siÄ™ w jednym rzÄ™dzie
             if (totalWidth > panelWidth)
             {
-                // Obliczanie nowego odstêpu pomiêdzy kartami
+                // Obliczanie nowego odstÄ™pu pomiÄ™dzy kartami
                 pictureBoxSpacing = (panelWidth - panel.Controls.Count * panel.Controls[0].Width) / (panel.Controls.Count - 1);
 
-                // Resetowanie pozycji pocz¹tkowej X
+                // Resetowanie pozycji poczÄ…tkowej X
                 startX = pictureBoxSpacing;
             }
 
-            // Ustawienie nowych pozycji dla ka¿dej karty
+            // Ustawienie nowych pozycji dla kaÅ¼dej karty
             foreach (Control control in panel.Controls)
             {
                 PictureBox pictureBox = control as PictureBox;
@@ -387,7 +388,7 @@ namespace Gwent_App
 
         private void UpdateImgPoints(Gracz gracz1, Gracz gracz2)
         {
-            if(gra.gracz1.Punkty == 1)
+            if (gra.gracz1.Punkty == 1)
             {
                 pictureBoxDrugiPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz1.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
@@ -396,18 +397,18 @@ namespace Gwent_App
             {
                 pictureBoxDrugiPunktGracz2.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz2.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
-               
+
             }
         }
 
-            private void InitImgPlayer(Gracz gracz1, Gracz gracz2)
+        private void InitImgPlayer(Gracz gracz1, Gracz gracz2)
         {
             pictureBoxZdjecieGracz1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxZdjecieGracz1.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\Geralt.PNG");
             pictureBoxZdjecieGracz2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxZdjecieGracz2.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\Geralt.PNG");
         }
-           private void InitDefaultInfoComponent(Gracz gracz1, Gracz gracz2)
+        private void InitDefaultInfoComponent(Gracz gracz1, Gracz gracz2)
         {
             labelImieGracz1.Text = gracz1.Imie;
             labelImieGracz2.Text = gracz2.Imie;
