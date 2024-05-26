@@ -9,35 +9,34 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class RogDowodcy : KartaWszystkichPol
+    public class RogDowodcy : KartaWspoldzielona
     {
-        public RogDowodcy (string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
+        public RogDowodcy(string nazwa, Umiejscowienie umiejscowienie, string nazwaZdjecia) : base(nazwa, umiejscowienie, nazwaZdjecia)
         {
         }
 
-        public override void WykonajAkcje(Gracz gracz, Gracz gracz2)
+        public override void Akcja(Gracz gracz, Umiejscowienie umiejscowienie)
         {
-            var wszystkieKartySpecjalne = gracz.Plansza.KartySpecjalne.Where(karta => karta is RogDowodcy);
-            bool spr1 = true, spr2 = true, spr3 = true;
-            foreach (RogDowodcy rog in wszystkieKartySpecjalne)
+            if (gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Piechoty))
             {
+                gracz.Plansza.KartyPiechotyGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
 
-                if (rog.kartaPolaJednostki is KartaPiechoty && spr1)
-                {
-                    gracz.Plansza.KartyPiechotyGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
-                    spr1 = false;
-                }
-                if (rog.kartaPolaJednostki is KartaLucznika && spr2)
-                {
-                    gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
-                    spr3 = false;
-                }
-                if (rog.kartaPolaJednostki is KartaObleznika && spr3)
-                {
-                    gracz.Plansza.KartyOblezniczeGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
-                    spr3 = false;
-                }
             }
-        }    
-    }
+            else if (gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Lucznika))
+            {
+                gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila *= 2);
+            }
+
+            else if(gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Obleznicza))
+            {
+                gracz.Plansza.KartyOblezniczeGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
+
+            }
+        }
+
+
+     
+
+        
+    }    
 }

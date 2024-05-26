@@ -12,7 +12,7 @@ namespace Gwent_Library.Karty
         public CzysteNiebo(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
-        public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
+        public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is CzysteNiebo) 
                 || gracz2.Plansza.KartySpecjalne.Any(karta => karta is CzysteNiebo))

@@ -9,9 +9,5 @@ namespace Gwent_Library
 {
     public class Talia <T> : List<T>
     {
-        public override string ToString()
-        {
-            return string.Join("\n ", this.Select(karta => karta.ToString()));
-        } 
     }
 }

@@ -23,5 +23,6 @@ namespace Gwent_Library.TypyKart
         {
             Sila = DomyslnaSila;
         }
+
     }
 }

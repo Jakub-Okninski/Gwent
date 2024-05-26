@@ -13,9 +13,11 @@ namespace Gwent_Library.Karty.KartyDowodcow
         public FoltestKrólTemerii(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia, "Znajduje kartę gęsta mgła i nią zagrywa")
         {
         }
-        public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
+        public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
-            gracz1.Plansza.KartySpecjalne.Add(new GestaMgla("GestaMglaKrolaTemerii", "GestaMgla"));
+            gracz1.Plansza.KartySpecjalne.Add(new GestaMgla("Gesta Mgla Krola Temerii", "GestaMgla"));
         }
+
+  
     }
 }

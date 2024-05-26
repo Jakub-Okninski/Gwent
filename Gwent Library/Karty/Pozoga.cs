@@ -8,13 +8,13 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class Pozoga : KartaSpecjalna
+    public class Pozoga : KartaGlobalna
     {
         public Pozoga(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
 
-        public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
+        public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is Pozoga) 
                 || gracz2.Plansza.KartySpecjalne.Any(karta => karta is Pozoga))
@@ -38,6 +38,8 @@ namespace Gwent_Library.Karty
                 gracz1.Plansza.KartySpecjalne.RemoveAll(karta => karta is Pozoga);
             }
         }
+
+
         private void UsunKartyOPodanejSile<T>(Talia<T> lista, int sila) where T : KartaJednostki
         {
             lista.RemoveAll(karta => karta.Sila == sila);

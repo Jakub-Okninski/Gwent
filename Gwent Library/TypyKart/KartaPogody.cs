@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gwent_Library.Karty;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.TypyKart
 {
-    public abstract class KartaPogody : KartaSpecjalna
+    public abstract class KartaPogody : KartaGlobalna
     {
         public KartaPogody(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
@@ -26,5 +27,6 @@ namespace Gwent_Library.TypyKart
                .ToList()
                .ForEach(karta => karta.Sila = karta.DomyslnaSila);
         }
+
     }
 }

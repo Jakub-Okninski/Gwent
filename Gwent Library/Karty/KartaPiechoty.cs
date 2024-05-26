@@ -14,5 +14,6 @@ namespace Gwent_Library.Karty
         public KartaPiechoty(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia) : base(nazwa, sila, kartaBohatera, nazwaZdjecia)
         {
         }
+
     }
 }

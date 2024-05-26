@@ -14,7 +14,7 @@ namespace Gwent_Library.Karty.KartyDowodcow
         {
         }
 
-        public override void WykonajAkcje(Gracz gracz1, Gracz gracz2)
+        public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             UstawSilePogody(gracz1.Plansza.KartyPiechotyGracza);
             UstawSilePogody(gracz2.Plansza.KartyPiechotyGracza);
@@ -26,6 +26,9 @@ namespace Gwent_Library.Karty.KartyDowodcow
             gracz1.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
             gracz2.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
         }
+
+    
+
         protected void UstawSilePogody<T>(Talia<T> lista) where T : KartaJednostki
         {
             lista.Where(karta => !karta.KartaBohatera)

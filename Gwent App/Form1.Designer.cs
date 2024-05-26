@@ -390,7 +390,6 @@
         }
 
         #endregion
-
         public PictureBox backgroundPictureBox;
         public Panel panelDystansGracz1;
         public Panel panelOblezniczeGracz1;

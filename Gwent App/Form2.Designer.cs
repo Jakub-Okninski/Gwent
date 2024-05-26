@@ -3,12 +3,12 @@
     partial class Form2
     {
         /// <summary>
-        /// Required designer variable.
+        ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,10 +23,10 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
         /// </summary>
-       private void InitializeComponent()
+        private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             backgroundPictureBox = new PictureBox();
@@ -375,9 +375,9 @@
             Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(backgroundPictureBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form2";
+            Name = "Form1";
             StartPosition = FormStartPosition.Manual;
-            Text = "Gracz 2";
+            Text = "Gracz 1fds";
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).EndInit();
@@ -390,39 +390,38 @@
         }
 
         #endregion
-
-        private PictureBox backgroundPictureBox;
-        private Panel panelDystansGracz1;
-        private Panel panelOblezniczeGracz1;
-        private Panel panelZwarcieGracz1;
-        private Panel panelOblezniczeGracz2;
-        private Panel panelDystansGracz2;
-        private Panel panelZwarcieGracz2;
-        private Label labelOblezniczeGracz1;
-        private Label labelDystansGracz1;
-        private Label labelZwarcieGracz1;
-        private Label labelZwarcieGracz2;
-        private Label labelDystansGracz2;
-        private Label labelOblezniczeGracz2;
-        private Panel panelGracza;
-        private Panel panelSpecjalnaGracz1;
-        private Panel panelSpecjalnaGracz2;
-        private PictureBox pictureBoxZdjecieGracz1;
-        private PictureBox pictureBoxZdjecieGracz2;
-        private Label labelImieGracz1;
-        private Label labelImieGracz2;
-        private Label labelPunktySumaGracz1;
-        private Label labelPunktySumaGracz2;
-        private PictureBox pictureBoxPierwszyPunktGracz1;
-        private PictureBox pictureBoxDrugiPunktGracz1;
-        private PictureBox pictureBoxPierwszyPunktGracz2;
-        private PictureBox pictureBoxDrugiPunktGracz2;
-        private Panel panelRoguOblezniczeGracz1;
-        private Panel panelRoguDystansGracz1;
-        private Panel panelRoguZwarcieGracz1;
-        private Panel panelRoguZwarcieGracz2;
-        private Panel panelRoguDystansGracz2;
-        private Panel panelRoguOblezniczeGracz2;
-        private Panel panelWspolnePole;
+        public PictureBox backgroundPictureBox;
+        public Panel panelDystansGracz1;
+        public Panel panelOblezniczeGracz1;
+        public Panel panelZwarcieGracz1;
+        public Panel panelOblezniczeGracz2;
+        public Panel panelDystansGracz2;
+        public Panel panelZwarcieGracz2;
+        public Label labelOblezniczeGracz1;
+        public Label labelDystansGracz1;
+        public Label labelZwarcieGracz1;
+        public Label labelZwarcieGracz2;
+        public Label labelDystansGracz2;
+        public Label labelOblezniczeGracz2;
+        public Panel panelGracza;
+        public Panel panelSpecjalnaGracz1;
+        public Panel panelSpecjalnaGracz2;
+        public PictureBox pictureBoxZdjecieGracz1;
+        public PictureBox pictureBoxZdjecieGracz2;
+        public Label labelImieGracz1;
+        public Label labelImieGracz2;
+        public Label labelPunktySumaGracz1;
+        public Label labelPunktySumaGracz2;
+        public PictureBox pictureBoxPierwszyPunktGracz1;
+        public PictureBox pictureBoxDrugiPunktGracz1;
+        public PictureBox pictureBoxPierwszyPunktGracz2;
+        public PictureBox pictureBoxDrugiPunktGracz2;
+        public Panel panelRoguOblezniczeGracz1;
+        public Panel panelRoguDystansGracz1;
+        public Panel panelRoguZwarcieGracz1;
+        public Panel panelRoguZwarcieGracz2;
+        public Panel panelRoguDystansGracz2;
+        public Panel panelRoguOblezniczeGracz2;
+        public Panel panelWspolnePole;
     }
 }

@@ -50,6 +50,7 @@ namespace Gwent_Library
             KartyStrzeleckieGracza.Clear();
             KartyOblezniczeGracza.Clear();
             KartySpecjalne.Clear();
+     
         }   
     }
 }
