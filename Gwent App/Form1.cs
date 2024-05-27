@@ -13,16 +13,16 @@ namespace Gwent_App
         public Gracz gracz2;
         public Gra gra;
         private PictureBox selectedPictureBox = null;
-        Form2 form2;
+       // Form2 form2;
         public Form1() { }
 
 
-        public void SetForm(Gra g, Form2 form)
+        public void SetForm(Gra g)
         {
             gracz1 = g.gracz1;
             gracz2 = g.gracz2;
             gra = g;
-            form2 = form;
+          
 
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
@@ -52,13 +52,13 @@ namespace Gwent_App
             panelWspolnePole.DragDrop += Panel_DragDrop;
         }
 
-        public Form1(Gra g, Form2 form)
+        public Form1(Gra g)
         {
             gracz1 = g.gracz1;
             gracz2 = g.gracz2;
             gra = g;
-            form2 = form;
-            form2.Show();
+          //  form2 = form;
+           // form2.Show();
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
@@ -243,25 +243,25 @@ namespace Gwent_App
                 {
                     targetPanel.DragEnter -= Panel_DragEnter;
                     targetPanel.DragDrop -= Panel_DragDrop;
-                    AddCardToPanel(k, form2.panelSpecjalnaGracz2);
+                  //  AddCardToPanel(k, form2.panelSpecjalnaGracz2);
                 }
 
                 else if ( k is KartaPogody)
                 {
-                    AddCardToPanel(k, form2.panelWspolnePole);
+                   // AddCardToPanel(k, form2.panelWspolnePole);
                 }
                 
                 else if (k is KartaPiechoty)
                 {
-                    AddCardToPanel(k, form2.panelZwarcieGracz2);
+                   // AddCardToPanel(k, form2.panelZwarcieGracz2);
                 }
                 else if (k is KartaLucznika)
                 {
-                    AddCardToPanel(k, form2.panelDystansGracz2);
+                  //  AddCardToPanel(k, form2.panelDystansGracz2);
                 }
                 else if(k is KartaObleznika)
                 {
-                    AddCardToPanel(k, form2.panelOblezniczeGracz2);
+                   // AddCardToPanel(k, form2.panelOblezniczeGracz2);
                 }
 
                 else if (k is RogDowodcy k1)
@@ -271,7 +271,7 @@ namespace Gwent_App
                     {
                         k1.Umiejscowienie = Umiejscowienie.Lucznika;
                        // gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form2.panelRoguDystansGracz2);
+                       // AddCardToPanel(k, form2.panelRoguDystansGracz2);
 
 
                     }
@@ -279,14 +279,14 @@ namespace Gwent_App
                     {
                         k1.Umiejscowienie = Umiejscowienie.Piechoty;
                        // gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form2.panelRoguZwarcieGracz2);
+                      //  AddCardToPanel(k, form2.panelRoguZwarcieGracz2);
 
                     }
                     else if (targetPanel.Name.Contains("RoguObleznicze"))
                     {
                         k1.Umiejscowienie = Umiejscowienie.Obleznicza;
                       //  gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form2.panelRoguOblezniczeGracz2);
+                        //AddCardToPanel(k, form2.panelRoguOblezniczeGracz2);
 
                     }
 
@@ -300,7 +300,7 @@ namespace Gwent_App
 
                 if (k is Pozoga)
                 {
-                    AddCardToPanel(k, form2.panelWspolnePole);
+                /*    AddCardToPanel(k, form2.panelWspolnePole);
 
 
                     PozogaPanel(form2.panelZwarcieGracz1, form2.gracz1.Plansza.KartyPiechotyGracza);
@@ -313,7 +313,7 @@ namespace Gwent_App
 
                     PozogaPanel(form2.panelOblezniczeGracz1, form2.gracz1.Plansza.KartyOblezniczeGracza);
                     PozogaPanel(form2.panelOblezniczeGracz2, form2.gracz2.Plansza.KartyOblezniczeGracza);
-
+*/
 
 
 
@@ -360,7 +360,7 @@ namespace Gwent_App
             labelPunktySumaGracz2.Text = gracz2.Plansza.PunktySuma + "";
 
 
-
+/*
             form2.labelDystansGracz2.Text = gracz1.Plansza.PunktyStrzeleckie + "";
             form2.labelZwarcieGracz2.Text = gracz1.Plansza.PunktyPiechoty + "";
             form2.labelOblezniczeGracz2.Text = gracz1.Plansza.PunktyObleznicze + "";
@@ -370,7 +370,7 @@ namespace Gwent_App
             form2.labelDystansGracz1.Text = gracz2.Plansza.PunktyStrzeleckie + "";
             form2.labelZwarcieGracz1.Text = gracz2.Plansza.PunktyPiechoty + "";
             form2.labelOblezniczeGracz1.Text = gracz2.Plansza.PunktyObleznicze + "";
-            form2.labelPunktySumaGracz1.Text = gracz2.Plansza.PunktySuma + "";
+            form2.labelPunktySumaGracz1.Text = gracz2.Plansza.PunktySuma + "";*/
 
 
         }

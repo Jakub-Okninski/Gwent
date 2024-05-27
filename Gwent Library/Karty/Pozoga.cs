@@ -39,6 +39,7 @@ namespace Gwent_Library.Karty
             }
         }
 
+     
 
         private void UsunKartyOPodanejSile<T>(Talia<T> lista, int sila) where T : KartaJednostki
         {

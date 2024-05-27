@@ -25,9 +25,10 @@ namespace Gwent_Library.Karty.KartyDowodcow
 
             gracz1.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
             gracz2.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
+            gracz1.Plansza.KartySpecjalne.Remove(this);
         }
 
-    
+      
 
         protected void UstawSilePogody<T>(Talia<T> lista) where T : KartaJednostki
         {

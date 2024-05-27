@@ -14,8 +14,19 @@ namespace Gwent_Library.Karty
         public RogDowodcy(string nazwa, Umiejscowienie umiejscowienie, string nazwaZdjecia) : base(nazwa, umiejscowienie, nazwaZdjecia)
         {
         }
-
-        public override void Akcja(Gracz gracz, Umiejscowienie umiejscowienie)
+        public override void PolozKarte(Plansza plansza)
+        {
+            if (!(plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == this.Umiejscowienie)))
+            {
+                plansza.KartyGraczaWRozgrywce.Remove(this);
+                plansza.KartySpecjalne.Add(this);
+            }
+            else {
+                Console.WriteLine("Karta Już istnijeje");
+            }
+         
+        }
+        public void Akcja(Gracz gracz, Umiejscowienie umiejscowienie)
         {
             if (gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Piechoty))
             {
@@ -34,9 +45,6 @@ namespace Gwent_Library.Karty
             }
         }
 
-
-     
-
-        
+      
     }    
 }

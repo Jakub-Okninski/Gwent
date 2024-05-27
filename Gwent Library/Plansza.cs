@@ -12,6 +12,10 @@ namespace Gwent_Library
     {
         public Plansza(Talia<Karta> talia)
         {
+        
+
+            WszystkieKartyGracza= (Talia<Karta>?)talia.Clone();
+
             KartyGraczaWRozgrywce = talia;
             KartyPiechotyGracza = new Talia<KartaPiechoty>();
             KartyStrzeleckieGracza = new Talia<KartaLucznika>();
@@ -22,6 +26,7 @@ namespace Gwent_Library
             PunktyStrzeleckie = 0;
             PunktyObleznicze = 0;
         }
+        public Talia<Karta> WszystkieKartyGracza { get; set; }
         public Talia<Karta> KartyGraczaWRozgrywce { get; set; }
         public Talia<KartaPiechoty> KartyPiechotyGracza { get; set; }
         public Talia<KartaLucznika> KartyStrzeleckieGracza { get; set; }

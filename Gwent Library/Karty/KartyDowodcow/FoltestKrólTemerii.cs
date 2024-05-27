@@ -16,8 +16,9 @@ namespace Gwent_Library.Karty.KartyDowodcow
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             gracz1.Plansza.KartySpecjalne.Add(new GestaMgla("Gesta Mgla Krola Temerii", "GestaMgla"));
+            gracz1.Plansza.KartySpecjalne.Remove(this);
         }
 
-  
+      
     }
 }

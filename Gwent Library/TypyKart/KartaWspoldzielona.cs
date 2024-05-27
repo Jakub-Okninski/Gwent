@@ -13,7 +13,10 @@ namespace Gwent_Library.TypyKart
         {
             Umiejscowienie = umiejscowienie;
         }
-        public abstract void Akcja(Gracz gracz, Umiejscowienie umiejscowienie);
+        public void UstawUmiejscowienie(Umiejscowienie umiejscowienie)
+        {
+            Umiejscowienie=umiejscowienie;
+        }
     }
 }
     public enum Umiejscowienie

@@ -11,7 +11,13 @@ namespace Gwent_Library.Karty
 {
     public class KartaPiechoty : KartaJednostki
     {
-        public KartaPiechoty(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia) : base(nazwa, sila, kartaBohatera, nazwaZdjecia)
+        public override void PolozKarte(Plansza plansza)
+        {
+            plansza.KartyGraczaWRozgrywce.Remove(this);
+            plansza.KartyPiechotyGracza.Add(this);
+            Effect?.Invoke(this, plansza);
+        }
+        public KartaPiechoty(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia, CardEffectDelegate effect) : base(nazwa, sila, kartaBohatera, nazwaZdjecia, effect)
         {
         }
 

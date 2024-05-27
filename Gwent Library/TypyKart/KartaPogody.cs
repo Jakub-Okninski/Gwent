@@ -28,5 +28,7 @@ namespace Gwent_Library.TypyKart
                .ForEach(karta => karta.Sila = karta.DomyslnaSila);
         }
 
+     
+
     }
 }

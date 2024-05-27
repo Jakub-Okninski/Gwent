@@ -22,5 +22,7 @@ namespace Gwent_Library.Karty
                 UstawSilePogody(gracz2.Plansza.KartyOblezniczeGracza, 1);
             }
         }
+
+      
     }
 }

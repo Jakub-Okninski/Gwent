@@ -11,5 +11,11 @@ namespace Gwent_Library.TypyKart
         public KartaSpecjalna(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
+
+        public override void PolozKarte(Plansza plansza)
+        {
+            plansza.KartyGraczaWRozgrywce.Remove(this);
+            plansza.KartySpecjalne.Add(this);
+        }
     }
 }

@@ -8,21 +8,28 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.TypyKart
 {
+    public delegate void CardEffectDelegate (KartaJednostki karta, Plansza plansza);
+
     public abstract class KartaJednostki : Karta
     {
-        public KartaJednostki(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
+        public KartaJednostki(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia, CardEffectDelegate effect) : base(nazwa, nazwaZdjecia)
         {
             DomyslnaSila = sila;
             Sila = sila;
             KartaBohatera = kartaBohatera;
-        }
-        public bool KartaBohatera { get; set; }
-        public int Sila { get; set; }
-        public int DomyslnaSila { get; }
-        public virtual void DomyslnaWartosc()
-        {
-            Sila = DomyslnaSila;
+            Effect = effect;
         }
 
+
+        public CardEffectDelegate Effect { get; set; }
+        public bool KartaBohatera { get; set; }
+        public int Sila { get; set; }
+        public int DomyslnaSila { get; set; }
+
+        public virtual void DomyslnaWartosc()
+        {
+            Sila = DomyslnaSila; 
+        }
+       
     }
 }

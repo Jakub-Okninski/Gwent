@@ -15,5 +15,7 @@ namespace Gwent_Library
         }
         public string Nazwa {  get; set; }
         public string NazwaZdjecia { get; set; }
+        public abstract void PolozKarte(Plansza plansza);
+       
     } 
 }

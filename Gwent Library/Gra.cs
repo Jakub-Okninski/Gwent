@@ -41,44 +41,41 @@ namespace Gwent_Library
             ostatniGracz = gracz2;
         }
 
+        public void WykonajRuch<T>(Gracz gracz, Karta karta, T kartaZamiana) where T : KartaJednostki
+        {
 
-      
+            karta.PolozKarte(gracz.Plansza);
+
+            if (karta is Manekin kM)
+            {
+                 kM.Akcja<T>(gracz, kartaZamiana);
+            }
+
+            PrzliczPunkty(gracz);
+            
+        }
 
         public void WykonajRuch(Gracz gracz, Karta karta)
         {
 
-            // if (ostatniGracz != gracz)
-            //  {
 
-            gracz.Plansza.KartyGraczaWRozgrywce.Remove(karta);
 
-            if (karta is KartaPiechoty k)
+            karta.PolozKarte(gracz.Plansza);
+
+
+
+            if(karta is Pozoga kP)
             {
-                gracz.Plansza.KartyPiechotyGracza.Add(k);
+                kP.AkcjaGlobalna(gracz1, gracz2);
             }
-            else if (karta is KartaLucznika k1)
+            else if (karta is KartaDowodcy kD)
             {
-                gracz.Plansza.KartyStrzeleckieGracza.Add(k1);
+                kD.AkcjaGlobalna(gracz1, gracz2);
             }
-            else if (karta is KartaObleznika k2)
-            {
-                gracz.Plansza.KartyOblezniczeGracza.Add(k2);
-            }
-            else if (karta is KartaSpecjalna k3)
-            {
-                gracz.Plansza.KartySpecjalne.Add(k3);
-            }
+         
 
             PrzliczPunkty(gracz);
-            ostatniGracz = gracz;
-
-
-
-            // }
-            //  else
-            // {
-            //     throw new KolejnoscRuchuException("To nie jest kolej ruchu gracza: " + gracz.Imie);
-            // }
+             
 
         }
 
@@ -110,46 +107,15 @@ namespace Gwent_Library
             }
         }
 
-        public void AkcjaPozogi(Gracz gracz)
-        {
-            var kartyPozoga = gracz.Plansza.KartySpecjalne.Where(karta => karta is Pozoga);
+    
 
-            if (kartyPozoga.Any())
-            {
-                for (int i = kartyPozoga.Count() - 1; i >= 0; i--)
-                {
-                    Pozoga item = (Pozoga)kartyPozoga.ElementAt(i);
-                    item.AkcjaGlobalna(gracz1, gracz2);
-                    PrzliczPunkty(gracz);
-                }
-            }
-        }
-
-        public void AkcjaDowodcy(Gracz gracz)
-        {
-            var kartyDowodcy = gracz.Plansza.KartySpecjalne.Where(karta => karta is KartaDowodcy);
-            if (kartyDowodcy.Any())
-            {
-                for (int i = kartyDowodcy.Count() - 1; i >= 0; i--)
-                {
-                    KartaDowodcy item = (KartaDowodcy)kartyDowodcy.ElementAt(i);
-                    item.AkcjaGlobalna(gracz1, gracz2);
-                    gracz.Plansza.KartySpecjalne.Remove(kartyDowodcy.ElementAt(i));
-
-                    PrzliczPunkty(gracz);
-                    break;
-                }
-            }
-
-        }
+     
 
         private void PrzliczPunkty(Gracz gracz) {
 
             ResetujPunkty(gracz);
             AkcjaPogody(gracz);
            AkcjaRogu(gracz);
-            AkcjaPozogi(gracz);
-            AkcjaDowodcy(gracz);
             PrzliczPunkty();
 
         }
@@ -180,7 +146,7 @@ namespace Gwent_Library
 
         private void UstawDomyslnaWartoscKart<T>(Talia<T> karty) where T : KartaJednostki
         {
-            karty.ForEach(karta => karta.Sila = karta.DomyslnaSila);
+            karty.ForEach(karta => karta.DomyslnaWartosc());
         }
       
         private void OdswierzSumePunktow()
@@ -192,19 +158,26 @@ namespace Gwent_Library
         public static Talia<Karta> GenerateCard()
         {
             Talia<Karta> karty = new Talia<Karta>();
-            Karta Cirilla = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15,  false, " Ciri");   
-            Karta Geralt = new KartaPiechoty("Geralt z Rivii", 5,  false, "Geralt");
-            Karta Yennefer = new KartaLucznika("Yennefer z Vengerbergu", 7,  false, "Yennefer");
-            Karta Balista1 = new KartaObleznika("Balista (I)", 6,  false, "Balista");
-            Karta Balista2 = new KartaObleznika("Balista (II)", 6,  false, "Balista");
-            Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota");       
-            Karta Detmold = new KartaLucznika("Detmold", 6, false, "Detmold");
+            Karta Cirilla = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15,  false, " Ciri", CardEffects.Bractwo); Karta Cirilla2 = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15, false, " Ciri", CardEffects.Bractwo);
+
+            Karta Geralt = new KartaPiechoty("Geralt z Rivii", 5,  false, "Geralt", CardEffects.Bractwo);
+            Karta Yennefer = new KartaLucznika("Yennefer z Vengerbergu", 7,  false, "Yennefer", CardEffects.WyskoieMorale);
+            Karta Yennefer2 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
+            Karta Yennefer3 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
+            Karta Balista1 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
+            Karta Balista2 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
+            Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota", CardEffects.Bractwo);       
+            Karta Detmold = new KartaLucznika("Detmold", 6, false, "Detmold", CardEffects.Bractwo);
             Karta Rog3 = new RogDowodcy("Róg dowódcy 3",Umiejscowienie.Piechoty, "Rog");
             Karta Pozoga1 = new Pozoga("Pożoga 1", "Pozoga");         
             Karta Mroz1 = new TrzaskającyMroz("Trzaskający mróz 1", "TrzaskającyMroz");          
             Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");          
             Karta UlewnyDeszcz1 = new GestaMgla("Ulewny deszcz 1", "UlewnyDeszcz");          
             Karta CzysteNiebo2 = new CzysteNiebo("Czyste niebo 2", "CzysteNiebo");
+            karty.Add(Cirilla2);
+            karty.Add(Yennefer);
+            karty.Add(Yennefer2);
+            karty.Add(Yennefer3);
 
             karty.Add(Cirilla);  
             karty.Add(Mroz1);
@@ -212,7 +185,6 @@ namespace Gwent_Library
             karty.Add(Rog3);
             karty.Add(Balista1);
             karty.Add(UlewnyDeszcz1);
-            karty.Add(Yennefer);
             karty.Add(Balista2);
             karty.Add(CzysteNiebo2);
 
