@@ -252,7 +252,6 @@
             labelPunktySumaGracz2.Size = new Size(13, 15);
             labelPunktySumaGracz2.TabIndex = 25;
             labelPunktySumaGracz2.Text = "0";
-            labelPunktySumaGracz2.Click += labelPunktySumaGracz2_Click;
             // 
             // pictureBoxPierwszyPunktGracz1
             // 

@@ -19,6 +19,10 @@ namespace Gwent_Library.Karty.KartyDowodcow
                 int sila = gracz2.Plansza.KartyStrzeleckieGracza.Select(karta => karta.Sila).DefaultIfEmpty(0).Max();
                 gracz2.Plansza.KartyStrzeleckieGracza.RemoveAll(karta => karta.Sila == sila);
             }
+            else
+            {
+                throw new ExceptionDowodca("Suma jednostek strzeleckich jest nie mniejsza niż 10");
+            }
             gracz1.Plansza.KartySpecjalne.Remove(this);
         }
     }

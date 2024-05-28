@@ -19,6 +19,10 @@ namespace Gwent_Library.Karty.KartyDowodcow
                RogDowodcy rog =  new RogDowodcy("Rog Dowodcy Foltesta", Umiejscowienie.Obleznicza, "Rog");
                rog.PolozKarte(gracz1.Plansza);
             }
+            else
+            {
+                throw new ExceptionDowodca("Został użyty już róg dowódcy.");
+            }
             gracz1.Plansza.KartySpecjalne.Remove(this);
 
         }

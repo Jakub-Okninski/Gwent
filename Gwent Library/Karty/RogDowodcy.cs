@@ -22,7 +22,7 @@ namespace Gwent_Library.Karty
                 plansza.KartySpecjalne.Add(this);
             }
             else {
-                Console.WriteLine("Karta Już istnijeje");
+                throw new ExceptionRog("Nie możesz położyć ponownie rogu na to samo pole");  
             }
          
         }

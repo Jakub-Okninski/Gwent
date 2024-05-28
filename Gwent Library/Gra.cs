@@ -57,12 +57,7 @@ namespace Gwent_Library
 
         public void WykonajRuch(Gracz gracz, Karta karta)
         {
-
-
-
             karta.PolozKarte(gracz.Plansza);
-
-
 
             if(karta is Pozoga kP)
             {
@@ -72,14 +67,8 @@ namespace Gwent_Library
             {
                 kD.AkcjaGlobalna(gracz1, gracz2);
             }
-         
-
             PrzliczPunkty(gracz);
-             
-
         }
-
-      
 
         public void AkcjaPogody(Gracz gracz)
         {
@@ -112,12 +101,10 @@ namespace Gwent_Library
      
 
         private void PrzliczPunkty(Gracz gracz) {
-
             ResetujPunkty(gracz);
             AkcjaPogody(gracz);
-           AkcjaRogu(gracz);
+            AkcjaRogu(gracz);
             PrzliczPunkty();
-
         }
         public void PrzliczPunkty()
         {
@@ -168,19 +155,28 @@ namespace Gwent_Library
             Karta Balista2 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
             Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota", CardEffects.Bractwo);       
             Karta Detmold = new KartaLucznika("Detmold", 6, false, "Detmold", CardEffects.Bractwo);
+
+            Karta Rog5 = new RogDowodcy("Róg dowódcy 3", Umiejscowienie.Piechoty, "Rog");
+
             Karta Rog3 = new RogDowodcy("Róg dowódcy 3",Umiejscowienie.Piechoty, "Rog");
             Karta Pozoga1 = new Pozoga("Pożoga 1", "Pozoga");         
             Karta Mroz1 = new TrzaskającyMroz("Trzaskający mróz 1", "TrzaskającyMroz");          
             Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");          
             Karta UlewnyDeszcz1 = new GestaMgla("Ulewny deszcz 1", "UlewnyDeszcz");          
             Karta CzysteNiebo2 = new CzysteNiebo("Czyste niebo 2", "CzysteNiebo");
+
+            Karta foltest = new FoltestZdobywca("FoltestZdobywca", "FoltestZdobywca");
+            Karta Manekin = new Manekin("Manekin",Umiejscowienie.Piechoty, "Manekin");
+            karty.Add(Manekin);
+
             karty.Add(Cirilla2);
             karty.Add(Yennefer);
-            karty.Add(Yennefer2);
-            karty.Add(Yennefer3);
+            karty.Add(foltest);
+
+             karty.Add(Rog5);
 
             karty.Add(Cirilla);  
-            karty.Add(Mroz1);
+            karty.Add(Geralt);
             karty.Add(Pozoga1);
             karty.Add(Rog3);
             karty.Add(Balista1);

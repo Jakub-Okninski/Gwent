@@ -42,33 +42,27 @@ namespace Gwent_Library
 
         public static void Wiez(Karta karta, Plansza plansza)
         {
-
-            var silaKarty = plansza.WszystkieKartyGracza.FirstOrDefault(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Wiez);
-
-            int sila = silaKarty is KartaJednostki kartaPiechoty ? kartaPiechoty.Sila : 0;
-
             if (karta is KartaPiechoty)
             {
-                WizeHelp(karta, plansza.KartyPiechotyGracza, sila);
+                WizeHelp(karta, plansza.KartyPiechotyGracza);
             }
             else if (karta is KartaLucznika)
             {
-                WizeHelp(karta, plansza.KartyStrzeleckieGracza, sila);
+                WizeHelp(karta, plansza.KartyStrzeleckieGracza);
             }
             else if (karta is KartaObleznika)
             {
-                WizeHelp(karta, plansza.KartyOblezniczeGracza, sila);
+                WizeHelp(karta, plansza.KartyOblezniczeGracza);
             }
         }
 
 
-        private static void WizeHelp<T>(Karta karta,  Talia<T> talia, int sila) where T : KartaJednostki
+        private static void WizeHelp<T>(Karta karta,  Talia<T> talia) where T : KartaJednostki
         {
             var usunieteKarty = talia.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Wiez);
             foreach (KartaJednostki k in usunieteKarty)
             {
-
-                k.DomyslnaSila = sila * usunieteKarty.Count();
+                k.DomyslnaSila = k.Default * usunieteKarty.Count();
                 k.DomyslnaWartosc();
             }
         }
@@ -79,35 +73,31 @@ namespace Gwent_Library
         public static void WyskoieMorale(Karta karta, Plansza plansza)
         {
 
-            var KartaSily = plansza.WszystkieKartyGracza.FirstOrDefault(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == WyskoieMorale);
-
-            int sila = KartaSily is KartaJednostki kartaPiechoty ? kartaPiechoty.Sila : 0;
 
             if (karta is KartaPiechoty)
             {
-                WyskoieMoraleHelp(karta, plansza.KartyPiechotyGracza, sila);
+                WyskoieMoraleHelp(karta, plansza.KartyPiechotyGracza);
             }
             else if (karta is KartaLucznika)
             {            
-                WyskoieMoraleHelp(karta, plansza.KartyStrzeleckieGracza, sila);
+                WyskoieMoraleHelp(karta, plansza.KartyStrzeleckieGracza);
             }
             else if (karta is KartaObleznika)
             {
-                WyskoieMoraleHelp(karta, plansza.KartyOblezniczeGracza, sila);
+                WyskoieMoraleHelp(karta, plansza.KartyOblezniczeGracza);
             }
 
 
 
         }
-        private static void WyskoieMoraleHelp<T>(Karta karta, Talia<T> talia, int sila) where T : KartaJednostki
+        private static void WyskoieMoraleHelp<T>(Karta karta, Talia<T> talia) where T : KartaJednostki
         {
             var usunieteKarty = talia.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == WyskoieMorale);
             foreach (KartaJednostki k in usunieteKarty)
             {
-
                 if (usunieteKarty.Count() > 1)
                 {
-                    k.DomyslnaSila = sila + usunieteKarty.Count();
+                    k.DomyslnaSila = k.Default + usunieteKarty.Count();
                     k.DomyslnaWartosc();
                 }
             }

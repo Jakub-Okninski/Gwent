@@ -7,16 +7,8 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class Talia<T> : List<T>, ICloneable
+    public class Talia<T> : List<T>
     {
-        public object Clone()
-        {
-            Talia<T> clonedTalia = new Talia<T>();
-            foreach (T item in this)
-            {
-                clonedTalia.Add(item);
-            }
-            return clonedTalia;
-        }
+       
     }
 }

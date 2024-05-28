@@ -16,25 +16,18 @@ namespace Gwent_Library.Karty.KartyDowodcow
 
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
-            UstawSilePogody(gracz1.Plansza.KartyPiechotyGracza);
-            UstawSilePogody(gracz2.Plansza.KartyPiechotyGracza);
-            UstawSilePogody(gracz1.Plansza.KartyStrzeleckieGracza);
-            UstawSilePogody(gracz2.Plansza.KartyStrzeleckieGracza);
-            UstawSilePogody(gracz1.Plansza.KartyOblezniczeGracza);
-            UstawSilePogody(gracz2.Plansza.KartyOblezniczeGracza);
+     
 
             gracz1.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
             gracz2.Plansza.KartySpecjalne.RemoveAll(karta => karta is KartaPogody);
+
+            gracz1.Plansza.KartySpecjalne.Add(new CzysteNiebo("Czyste Niebo Krola Temerii", "CzysteNiebo"));
+
             gracz1.Plansza.KartySpecjalne.Remove(this);
         }
 
       
 
-        protected void UstawSilePogody<T>(Talia<T> lista) where T : KartaJednostki
-        {
-            lista.Where(karta => !karta.KartaBohatera)
-               .ToList()
-               .ForEach(karta => karta.DomyslnaWartosc());
-        }
+       
     }
 }
