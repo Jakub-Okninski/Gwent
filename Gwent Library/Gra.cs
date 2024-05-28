@@ -149,9 +149,20 @@ namespace Gwent_Library
     
         }
       
-        public void AkcjaPogody(Gracz gracz)
+        public void AkcjaPogody()
         {
-            var kartyPogody = gracz.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
+            var kartyPogody = gracz1.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
+
+            if (kartyPogody.Any())
+            {
+                foreach (KartaPogody item in kartyPogody)
+                {
+                    item.AkcjaGlobalna(gracz1, gracz2);
+                    if (item is CzysteNiebo)
+                        break;
+                }
+            }
+             kartyPogody = gracz2.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
 
             if (kartyPogody.Any())
             {
@@ -183,7 +194,7 @@ namespace Gwent_Library
 
         private void PrzliczPunkty(Gracz gracz) {
             ResetujPunkty(gracz);
-            AkcjaPogody(gracz);
+            AkcjaPogody();
             AkcjaRogu(gracz);
             PrzliczPunkty();
         }
@@ -252,25 +263,24 @@ namespace Gwent_Library
 
             Karta FoltestDowódcaPółnocy = new FoltestDowódcaPółnocy("FoltestDowódcaPółnocy", "FoltestDowódcaPółnocy");
             Karta FoltestKrólTemerii = new FoltestKrólTemerii("FoltestKrólTemerii", "FoltestKrólTemerii");
-            Karta FoltestZelaznyWładca = new FoltestZelaznyWładca("FoltestZelaznyWładca", "FoltestZelaznyWładca");
+   
 
             karty.Add(FoltestDowódcaPółnocy);
 
             karty.Add(FoltestKrólTemerii);
-            karty.Add(FoltestZelaznyWładca);
             karty.Add(Cirilla);
             karty.Add(Balista2);
             karty.Add(Yennefer3);
             karty.Add(Balista1);
-
-
+            karty.Add(UlewnyDeszcz1);
+            karty.Add(Mroz1);
             karty.Add(Manekin);
 
-            karty.Add(UlewnyDeszcz1);
+;
             karty.Add(Pozoga1);
             karty.Add(CzysteNiebo2);
             karty.Add(Cirilla2);
-            karty.Add(Mroz1);
+       
             karty.Add(foltest);
         
 
