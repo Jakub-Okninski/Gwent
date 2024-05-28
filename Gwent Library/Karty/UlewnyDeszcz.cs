@@ -15,14 +15,11 @@ namespace Gwent_Library.Karty
 
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
-            if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is UlewnyDeszcz) || 
-                gracz2.Plansza.KartySpecjalne.Any(karta => karta is UlewnyDeszcz))
-            {       
+            if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is UlewnyDeszcz) || gracz2.Plansza.KartySpecjalne.Any(karta => karta is UlewnyDeszcz))
+            {
                 UstawSilePogody(gracz1.Plansza.KartyOblezniczeGracza, 1);
                 UstawSilePogody(gracz2.Plansza.KartyOblezniczeGracza, 1);
             }
         }
-
-      
     }
 }

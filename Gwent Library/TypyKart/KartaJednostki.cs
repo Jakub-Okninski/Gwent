@@ -31,7 +31,7 @@ namespace Gwent_Library.TypyKart
         }
         public override string ToString()
         {
-            return base.ToString() + $"Nazwa: {Nazwa}, Siła: {Sila}, Karta Bohatera: {KartaBohatera}";
+            return base.ToString() + $"Nazwa: {Nazwa}, Siła: {Sila}, Karta Bohatera: {KartaBohatera} , Default: {Default} , DomyslnaSila: {DomyslnaSila}";
         }
 
     }

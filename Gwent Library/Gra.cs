@@ -44,30 +44,21 @@ namespace Gwent_Library
 
         public void SprawdzRuch(Gracz gracz)
         {
-
             if(gracz1.Play&& gracz2.Play)
             {
-                if (gracz != ostatniGracz)
-                {
+                if (gracz != ostatniGracz){
                     ostatniGracz = gracz;
-                }
-                else
-                {
+                }else{
                     throw new KolejnoscRuchuException("Nie twój ruch");
                 }
             }else if (gracz.Play)
             {
-                if (gracz == gracz1)
-                {
+                if (gracz == gracz1){
                     ostatniGracz = gracz2;
-                }
-                else if (gracz == gracz2)
-                {
+                }else if (gracz == gracz2) {
                     ostatniGracz = gracz1;
                 }
-            }
-           
-
+            }     
         }
 
         public void KonczRunde(Gracz gracz)
@@ -98,9 +89,6 @@ namespace Gwent_Library
                 }
                 gracz1.Plansza.ResetujPanel();
                 gracz2.Plansza.ResetujPanel();
-
-
-
             }
 
         }
@@ -152,22 +140,24 @@ namespace Gwent_Library
         public void AkcjaPogody()
         {
             var kartyPogody = gracz1.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
-
             if (kartyPogody.Any())
             {
                 foreach (KartaPogody item in kartyPogody)
                 {
+                    System.Diagnostics.Debug.WriteLine(item.ToString());
+
                     item.AkcjaGlobalna(gracz1, gracz2);
                     if (item is CzysteNiebo)
                         break;
                 }
             }
-             kartyPogody = gracz2.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
-
-            if (kartyPogody.Any())
+            var kartyPogody2 = gracz2.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
+            if (kartyPogody2.Any())
             {
-                foreach (KartaPogody item in kartyPogody)
+                foreach (KartaPogody item in kartyPogody2)
                 {
+                    System.Diagnostics.Debug.WriteLine(item.ToString());
+
                     item.AkcjaGlobalna(gracz1, gracz2);
                     if (item is CzysteNiebo)
                         break;
@@ -193,10 +183,51 @@ namespace Gwent_Library
      
 
         private void PrzliczPunkty(Gracz gracz) {
+
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa1specjal");
+
+            foreach (var k in gracz1.Plansza.KartySpecjalne)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
+
+
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa1");
+
+            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
             ResetujPunkty(gracz);
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa2");
+
+            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
             AkcjaPogody();
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa3");
+
+            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
             AkcjaRogu(gracz);
+
             PrzliczPunkty();
+
+
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa4");
+
+            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
         }
         public void PrzliczPunkty()
         {
@@ -206,8 +237,6 @@ namespace Gwent_Library
             gracz2.Plansza.PunktyStrzeleckie = PrzeliczPunkty(gracz2.Plansza.KartyStrzeleckieGracza);
             gracz1.Plansza.PunktyObleznicze = PrzeliczPunkty(gracz1.Plansza.KartyOblezniczeGracza);
             gracz2.Plansza.PunktyObleznicze = PrzeliczPunkty(gracz2.Plansza.KartyOblezniczeGracza);
-
-
             OdswierzSumePunktow();
         }
 
@@ -243,7 +272,7 @@ namespace Gwent_Library
             Karta Geralt = new KartaPiechoty("Geralt z Rivii", 5,  false, "Geralt", CardEffects.Bractwo);
             Karta Yennefer = new KartaLucznika("Yennefer z Vengerbergu", 7,  false, "Yennefer", CardEffects.WyskoieMorale);
             Karta Yennefer2 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
-            Karta Yennefer3 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
+            Karta Yennefer3 = new KartaObleznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
             Karta Balista1 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
             Karta Balista2 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
             Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota", CardEffects.Bractwo);       
@@ -270,13 +299,19 @@ namespace Gwent_Library
             karty.Add(FoltestKrólTemerii);
             karty.Add(Cirilla);
             karty.Add(Balista2);
+            
+                            karty.Add(Yennefer2);
+            karty.Add(GestaMgla1);
+
             karty.Add(Yennefer3);
             karty.Add(Balista1);
             karty.Add(UlewnyDeszcz1);
             karty.Add(Mroz1);
-            karty.Add(Manekin);
 
-;
+            karty.Add(Manekin);
+            
+
+
             karty.Add(Pozoga1);
             karty.Add(CzysteNiebo2);
             karty.Add(Cirilla2);
@@ -286,7 +321,6 @@ namespace Gwent_Library
 
 
       
-            karty.Add(Rog3);
   
 
             

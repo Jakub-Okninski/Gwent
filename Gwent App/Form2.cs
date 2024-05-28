@@ -30,7 +30,7 @@ namespace Gwent_App
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
-            Enabled = true;
+            Enabled = false;
 
             foreach (var cardToAdd in gracz1.Plansza.KartyGraczaWRozgrywce)
             {

@@ -75,7 +75,7 @@ namespace Gwent_Library
             foreach (KartaJednostki k in usunieteKarty)
             {
                 k.DomyslnaSila = k.Default * usunieteKarty.Count();
-                k.DomyslnaWartosc();
+               // k.DomyslnaWartosc();
             }
         }
 
@@ -84,8 +84,6 @@ namespace Gwent_Library
 
         public static void WyskoieMorale(Karta karta, Plansza plansza)
         {
-
-
             if (karta is KartaPiechoty)
             {
                 WyskoieMoraleHelp(karta, plansza.KartyPiechotyGracza);
@@ -98,8 +96,6 @@ namespace Gwent_Library
             {
                 WyskoieMoraleHelp(karta, plansza.KartyOblezniczeGracza);
             }
-
-
 
         }
         private static void WyskoieMoraleHelp<T>(Karta karta, Talia<T> talia) where T : KartaJednostki

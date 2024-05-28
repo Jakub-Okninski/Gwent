@@ -110,8 +110,7 @@ namespace Gwent_App
                     }   
                 }
                 else if (karta is RogDowodcy)
-                {
-                    
+                { 
                     panelRoguDystansGracz1.AllowDrop = true;
                     panelRoguOblezniczeGracz1.AllowDrop = true;
                     panelRoguZwarcieGracz1.AllowDrop = true;
@@ -127,8 +126,6 @@ namespace Gwent_App
                 selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
             }
         }
-
-
 
         private void WykonanoRuch()
         {
@@ -156,6 +153,7 @@ namespace Gwent_App
                 this.Enabled = false;
                 form2.Enabled = true;
             }
+            OdswiezPunktacje();
         }
 
 
@@ -700,12 +698,10 @@ namespace Gwent_App
                 gracz2.Play = true;
 
 
-                if (gra.ostatniGracz == gracz1)
-                {
+                if (gra.ostatniGracz == gracz1) {
                     gra.ostatniGracz = gracz2;
                 }
-                if (gra.ostatniGracz == gracz2)
-                {
+                if (gra.ostatniGracz == gracz2){
                     gra.ostatniGracz = gracz1;
                 }
 
