@@ -125,7 +125,18 @@ namespace Gwent_Library
             SprawdzRuch(gracz);
             karta.PolozKarte(gracz.Plansza);
 
-            if(karta is Pozoga kP)
+
+            System.Diagnostics.Debug.WriteLine("dupaaaaaaaa432452342343254gfdgdfgaaaaaaaaaaaaaaaaa1");
+
+            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
+            {
+                System.Diagnostics.Debug.WriteLine(k.ToString());
+
+            }
+
+
+
+            if (karta is Pozoga kP)
             {
                 kP.AkcjaGlobalna(gracz1, gracz2);
             }
@@ -134,7 +145,9 @@ namespace Gwent_Library
                 kD.AkcjaGlobalna(gracz1, gracz2);
             }
             PrzliczPunkty(gracz);
-    
+
+            AkcjaPogody();
+
         }
       
         public void AkcjaPogody()
@@ -228,6 +241,8 @@ namespace Gwent_Library
                 System.Diagnostics.Debug.WriteLine(k.ToString());
 
             }
+
+    
         }
         public void PrzliczPunkty()
         {
