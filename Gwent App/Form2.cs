@@ -1,5 +1,6 @@
 ﻿using Gwent_Library;
 using Gwent_Library.Karty;
+using Gwent_Library.Karty.KartyDowodcow;
 using Gwent_Library.TypyKart;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
@@ -8,60 +9,31 @@ namespace Gwent_App
 {
     public partial class Form2 : Form
     {
+        List<PictureBox> listaPictureBoxow = new List<PictureBox>();
 
         public Gracz gracz1;
         public Gracz gracz2;
+        public Form1 form1;
         public Gra gra;
         private PictureBox selectedPictureBox = null;
-        Form1 form1;
-        public Form2() { }
+        private Karta lastCard = null;
 
 
-        public void SetForm(Gra g, Form1 form)
-        {
-            gracz1 = g.gracz2;
-            gracz2 = g.gracz1;
-            gra = g;
-            form1 = form;
-
-            InitializeComponent();
-            InitDefaultInfoComponent(gracz1, gracz2);
-            InitImgPlayer(gracz1, gracz2);
-
-
-            GeneratePictureBoxCard(panelGracza, gracz2);
-
-            panelGracza.AllowDrop = true;
-            panelGracza.DragEnter += Panel_DragEnter;
-            panelGracza.DragDrop += Panel_DragDrop;
-            panelOblezniczeGracz1.DragEnter += Panel_DragEnter;
-            panelOblezniczeGracz1.DragDrop += Panel_DragDrop;
-            panelDystansGracz1.DragEnter += Panel_DragEnter;
-            panelDystansGracz1.DragDrop += Panel_DragDrop;
-            panelZwarcieGracz1.DragEnter += Panel_DragEnter;
-            panelZwarcieGracz1.DragDrop += Panel_DragDrop;
-            panelRoguDystansGracz1.DragEnter += Panel_DragEnter;
-            panelRoguDystansGracz1.DragDrop += Panel_DragDrop;
-            panelRoguOblezniczeGracz1.DragEnter += Panel_DragEnter;
-            panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
-            panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
-            panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
-            panelSpecjalnaGracz1.DragEnter += Panel_DragEnter;
-            panelSpecjalnaGracz1.DragDrop += Panel_DragDrop;
-            panelWspolnePole.DragEnter += Panel_DragEnter;
-            panelWspolnePole.DragDrop += Panel_DragDrop;
+        public Form2()
+        {          
         }
 
-        public Form2(Gra g, Form1 form)
+
+        public void setForm(Gra g, Form1 f)
         {
             gracz1 = g.gracz1;
             gracz2 = g.gracz2;
             gra = g;
-            form1 = form;
-            form1.Show();
+            form1 = f;
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
+            this.Enabled = false;
 
 
             GeneratePictureBoxCard(panelGracza, gracz1);
@@ -85,24 +57,18 @@ namespace Gwent_App
             panelSpecjalnaGracz1.DragDrop += Panel_DragDrop;
             panelWspolnePole.DragEnter += Panel_DragEnter;
             panelWspolnePole.DragDrop += Panel_DragDrop;
+            
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
+            //git
             selectedPictureBox = sender as PictureBox;
-
             Panel sourcePanel = selectedPictureBox.Parent as Panel;
+            var karta = selectedPictureBox.Tag;
 
-            if (!sourcePanel.Name.Contains("WspolnePole") &&
-                !sourcePanel.Name.Contains("panelZwarcie") &&
-                !sourcePanel.Name.Contains("panelDystans") &&
-                !sourcePanel.Name.Contains("panelObleznicze") &&
-                !sourcePanel.Name.Contains("panelRogu") &&
-                !sourcePanel.Name.Contains("panelSpecjalna"))
+            if (sourcePanel.Name.Contains("panelGracza"))
             {
-
-                var karta = selectedPictureBox.Tag;
-
                 panelZwarcieGracz1.AllowDrop = false;
                 panelDystansGracz1.AllowDrop = false;
                 panelOblezniczeGracz1.AllowDrop = false;
@@ -116,80 +82,67 @@ namespace Gwent_App
                 if (karta is KartaPiechoty)
                 {
                     panelZwarcieGracz1.AllowDrop = true;
-                    panelDystansGracz1.AllowDrop = false;
-                    panelOblezniczeGracz1.AllowDrop = false;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
-                    panelSpecjalnaGracz1.AllowDrop = false;
-                    panelWspolnePole.AllowDrop = false;
                 }
-
-                if (karta is KartaLucznika)
+                else if (karta is KartaLucznika)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
                     panelDystansGracz1.AllowDrop = true;
-                    panelOblezniczeGracz1.AllowDrop = false;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
-                    panelSpecjalnaGracz1.AllowDrop = false;
-                    panelWspolnePole.AllowDrop = false;
                 }
-
-                if (karta is KartaObleznika)
+                else if (karta is KartaObleznika)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
-                    panelDystansGracz1.AllowDrop = false;
                     panelOblezniczeGracz1.AllowDrop = true;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
-                    panelSpecjalnaGracz1.AllowDrop = false;
-                    panelWspolnePole.AllowDrop = false;
-                    labelDystansGracz1.Text = "3";
+                }
+                else if (karta is Manekin)
+                {
+                    panelZwarcieGracz1.AllowDrop = true;
+                    panelDystansGracz1.AllowDrop = true;
+                    panelOblezniczeGracz1.AllowDrop = true;
                 }
 
-
-                if (karta is RogDowodcy)
+                else if (karta is RogDowodcy)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
-                    panelDystansGracz1.AllowDrop = false;
-                    panelOblezniczeGracz1.AllowDrop = false;
                     panelRoguDystansGracz1.AllowDrop = true;
                     panelRoguOblezniczeGracz1.AllowDrop = true;
                     panelRoguZwarcieGracz1.AllowDrop = true;
-                    panelSpecjalnaGracz1.AllowDrop = false;
-                    panelWspolnePole.AllowDrop = false;
                 }
-                if (karta is KartaDowodcy)
+                else if (karta is KartaDowodcy)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
-                    panelDystansGracz1.AllowDrop = false;
-                    panelOblezniczeGracz1.AllowDrop = false;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
                     panelSpecjalnaGracz1.AllowDrop = true;
-                    panelWspolnePole.AllowDrop = false;
                 }
 
-                if (karta is Pozoga || karta is KartaPogody)
+                else if (karta is KartaSpecjalna)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
-                    panelDystansGracz1.AllowDrop = false;
-                    panelOblezniczeGracz1.AllowDrop = false;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
-                    panelSpecjalnaGracz1.AllowDrop = false;
                     panelWspolnePole.AllowDrop = true;
                 }
-
                 selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
             }
         }
 
+
+
+        private void Czekaj()
+        {
+            SkopiujPictureBoxy(panelWspolnePole, form1.panelWspolnePole);
+            SkopiujPictureBoxy(panelSpecjalnaGracz1, form1.panelSpecjalnaGracz2);
+            SkopiujPictureBoxy(panelRoguZwarcieGracz1, form1.panelRoguZwarcieGracz2);
+            SkopiujPictureBoxy(panelRoguDystansGracz1, form1.panelRoguDystansGracz2);
+            SkopiujPictureBoxy(panelRoguOblezniczeGracz1, form1.panelRoguOblezniczeGracz2);
+
+            SkopiujPictureBoxy(panelOblezniczeGracz1, form1.panelOblezniczeGracz2);
+            SkopiujPictureBoxy(panelDystansGracz1, form1.panelDystansGracz2);
+            SkopiujPictureBoxy(panelZwarcieGracz1, form1.panelZwarcieGracz2);
+
+
+            if (gracz1.Play)
+            {
+                this.Enabled = false;
+                form1.Enabled = true;
+            }
+          
+
+            //  MessageBox.Show("Ruch Przeciwnika", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // this.Enabled = false;
+        }
 
 
 
@@ -204,6 +157,24 @@ namespace Gwent_App
             e.Effect = DragDropEffects.Move;
         }
 
+
+
+        public void SkopiujPictureBoxy(Panel panelZrodlowy, Panel panelDocelowy)
+        {
+            panelDocelowy.Controls.Clear();
+
+            foreach (PictureBox originalPictureBox in panelZrodlowy.Controls.OfType<PictureBox>())
+            {
+                Karta k = originalPictureBox.Tag as Karta;
+                AddCardToPanel(k, panelDocelowy);
+            }
+
+            RefreshCardPositions(panelDocelowy);
+
+        }
+
+
+
         private void Panel_DragDrop(object sender, DragEventArgs e)
         {
             PictureBox pictureBox = e.Data.GetData(typeof(PictureBox)) as PictureBox;
@@ -214,124 +185,244 @@ namespace Gwent_App
 
             if (pictureBox != null && targetPanel != null && targetPanel != sourcePanel)
             {
-                // Usuń PictureBox z obecnego panelu
-                sourcePanel.Controls.Remove(pictureBox);
-                // Dodaj PictureBox do panelu, do którego został przeciągnięty
-                targetPanel.Controls.Add(pictureBox);
-
-
 
                 Karta k = pictureBox.Tag as Karta;
 
+                sourcePanel.Controls.Remove(pictureBox);
+                targetPanel.Controls.Add(pictureBox);
 
-
-                if (k is KartaDowodcy)
+                if (k is RogDowodcy k1)
                 {
-                    targetPanel.DragEnter -= Panel_DragEnter;
-                    targetPanel.DragDrop -= Panel_DragDrop;
-                    AddCardToPanel(k, form1.panelSpecjalnaGracz2);
-                }
-
-               else if (k is KartaPogody)
-                {
-                    AddCardToPanel(k, form1.panelWspolnePole);
-                }
-
-                else if (k is KartaPiechoty)
-                {
-                    AddCardToPanel(k, form1.panelZwarcieGracz2);
-                }
-                else if (k is KartaLucznika)
-                {
-                    AddCardToPanel(k, form1.panelDystansGracz2);
-                }
-                else if(k is KartaObleznika)
-                {
-                    AddCardToPanel(k, form1.panelOblezniczeGracz2);
-                }
-
-                else if(k is RogDowodcy k1)
-                {
-
                     if (targetPanel.Name.Contains("RoguDystans"))
                     {
                         k1.Umiejscowienie = Umiejscowienie.Lucznika;
-                     //   gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form1.panelRoguDystansGracz2);
-
                     }
                     else if (targetPanel.Name.Contains("RoguZwarcie"))
                     {
                         k1.Umiejscowienie = Umiejscowienie.Piechoty;
-                      //  gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form1.panelRoguZwarcieGracz2);
-
                     }
                     else if (targetPanel.Name.Contains("RoguObleznicze"))
                     {
                         k1.Umiejscowienie = Umiejscowienie.Obleznicza;
-                      //  gra.WykonajRuch(gracz1, k1);
-                        AddCardToPanel(k, form1.panelRoguOblezniczeGracz2);
+                    }
+                    targetPanel.DragEnter -= Panel_DragEnter;
+                    targetPanel.DragDrop -= Panel_DragDrop;
+                }
+                else if (k is Manekin M)
+                {
+                    if (targetPanel.Name.Contains("panelZwarcie"))
+                    {
+                        M.Umiejscowienie = Umiejscowienie.Piechoty;
+                        lastCard = M;
+                        foreach (Control control in panelZwarcieGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBoxa)
+                            {
+                                if (pictureBoxa.Tag is KartaJednostki)
+                                    pictureBoxa.DoubleClick += PictureBox_DoubleClick;
+                            }
+                        }
+                    }
+                    else if (targetPanel.Name.Contains("panelDystans"))
+                    {
+                        M.Umiejscowienie = Umiejscowienie.Lucznika;
+                        lastCard = M;
+                        foreach (Control control in panelDystansGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBoxa)
+                            {
+                                if (pictureBoxa.Tag is KartaJednostki)
+                                    pictureBoxa.DoubleClick += PictureBox_DoubleClick;
+                            }
+                        }
+                    }
+                    else if (targetPanel.Name.Contains("panelObleznicze"))
+                    {
+                        M.Umiejscowienie = Umiejscowienie.Obleznicza;
+                        lastCard = M;
+                        foreach (Control control in panelOblezniczeGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBoxa)
+                            {
+                                if (pictureBoxa.Tag is KartaJednostki)
+                                    pictureBoxa.DoubleClick += PictureBox_DoubleClick;
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (k is not Manekin)
+                {
+                    try
+                    {
+                        gra.WykonajRuch(gracz1, k);
+                    }
+                    catch (ExceptionDowodca ED)
+                    {
+                        MessageBox.Show(ED.Message, "Niezły z ciebie taktyk :) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
 
-                    targetPanel.DragEnter -= Panel_DragEnter;
-                    targetPanel.DragDrop -= Panel_DragDrop;
+                    catch (ExceptionRog ER)
+                    {
+                        MessageBox.Show(ER.Message, "Róg zajęty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception EX)
+                    {
+                        MessageBox.Show(EX.Message, "No to mamy błąd:) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
                 }
-               
-                    gra.WykonajRuch(gracz1, k);
-
-
-
                 if (k is Pozoga)
                 {
-                    AddCardToPanel(k, form1.panelWspolnePole);
-                    PozogaPanel(form1.panelZwarcieGracz1, form1.gracz1.Plansza.KartyPiechotyGracza);
-                    PozogaPanel(form1.panelZwarcieGracz2, form1.gracz2.Plansza.KartyPiechotyGracza);
 
+                    FiltrPanelPozoga(panelZwarcieGracz1, gracz1.Plansza.KartyPiechotyGracza);
+                    FiltrPanelPozoga(panelZwarcieGracz2, gracz2.Plansza.KartyPiechotyGracza);
+                    FiltrPanelPozogaManekin(panelZwarcieGracz1, gracz1.Plansza, Umiejscowienie.Piechoty);
+                    FiltrPanelPozogaManekin(panelZwarcieGracz2, gracz2.Plansza, Umiejscowienie.Piechoty);
 
-                    PozogaPanel(form1.panelDystansGracz2, form1.gracz2.Plansza.KartyStrzeleckieGracza);
-                    PozogaPanel(form1.panelDystansGracz1, form1.gracz1.Plansza.KartyStrzeleckieGracza);
+                    FiltrPanelPozoga(panelDystansGracz2, gracz2.Plansza.KartyStrzeleckieGracza);
+                    FiltrPanelPozoga(panelDystansGracz1, gracz1.Plansza.KartyStrzeleckieGracza);
+                    FiltrPanelPozogaManekin(panelDystansGracz1, gracz1.Plansza, Umiejscowienie.Lucznika);
+                    FiltrPanelPozogaManekin(panelDystansGracz2, gracz2.Plansza, Umiejscowienie.Lucznika);
 
-
-                    PozogaPanel(form1.panelOblezniczeGracz1, form1.gracz1.Plansza.KartyOblezniczeGracza);
-                    PozogaPanel(form1.panelOblezniczeGracz2, form1.gracz2.Plansza.KartyOblezniczeGracza);
-
-
-
-                    PozogaPanel(panelZwarcieGracz1, gracz1.Plansza.KartyPiechotyGracza);
-                    PozogaPanel(panelZwarcieGracz2, gracz2.Plansza.KartyPiechotyGracza);
-
-
-                    PozogaPanel(panelDystansGracz2, gracz2.Plansza.KartyStrzeleckieGracza);
-                    PozogaPanel(panelDystansGracz1, gracz1.Plansza.KartyStrzeleckieGracza);
-
-
-                    PozogaPanel(panelOblezniczeGracz1, gracz1.Plansza.KartyOblezniczeGracza);
-                    PozogaPanel(panelOblezniczeGracz2, gracz2.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozoga(panelOblezniczeGracz1, gracz1.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozoga(panelOblezniczeGracz2, gracz2.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozogaManekin(panelOblezniczeGracz1, gracz1.Plansza, Umiejscowienie.Obleznicza);
+                    FiltrPanelPozogaManekin(panelOblezniczeGracz2, gracz2.Plansza, Umiejscowienie.Obleznicza);
                 }
+                else if (k is KartaJednostki kj && kj.Effect == CardEffects.Bractwo)
+                {
+                    if (kj is KartaPiechoty)
+                    {
+                        FiltrPanelBractwo(gracz1.Plansza.KartyPiechotyGracza, kj, panelZwarcieGracz1);
 
+                    }
+                    else if (kj is KartaObleznika)
+                    {
+                        FiltrPanelBractwo(gracz1.Plansza.KartyOblezniczeGracza, kj, panelOblezniczeGracz1);
+
+                    }
+                    else if (kj is KartaLucznika)
+                    {
+                        FiltrPanelBractwo(gracz1.Plansza.KartyStrzeleckieGracza, kj, panelDystansGracz1);
+
+
+
+                    }
+                }
+                else if (k is KartaDowodcy KD)
+                {
+
+                    FiltrPanelRogu(panelRoguOblezniczeGracz1, gracz1.Plansza, Umiejscowienie.Obleznicza);
+                    FiltrPanelRogu(panelRoguOblezniczeGracz2, gracz2.Plansza, Umiejscowienie.Obleznicza);
+
+
+                    FiltrPanelPozoga(panelOblezniczeGracz1, gracz1.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozoga(panelOblezniczeGracz2, gracz2.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozogaManekin(panelOblezniczeGracz1, gracz1.Plansza, Umiejscowienie.Obleznicza);
+                    FiltrPanelPozogaManekin(panelOblezniczeGracz2, gracz2.Plansza, Umiejscowienie.Obleznicza);
+
+
+                    FiltrPanelSpecjalne(panelWspolnePole, KD);
+
+
+
+
+
+                }
+                RefreshPanelSpecial(panelWspolnePole);
                 OdswiezPanel(targetPanel);
                 RefreshCardPositions(sourcePanel);
                 RefreshCardPositions(targetPanel);
-
+                Czekaj();
             }
         }
-        private void PozogaPanel<T>(Panel panel, Talia<T>talia) where T : KartaJednostki
+
+        private void FiltrPanelBractwo<T>(Talia<T> talia, KartaJednostki kj, Panel panel) where T : KartaJednostki
         {
 
-            foreach (PictureBox pictureBox in panel.Controls.OfType<PictureBox>().ToList())
+            var karty = talia.Where(karta => karta is KartaJednostki && karta.Nazwa == kj.Nazwa && kj.Effect == CardEffects.Bractwo);
+            foreach (KartaJednostki kk in karty)
             {
-                T pictureBoxKarta = pictureBox.Tag as T;
-
-                if (!talia.Contains(pictureBoxKarta))
+                if (FindPictureBoxByCard(panel, kk) == null)
                 {
-                    panel.Controls.Remove(pictureBox);
+                    AddCardToPanel(kk, panel);
+                    RemoveCardFromPanel(FindPictureBoxByCard(panelGracza, kk), panelGracza);
                 }
             }
 
+
         }
+        private void RefreshPanelSpecial(Panel panel)
+        {
+            var pictureBoxes = panel.Controls.OfType<PictureBox>().ToList();
+
+            if (pictureBoxes.Count > 4)
+            {
+                for (int i = 0; i < pictureBoxes.Count - 4; i++)
+                {
+                    panel.Controls.Remove(pictureBoxes[i]);
+                }
+            }
+            RefreshCardPositions(panel);
+        }
+        private void FiltrPanelSpecjalne(Panel panel, KartaDowodcy kartaDowodcy)
+        {
+            if (kartaDowodcy is FoltestDowódcaPółnocy)
+            {
+                AddCardToPanel(new CzysteNiebo("Czyste Niebo Krola Temerii", "CzysteNiebo"), panel);
+            }
+            if (kartaDowodcy is FoltestKrólTemerii)
+            {
+                AddCardToPanel(new GestaMgla("Gesta Mgla Krola Temerii", "GestaMgla"), panel);
+            }
+            RefreshPanelSpecial(panel);
+
+        }
+        private void FiltrPanelRogu(Panel panel, Plansza plansza, Umiejscowienie umiejscowienie)
+        {
+            panel.Controls.Clear();
+            var ka = plansza.KartySpecjalne.Where(kartaa => (kartaa is RogDowodcy ks && ks.Umiejscowienie == umiejscowienie));
+
+            if (ka.Any())
+            {
+                foreach (var karty in ka)
+                {
+                    AddCardToPanel(karty, panel);
+
+
+                }
+                panel.DragEnter -= Panel_DragEnter;
+                panel.DragDrop -= Panel_DragDrop;
+            }
+        }
+        private void FiltrPanelPozogaManekin(Panel panel, Plansza plansza, Umiejscowienie umiejscowienie)
+        {
+
+            var ka = plansza.KartySpecjalne.Where(kartaa => (kartaa is Manekin ks && ks.Umiejscowienie == umiejscowienie));
+
+            if (ka.Any())
+            {
+                foreach (var karty in ka)
+                {
+                    AddCardToPanel(karty, panel);
+                }
+            }
+        }
+        private void FiltrPanelPozoga<T>(Panel panel, Talia<T> talia) where T : KartaJednostki
+        {
+            panel.Controls.Clear();
+
+            foreach (Karta karty in talia)
+            {
+                AddCardToPanel(karty, panel);
+            }
+
+        }
+
         private void OdswiezPanel(Panel panel)
         {
             OdswiezPunktacje();
@@ -352,9 +443,6 @@ namespace Gwent_App
             labelPunktySumaGracz2.Text = gracz2.Plansza.PunktySuma + "";
 
 
-
-
-
             form1.labelDystansGracz2.Text = gracz1.Plansza.PunktyStrzeleckie + "";
             form1.labelZwarcieGracz2.Text = gracz1.Plansza.PunktyPiechoty + "";
             form1.labelOblezniczeGracz2.Text = gracz1.Plansza.PunktyObleznicze + "";
@@ -366,68 +454,85 @@ namespace Gwent_App
             form1.labelOblezniczeGracz1.Text = gracz2.Plansza.PunktyObleznicze + "";
             form1.labelPunktySumaGracz1.Text = gracz2.Plansza.PunktySuma + "";
 
-
         }
 
-        private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
+
+        private void PictureBox_DoubleClick(object sender, EventArgs e)
         {
-            Karta[] cards = gracz.Plansza.KartyGraczaWRozgrywce.ToArray();
+            selectedPictureBox = sender as PictureBox;
 
-            // Liczba PictureBox do wygenerowania
-            int pictureBoxCount = cards.Count();
+            Panel sourcePanel = selectedPictureBox.Parent as Panel;
 
-            // Rozmiar i odstęp pomiędzy PictureBox
-            int pictureBoxWidth = 60;
-            int pictureBoxHeight = 90;
-            int pictureBoxSpacing = 10;
-
-            // Obliczanie szerokości panelu
-            int panelWidth = panel.ClientSize.Width;
-
-            // Obliczanie szerokości zajmowanej przez wszystkie karty oraz odstępów
-            int totalWidth = pictureBoxCount * pictureBoxWidth + (pictureBoxCount - 1) * pictureBoxSpacing;
-
-            // Obliczanie pozycji początkowej X, aby wyśrodkować karty
-            int startX = (panelWidth - totalWidth) / 2;
-
-            // Pozycja początkowa generowania PictureBox
-            int startY = pictureBoxSpacing;
-
-            for (int i = 0; i < pictureBoxCount; i++)
+            if (lastCard != null)
             {
-                // Tworzenie nowego PictureBox
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.Name = "Karta" + (i + 1);
-                pictureBox.Size = new Size(pictureBoxWidth, pictureBoxHeight);
-                pictureBox.Location = new Point(startX, startY);
-                pictureBox.BackColor = Color.LightGray;
+                if (sourcePanel.Name.Contains("panelZwarcie"))
+                {
+                    KartaPiechoty karta = selectedPictureBox.Tag as KartaPiechoty;
+                    gra.WykonajRuch<KartaPiechoty>(gracz1, lastCard, karta);
+                    RemoveCardFromPanel(selectedPictureBox, sourcePanel);
+                    AddCardToPanel(karta, panelGracza);
+                }
+                else if (sourcePanel.Name.Contains("panelDystans"))
+                {
+                    KartaLucznika karta = selectedPictureBox.Tag as KartaLucznika;
+                    gra.WykonajRuch<KartaLucznika>(gracz1, lastCard, karta);
+                    RemoveCardFromPanel(selectedPictureBox, sourcePanel);
+                    AddCardToPanel(karta, panelGracza);
+                }
+                else if (sourcePanel.Name.Contains("panelObleznicze"))
+                {
+                    KartaObleznika karta = selectedPictureBox.Tag as KartaObleznika;
+                    gra.WykonajRuch<KartaObleznika>(gracz1, lastCard, karta);
 
-                Random random = new Random();
-                pictureBox.BackColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+                    RemoveCardFromPanel(selectedPictureBox, sourcePanel);
+                    AddCardToPanel(karta, panelGracza);
 
-                pictureBox.BorderStyle = BorderStyle.FixedSingle;
-                pictureBox.MouseDown += PictureBox_MouseDown;
-                pictureBox.MouseUp += PictureBox_MouseUp;
-
-                // Dodaj etykietę nad PictureBox
-                Label label = new Label();
-                label.Text = cards[i].Nazwa;
-                pictureBox.Tag = cards[i];
-                label.AutoSize = true;
-                label.TextAlign = ContentAlignment.MiddleCenter;
-                label.BackColor = Color.Transparent;
-                label.Dock = DockStyle.Top;
-                pictureBox.Controls.Add(label);
-
-                panel.Controls.Add(pictureBox);
-
-                // Aktualizacja pozycji X dla następnego PictureBox
-                startX += pictureBoxWidth + pictureBoxSpacing;
+                }
             }
 
-            // Odświeżenie pozycji kart w panelu
-            RefreshCardPositions(panel, pictureBoxSpacing);
+            foreach (Control control in sourcePanel.Controls)
+            {
+                if (control is PictureBox pictureBoxa)
+                {
+                    pictureBoxa.DoubleClick -= PictureBox_DoubleClick;
+                }
+            }
+            lastCard = null;
+            RefreshCardPositions(sourcePanel);
+            RefreshCardPositions(panelGracza);
+            OdswiezPanel(sourcePanel);
+            System.Diagnostics.Debug.WriteLine("Log: Stadsadadad23424242rt xD");
+
+            Czekaj();
+
+
         }
+        public void PoddajeSie()
+        {
+            MessageBox.Show("Poddał sie", "Gracz sie poddał", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
+        {
+            foreach (var cardToAdd in gracz.Plansza.KartyGraczaWRozgrywce)
+            {
+                AddCardToPanel(cardToAdd, panel);
+            }
+        }
+
+
+        private PictureBox FindPictureBoxByCard<T>(Panel panel, T karta) where T : Karta
+        {
+            foreach (PictureBox pictureBox in panel.Controls.OfType<PictureBox>())
+            {
+                T pictureBoxKarta = pictureBox.Tag as T;
+                if (pictureBoxKarta != null && pictureBoxKarta.Equals(karta))
+                {
+                    return pictureBox;
+                }
+            }
+            return null;
+        }
+
 
         private void RefreshCardPositions(Panel panel, int pictureBoxSpacing = 10)
         {
@@ -468,7 +573,6 @@ namespace Gwent_App
                 }
             }
         }
-
 
 
 
@@ -519,10 +623,11 @@ namespace Gwent_App
                 // Usuń PictureBox z panelu
                 panel.Controls.Remove(pictureBox);
                 // Odśwież pozycje kart w panelu
+                // RefreshCardPositions(panel);
                 RefreshCardPositions(panel);
+
             }
         }
-
         private void AddCardToPanel(Karta karta, Panel panel)
         {
             // Tworzenie nowego PictureBox
@@ -536,6 +641,7 @@ namespace Gwent_App
 
             pictureBox.MouseDown += PictureBox_MouseDown;
             pictureBox.MouseUp += PictureBox_MouseUp;
+            pictureBox.DoubleClick += null;
 
             // Dodaj etykietę nad PictureBox
             Label label = new Label();
@@ -555,12 +661,18 @@ namespace Gwent_App
             panel.Controls.Add(pictureBox);
 
             // Odświeżenie pozycji kart w panelu
+            //             RefreshCardPositions(panel);
             RefreshCardPositions(panel);
+
         }
 
-
-        private void labelPunktySumaGracz2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            gracz2.Play = false;
+            form1.PoddajeSie();
+
+            this.Enabled = false;
+            form1.Enabled = true;
 
         }
     }

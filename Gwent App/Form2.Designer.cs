@@ -62,6 +62,7 @@
             panelRoguDystansGracz2 = new Panel();
             panelRoguOblezniczeGracz2 = new Panel();
             panelWspolnePole = new Panel();
+            poddajrundGracz = new Button();
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).BeginInit();
@@ -252,7 +253,6 @@
             labelPunktySumaGracz2.Size = new Size(13, 15);
             labelPunktySumaGracz2.TabIndex = 25;
             labelPunktySumaGracz2.Text = "0";
-            labelPunktySumaGracz2.Click += labelPunktySumaGracz2_Click;
             // 
             // pictureBoxPierwszyPunktGracz1
             // 
@@ -336,11 +336,22 @@
             panelWspolnePole.Size = new Size(271, 110);
             panelWspolnePole.TabIndex = 42;
             // 
+            // button1
+            // 
+            poddajrundGracz.Location = new Point(143, 778);
+            poddajrundGracz.Name = "Poddaj Rundę";
+            poddajrundGracz.Size = new Size(75, 23);
+            poddajrundGracz.TabIndex = 43;
+            poddajrundGracz.Text = "Poddaj";
+            poddajrundGracz.UseVisualStyleBackColor = true;
+            poddajrundGracz.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1620, 900);
+            Controls.Add(poddajrundGracz);
             Controls.Add(panelWspolnePole);
             Controls.Add(panelRoguOblezniczeGracz2);
             Controls.Add(panelRoguDystansGracz2);
@@ -377,7 +388,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
             StartPosition = FormStartPosition.Manual;
-            Text = "Gracz 1fds";
+            Text = "Gracz 2";
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).EndInit();
@@ -423,5 +434,6 @@
         public Panel panelRoguDystansGracz2;
         public Panel panelRoguOblezniczeGracz2;
         public Panel panelWspolnePole;
+        private Button poddajrundGracz;
     }
 }

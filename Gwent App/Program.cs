@@ -75,9 +75,9 @@ namespace Gwent_App
             System.Diagnostics.Debug.WriteLine("");
 
             System.Diagnostics.Debug.WriteLine("Start Rozgrywki");
-          //  Form2 form2 = new Form2();
-            Form1 form1 = new Form1(gra);
-          // form2.SetForm(gra, form1);
+            Form2 form2 = new Form2();
+            Form1 form1 = new Form1(gra, form2);
+           form2.setForm(gra, form1);
 
             Application.Run(form1);
 

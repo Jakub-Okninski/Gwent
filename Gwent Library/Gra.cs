@@ -53,7 +53,7 @@ namespace Gwent_Library
                 }
                 else
                 {
-                    //throw new KolejnoscRuchuException("Nie twój ruch");
+                    throw new KolejnoscRuchuException("Nie twój ruch");
                 }
             }else if (gracz.Play)
             {
@@ -216,7 +216,10 @@ namespace Gwent_Library
 
             karty.Add(FoltestKrólTemerii);
             karty.Add(FoltestZelaznyWładca);
-
+            karty.Add(Cirilla);
+            karty.Add(Balista2);
+            karty.Add(Yennefer3);
+            karty.Add(Balista1);
 
 
             karty.Add(Manekin);
@@ -227,12 +230,9 @@ namespace Gwent_Library
             karty.Add(Cirilla2);
             karty.Add(Mroz1);
             karty.Add(foltest);
-            karty.Add(Yennefer3);
-            karty.Add(Balista2);
-            karty.Add(Balista1);
+        
 
 
-            karty.Add(Cirilla);  
       
             karty.Add(Rog3);
   

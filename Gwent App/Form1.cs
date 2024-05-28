@@ -13,19 +13,19 @@ namespace Gwent_App
 
         public Gracz gracz1;
         public Gracz gracz2;
-
+        public Form2 form2;
         public Gra gra;
         private PictureBox selectedPictureBox = null;
         private Karta lastCard = null;
 
 
-        public Form1(Gra g)
-        {  
+        public Form1(Gra g, Form2 f)
+        {
 
             gracz1 = g.gracz1;
             gracz2 = g.gracz2;
             gra = g;
-         
+            form2 = f;
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
@@ -52,10 +52,11 @@ namespace Gwent_App
             panelSpecjalnaGracz1.DragDrop += Panel_DragDrop;
             panelWspolnePole.DragEnter += Panel_DragEnter;
             panelWspolnePole.DragDrop += Panel_DragDrop;
+            form2.Show();
         }
 
-       
 
+      
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -64,93 +65,77 @@ namespace Gwent_App
             Panel sourcePanel = selectedPictureBox.Parent as Panel;
             var karta = selectedPictureBox.Tag;
 
-                if (sourcePanel.Name.Contains("panelGracza"))
+            if (sourcePanel.Name.Contains("panelGracza"))
+            {
+                panelZwarcieGracz1.AllowDrop = false;
+                panelDystansGracz1.AllowDrop = false;
+                panelOblezniczeGracz1.AllowDrop = false;
+                panelRoguDystansGracz1.AllowDrop = false;
+                panelRoguOblezniczeGracz1.AllowDrop = false;
+                panelRoguZwarcieGracz1.AllowDrop = false;
+                panelSpecjalnaGracz1.AllowDrop = false;
+                panelWspolnePole.AllowDrop = false;
+
+
+                if (karta is KartaPiechoty)
                 {
-                    panelZwarcieGracz1.AllowDrop = false;
-                    panelDystansGracz1.AllowDrop = false;
-                    panelOblezniczeGracz1.AllowDrop = false;
-                    panelRoguDystansGracz1.AllowDrop = false;
-                    panelRoguOblezniczeGracz1.AllowDrop = false;
-                    panelRoguZwarcieGracz1.AllowDrop = false;
-                    panelSpecjalnaGracz1.AllowDrop = false;
-                    panelWspolnePole.AllowDrop = false;
-
-
-                    if (karta is KartaPiechoty)
-                    {
-                        panelZwarcieGracz1.AllowDrop = true; 
-                    }
-                    else if (karta is KartaLucznika)
-                    {
-                        panelDystansGracz1.AllowDrop = true;   
-                    }
-                    else if (karta is KartaObleznika)
-                    {
-                        panelOblezniczeGracz1.AllowDrop = true;     
-                    }
-                    else if (karta is Manekin)
-                    {
-                        panelZwarcieGracz1.AllowDrop = true;
-                        panelDystansGracz1.AllowDrop = true;
-                        panelOblezniczeGracz1.AllowDrop = true; 
-                    }
-
-                    else if (karta is RogDowodcy)
-                    {      
-                        panelRoguDystansGracz1.AllowDrop = true;
-                        panelRoguOblezniczeGracz1.AllowDrop = true;
-                        panelRoguZwarcieGracz1.AllowDrop = true;        
-                    }
-                    else if (karta is KartaDowodcy)
-                    {
-                        panelSpecjalnaGracz1.AllowDrop = true;          
-                    }
-
-                    else if (karta is KartaSpecjalna)
-                    {
-                        panelWspolnePole.AllowDrop = true;
-                    }
-                    selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
+                    panelZwarcieGracz1.AllowDrop = true;
                 }
-         }
+                else if (karta is KartaLucznika)
+                {
+                    panelDystansGracz1.AllowDrop = true;
+                }
+                else if (karta is KartaObleznika)
+                {
+                    panelOblezniczeGracz1.AllowDrop = true;
+                }
+                else if (karta is Manekin)
+                {
+                    panelZwarcieGracz1.AllowDrop = true;
+                    panelDystansGracz1.AllowDrop = true;
+                    panelOblezniczeGracz1.AllowDrop = true;
+                }
+
+                else if (karta is RogDowodcy)
+                {
+                    panelRoguDystansGracz1.AllowDrop = true;
+                    panelRoguOblezniczeGracz1.AllowDrop = true;
+                    panelRoguZwarcieGracz1.AllowDrop = true;
+                }
+                else if (karta is KartaDowodcy)
+                {
+                    panelSpecjalnaGracz1.AllowDrop = true;
+                }
+
+                else if (karta is KartaSpecjalna)
+                {
+                    panelWspolnePole.AllowDrop = true;
+                }
+                selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
+            }
+        }
 
 
 
         private void Czekaj()
         {
-            System.Diagnostics.Debug.WriteLine("dupa ");
+            SkopiujPictureBoxy(panelWspolnePole, form2.panelWspolnePole);
+            SkopiujPictureBoxy(panelSpecjalnaGracz1, form2.panelSpecjalnaGracz2);
+            SkopiujPictureBoxy(panelRoguZwarcieGracz1, form2.panelRoguZwarcieGracz2);
+            SkopiujPictureBoxy(panelRoguDystansGracz1, form2.panelRoguDystansGracz2);
+            SkopiujPictureBoxy(panelRoguOblezniczeGracz1, form2.panelRoguOblezniczeGracz2);
 
-            foreach (Karta k in gracz1.Plansza.WszystkieKartyGracza)
+            SkopiujPictureBoxy(panelOblezniczeGracz1, form2.panelOblezniczeGracz2);
+            SkopiujPictureBoxy(panelDystansGracz1, form2.panelDystansGracz2);
+            SkopiujPictureBoxy(panelZwarcieGracz1, form2.panelZwarcieGracz2);
+
+
+            if (gracz2.Play)
             {
-                System.Diagnostics.Debug.WriteLine(k);
-
+                this.Enabled = false;
+                form2.Enabled = true;
             }
-            System.Diagnostics.Debug.WriteLine(" ");
-
-            foreach (Karta k in gracz1.Plansza.KartyGraczaWRozgrywce)
-            {
-
-                System.Diagnostics.Debug.WriteLine(k);
-
-            }
-
-            System.Diagnostics.Debug.WriteLine(" ");
-
-            foreach (Karta k in gracz1.Plansza.KartyPiechotyGracza)
-            {
-
-                System.Diagnostics.Debug.WriteLine(k);
-
-            }
-            System.Diagnostics.Debug.WriteLine(" specjalne");
-
-            foreach (Karta k in gracz1.Plansza.KartySpecjalne)
-            {
-
-                System.Diagnostics.Debug.WriteLine(k);
-
-            }
-            System.Diagnostics.Debug.WriteLine("aa ");
+           
 
             //  MessageBox.Show("Ruch Przeciwnika", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -173,7 +158,19 @@ namespace Gwent_App
 
 
 
+        public void SkopiujPictureBoxy(Panel panelZrodlowy, Panel panelDocelowy)
+        {
+            panelDocelowy.Controls.Clear();
 
+            foreach (PictureBox originalPictureBox in panelZrodlowy.Controls.OfType<PictureBox>())
+            {
+                Karta k = originalPictureBox.Tag as Karta;
+                AddCardToPanel(k, panelDocelowy);
+            }
+
+            RefreshCardPositions(panelDocelowy);
+
+        }
 
 
 
@@ -187,7 +184,7 @@ namespace Gwent_App
 
             if (pictureBox != null && targetPanel != null && targetPanel != sourcePanel)
             {
-              
+
                 Karta k = pictureBox.Tag as Karta;
 
                 sourcePanel.Controls.Remove(pictureBox);
@@ -254,25 +251,26 @@ namespace Gwent_App
                 }
 
 
-             
+
                 if (k is not Manekin)
                 {
                     try
                     {
                         gra.WykonajRuch(gracz1, k);
                     }
-                    catch (ExceptionDowodca ED){
+                    catch (ExceptionDowodca ED)
+                    {
                         MessageBox.Show(ED.Message, "Niez³y z ciebie taktyk :) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
-                    
-                   catch (ExceptionRog ER)
+
+                    catch (ExceptionRog ER)
                     {
-                         MessageBox.Show(ER.Message, "Róg zajêty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ER.Message, "Róg zajêty", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception EX)
                     {
-                      MessageBox.Show(EX.Message, "No to mamy b³¹d:) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(EX.Message, "No to mamy b³¹d:) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                 }
@@ -280,40 +278,43 @@ namespace Gwent_App
                 {
 
                     FiltrPanelPozoga(panelZwarcieGracz1, gracz1.Plansza.KartyPiechotyGracza);
-                    FiltrPanelPozoga( panelZwarcieGracz2, gracz2.Plansza.KartyPiechotyGracza);
+                    FiltrPanelPozoga(panelZwarcieGracz2, gracz2.Plansza.KartyPiechotyGracza);
                     FiltrPanelPozogaManekin(panelZwarcieGracz1, gracz1.Plansza, Umiejscowienie.Piechoty);
                     FiltrPanelPozogaManekin(panelZwarcieGracz2, gracz2.Plansza, Umiejscowienie.Piechoty);
 
-
-
                     FiltrPanelPozoga(panelDystansGracz2, gracz2.Plansza.KartyStrzeleckieGracza);
-                    FiltrPanelPozoga( panelDystansGracz1, gracz1.Plansza.KartyStrzeleckieGracza);
+                    FiltrPanelPozoga(panelDystansGracz1, gracz1.Plansza.KartyStrzeleckieGracza);
                     FiltrPanelPozogaManekin(panelDystansGracz1, gracz1.Plansza, Umiejscowienie.Lucznika);
                     FiltrPanelPozogaManekin(panelDystansGracz2, gracz2.Plansza, Umiejscowienie.Lucznika);
 
                     FiltrPanelPozoga(panelOblezniczeGracz1, gracz1.Plansza.KartyOblezniczeGracza);
-                    FiltrPanelPozoga( panelOblezniczeGracz2, gracz2.Plansza.KartyOblezniczeGracza);
+                    FiltrPanelPozoga(panelOblezniczeGracz2, gracz2.Plansza.KartyOblezniczeGracza);
                     FiltrPanelPozogaManekin(panelOblezniczeGracz1, gracz1.Plansza, Umiejscowienie.Obleznicza);
                     FiltrPanelPozogaManekin(panelOblezniczeGracz2, gracz2.Plansza, Umiejscowienie.Obleznicza);
                 }
                 else if (k is KartaJednostki kj && kj.Effect == CardEffects.Bractwo)
                 {
-                    if(kj is KartaPiechoty)
+                    if (kj is KartaPiechoty)
                     {
                         FiltrPanelBractwo(gracz1.Plansza.KartyPiechotyGracza, kj, panelZwarcieGracz1);
+
                     }
                     else if (kj is KartaObleznika)
                     {
                         FiltrPanelBractwo(gracz1.Plansza.KartyOblezniczeGracza, kj, panelOblezniczeGracz1);
+
                     }
-                    else if(kj is KartaLucznika)
+                    else if (kj is KartaLucznika)
                     {
                         FiltrPanelBractwo(gracz1.Plansza.KartyStrzeleckieGracza, kj, panelDystansGracz1);
+
+
+
                     }
                 }
-                else if(k is KartaDowodcy KD)
+                else if (k is KartaDowodcy KD)
                 {
-                 
+
                     FiltrPanelRogu(panelRoguOblezniczeGracz1, gracz1.Plansza, Umiejscowienie.Obleznicza);
                     FiltrPanelRogu(panelRoguOblezniczeGracz2, gracz2.Plansza, Umiejscowienie.Obleznicza);
 
@@ -326,7 +327,10 @@ namespace Gwent_App
 
                     FiltrPanelSpecjalne(panelWspolnePole, KD);
 
-                   
+
+
+
+
                 }
                 RefreshPanelSpecial(panelWspolnePole);
                 OdswiezPanel(targetPanel);
@@ -364,11 +368,11 @@ namespace Gwent_App
             }
             RefreshCardPositions(panel);
         }
-            private void FiltrPanelSpecjalne(Panel panel, KartaDowodcy kartaDowodcy)
+        private void FiltrPanelSpecjalne(Panel panel, KartaDowodcy kartaDowodcy)
         {
-           if(kartaDowodcy is FoltestDowódcaPó³nocy)
+            if (kartaDowodcy is FoltestDowódcaPó³nocy)
             {
-                AddCardToPanel(new CzysteNiebo("Czyste Niebo Krola Temerii", "CzysteNiebo"),panel);
+                AddCardToPanel(new CzysteNiebo("Czyste Niebo Krola Temerii", "CzysteNiebo"), panel);
             }
             if (kartaDowodcy is FoltestKrólTemerii)
             {
@@ -387,7 +391,7 @@ namespace Gwent_App
                 foreach (var karty in ka)
                 {
                     AddCardToPanel(karty, panel);
-                
+
 
                 }
                 panel.DragEnter -= Panel_DragEnter;
@@ -408,16 +412,16 @@ namespace Gwent_App
             }
         }
         private void FiltrPanelPozoga<T>(Panel panel, Talia<T> talia) where T : KartaJednostki
-    {
+        {
             panel.Controls.Clear();
 
             foreach (Karta karty in talia)
             {
-              AddCardToPanel(karty, panel); 
+                AddCardToPanel(karty, panel);
             }
 
         }
-       
+
         private void OdswiezPanel(Panel panel)
         {
             OdswiezPunktacje();
@@ -436,6 +440,19 @@ namespace Gwent_App
             labelZwarcieGracz2.Text = gracz2.Plansza.PunktyPiechoty + "";
             labelOblezniczeGracz2.Text = gracz2.Plansza.PunktyObleznicze + "";
             labelPunktySumaGracz2.Text = gracz2.Plansza.PunktySuma + "";
+
+
+            form2.labelDystansGracz2.Text = gracz1.Plansza.PunktyStrzeleckie + "";
+            form2.labelZwarcieGracz2.Text = gracz1.Plansza.PunktyPiechoty + "";
+            form2.labelOblezniczeGracz2.Text = gracz1.Plansza.PunktyObleznicze + "";
+            form2.labelPunktySumaGracz2.Text = gracz1.Plansza.PunktySuma + "";
+
+
+            form2.labelDystansGracz1.Text = gracz2.Plansza.PunktyStrzeleckie + "";
+            form2.labelZwarcieGracz1.Text = gracz2.Plansza.PunktyPiechoty + "";
+            form2.labelOblezniczeGracz1.Text = gracz2.Plansza.PunktyObleznicze + "";
+            form2.labelPunktySumaGracz1.Text = gracz2.Plansza.PunktySuma + "";
+
         }
 
 
@@ -471,7 +488,7 @@ namespace Gwent_App
 
                 }
             }
-          
+
             foreach (Control control in sourcePanel.Controls)
             {
                 if (control is PictureBox pictureBoxa)
@@ -489,21 +506,18 @@ namespace Gwent_App
 
 
         }
+        public void PoddajeSie()
+        {
+            MessageBox.Show("Podda³ sie", "Gracz sie podda³", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
         private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
         {
             foreach (var cardToAdd in gracz.Plansza.KartyGraczaWRozgrywce)
             {
                 AddCardToPanel(cardToAdd, panel);
             }
-
-
-       
-  
-
-
         }
-
 
 
         private PictureBox FindPictureBoxByCard<T>(Panel panel, T karta) where T : Karta
@@ -564,7 +578,6 @@ namespace Gwent_App
 
 
 
-
         private void UpdateImgPoints(Gracz gracz1, Gracz gracz2)
         {
             if (gra.gracz1.Punkty == 1)
@@ -615,7 +628,6 @@ namespace Gwent_App
 
             }
         }
-
         private void AddCardToPanel(Karta karta, Panel panel)
         {
             // Tworzenie nowego PictureBox
@@ -654,7 +666,14 @@ namespace Gwent_App
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gracz1.Play = false;
+            form2.PoddajeSie();
 
+            this.Enabled = false;
+            form2.Enabled = true;
 
+        }
     }
 }
