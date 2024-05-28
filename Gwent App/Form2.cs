@@ -371,7 +371,7 @@ namespace Gwent_App
 
         private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
         {
-            Karta[] cards = gracz.KartyGracza.ToArray();
+            Karta[] cards = gracz.Plansza.KartyGraczaWRozgrywce.ToArray();
 
             // Liczba PictureBox do wygenerowania
             int pictureBoxCount = cards.Count();

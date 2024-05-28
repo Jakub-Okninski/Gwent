@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.Karty.KartyDowodcow
 {
-    public class FoltestKrólTemerii : KartaDowodcy
+    public class FoltestKrólTemerii : KartaDowodcy, ICloneable
     {
-        public FoltestKrólTemerii(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia, "Znajduje kartę gęsta mgła i nią zagrywa")
+        public FoltestKrólTemerii(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Znajduje kartę gęsta mgła i nią zagrywa")
         {
         }
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.TypyKart
 {
-    public abstract class KartaPogody : KartaGlobalna
+    public abstract class KartaPogody : KartaGlobalna, ICloneable
     {
         public KartaPogody(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

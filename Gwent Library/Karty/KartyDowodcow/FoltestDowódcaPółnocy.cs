@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.Karty.KartyDowodcow
 {
-    public class FoltestDowódcaPółnocy : KartaDowodcy
+    public class FoltestDowódcaPółnocy : KartaDowodcy, ICloneable
     {
         public FoltestDowódcaPółnocy(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Usuwa wszelkie efekty pogodowe")
         {

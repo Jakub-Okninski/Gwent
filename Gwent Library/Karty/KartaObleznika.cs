@@ -8,7 +8,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaObleznika : KartaJednostki
+    public class KartaObleznika : KartaJednostki, ICloneable
     {
         public override void PolozKarte(Plansza plansza)
         {

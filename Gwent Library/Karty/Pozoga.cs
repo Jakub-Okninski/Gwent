@@ -8,7 +8,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class Pozoga : KartaGlobalna
+    public class Pozoga : KartaGlobalna, ICloneable
     {
         public Pozoga(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

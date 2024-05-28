@@ -9,7 +9,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaPiechoty : KartaJednostki
+    public class KartaPiechoty : KartaJednostki, ICloneable
     {
         public override void PolozKarte(Plansza plansza)
         {
@@ -20,6 +20,9 @@ namespace Gwent_Library.Karty
         public KartaPiechoty(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia, CardEffectDelegate effect) : base(nazwa, sila, kartaBohatera, nazwaZdjecia, effect)
         {
         }
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

@@ -9,15 +9,17 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class RogDowodcy : KartaWspoldzielona
+    public class RogDowodcy : KartaWspoldzielona, ICloneable
     {
         public RogDowodcy(string nazwa, Umiejscowienie umiejscowienie, string nazwaZdjecia) : base(nazwa, umiejscowienie, nazwaZdjecia)
         {
         }
         public override void PolozKarte(Plansza plansza)
         {
-            if (!(plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == this.Umiejscowienie)))
+            if (!(plansza.KartySpecjalne.Any(karta => (karta is RogDowodcy k && k.Umiejscowienie == this.Umiejscowienie))))
             {
+                System.Diagnostics.Debug.WriteLine("Log: roggggggggggggggggggggStart xD");
+
                 plansza.KartyGraczaWRozgrywce.Remove(this);
                 plansza.KartySpecjalne.Add(this);
             }
@@ -28,23 +30,28 @@ namespace Gwent_Library.Karty
         }
         public void Akcja(Gracz gracz, Umiejscowienie umiejscowienie)
         {
-            if (gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Piechoty))
+            if (umiejscowienie  == Umiejscowienie.Piechoty && gracz.Plansza.KartySpecjalne.Any(karta => (karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Piechoty)))
             {
                 gracz.Plansza.KartyPiechotyGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
 
             }
-            else if (gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Lucznika))
+            else if (umiejscowienie == Umiejscowienie.Lucznika && gracz.Plansza.KartySpecjalne.Any(karta =>( karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Lucznika)))
             {
-                gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila *= 2);
+                gracz.Plansza.KartyStrzeleckieGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
             }
 
-            else if(gracz.Plansza.KartySpecjalne.Any(karta => karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Obleznicza))
+            else if(umiejscowienie == Umiejscowienie.Obleznicza && gracz.Plansza.KartySpecjalne.Any(karta => (karta is RogDowodcy k && k.Umiejscowienie == Umiejscowienie.Obleznicza)))
             {
                 gracz.Plansza.KartyOblezniczeGracza.ForEach(karta => karta.Sila = (karta.Sila * 2));
 
             }
         }
 
-      
+        public override string ToString()
+        {
+            return base.ToString()+ " Umiejscowienie "+ Umiejscowienie;
+        }
+
+
     }    
 }

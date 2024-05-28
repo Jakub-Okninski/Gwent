@@ -14,14 +14,20 @@ namespace Gwent_Library
         public Talia<Karta> KartyGracza { get; set; }
         public Plansza Plansza { get; set; }
         public int Punkty { get; set; }
+        public bool Play { get; set; } 
+
         public Gracz(string imie, Talia<Karta> kartygracza)
         {
             Imie = imie;
             KartyGracza = kartygracza;
             Punkty = 2;
-            Plansza = new Plansza(kartygracza);
+            Play = true;
         }
+        public void UstawPlansze(Talia<Karta> kartygracza, Talia<Karta> taliawRozgrywce)
+        {
+            Plansza = new Plansza(kartygracza, taliawRozgrywce);
 
+        }
         public void ZmniejszPunkty()
         {
             Punkty--;

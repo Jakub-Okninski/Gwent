@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class UlewnyDeszcz : KartaPogody
+    public class UlewnyDeszcz : KartaPogody, ICloneable
     {
         public UlewnyDeszcz(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

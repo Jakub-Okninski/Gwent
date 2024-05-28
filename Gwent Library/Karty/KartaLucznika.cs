@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaLucznika : KartaJednostki
+    public class KartaLucznika : KartaJednostki, ICloneable
     {
 
         public override void PolozKarte(Plansza plansza)

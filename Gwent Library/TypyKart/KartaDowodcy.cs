@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public abstract class KartaDowodcy : KartaGlobalna
+    public abstract class KartaDowodcy : KartaGlobalna, ICloneable
     {
         public string OpisWlasciwosci {get; set;}
         public KartaDowodcy(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia)

@@ -10,15 +10,18 @@ namespace Gwent_Library
 {
     public class Plansza
     {
-        public Plansza(Talia<Karta> talia)
+        public Plansza(Talia<Karta> talia, Talia<Karta> taliaWrozgrywce)
         {
             WszystkieKartyGracza = talia;
-            KartyGraczaWRozgrywce = talia;
+            KartyGraczaWRozgrywce = taliaWrozgrywce;
+
             KartyPiechotyGracza = new Talia<KartaPiechoty>();
             KartyStrzeleckieGracza = new Talia<KartaLucznika>();
             KartyOblezniczeGracza = new Talia<KartaObleznika>();
+
             KartySpecjalne = new Talia<KartaSpecjalna>();
             PunktySuma = 0;
+
             PunktyPiechoty = 0;
             PunktyStrzeleckie = 0;
             PunktyObleznicze = 0;

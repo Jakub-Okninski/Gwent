@@ -10,7 +10,7 @@ namespace Gwent_Library.TypyKart
 {
     public delegate void CardEffectDelegate (KartaJednostki karta, Plansza plansza);
 
-    public abstract class KartaJednostki : Karta
+    public abstract class KartaJednostki : Karta, ICloneable
     {
         public KartaJednostki(string nazwa, int sila, bool kartaBohatera, string nazwaZdjecia, CardEffectDelegate effect) : base(nazwa, nazwaZdjecia)
         {
@@ -29,6 +29,10 @@ namespace Gwent_Library.TypyKart
         {
             Sila = DomyslnaSila; 
         }
-       
+        public override string ToString()
+        {
+            return base.ToString() + $"Nazwa: {Nazwa}, Siła: {Sila}, Karta Bohatera: {KartaBohatera}";
+        }
+
     }
 }

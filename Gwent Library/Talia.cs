@@ -1,14 +1,19 @@
-﻿using Gwent_Library.TypyKart;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class Talia<T> : List<T>
+    public class Talia<T> : List<T>, ICloneable where T : ICloneable
     {
-       
+        public object Clone()
+        {
+            Talia<T> clonedTalia = new Talia<T>();
+            foreach (T item in this)
+            {
+                // Wywołaj metodę Clone() na każdym elemencie typu T
+                clonedTalia.Add((T)item.Clone());
+            }
+            return clonedTalia;
+        }
     }
 }

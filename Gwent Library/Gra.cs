@@ -41,9 +41,44 @@ namespace Gwent_Library
             ostatniGracz = gracz2;
         }
 
-        public void WykonajRuch<T>(Gracz gracz, Karta karta, T kartaZamiana) where T : KartaJednostki
+
+        public void SprawdzRuch(Gracz gracz)
         {
 
+            if(gracz1.Play&& gracz2.Play)
+            {
+                if (gracz != ostatniGracz)
+                {
+                    ostatniGracz = gracz;
+                }
+                else
+                {
+                    //throw new KolejnoscRuchuException("Nie twój ruch");
+                }
+            }else if (gracz.Play)
+            {
+                if (gracz == gracz1)
+                {
+                    ostatniGracz = gracz2;
+                }
+                else if (gracz == gracz2)
+                {
+                    ostatniGracz = gracz1;
+                }
+            }
+            else if (!(gracz1.Play && gracz2.Play))
+            {
+                throw new EndGameException("Koniec rundy");
+            }
+
+        }
+
+
+
+
+        public void WykonajRuch<T>(Gracz gracz, Karta karta, T kartaZamiana) where T : KartaJednostki
+        {
+            SprawdzRuch(gracz);
             karta.PolozKarte(gracz.Plansza);
 
             if (karta is Manekin kM)
@@ -52,11 +87,12 @@ namespace Gwent_Library
             }
 
             PrzliczPunkty(gracz);
-            
+    
         }
 
         public void WykonajRuch(Gracz gracz, Karta karta)
         {
+            SprawdzRuch(gracz);
             karta.PolozKarte(gracz.Plansza);
 
             if(karta is Pozoga kP)
@@ -68,8 +104,9 @@ namespace Gwent_Library
                 kD.AkcjaGlobalna(gracz1, gracz2);
             }
             PrzliczPunkty(gracz);
+    
         }
-
+      
         public void AkcjaPogody(Gracz gracz)
         {
             var kartyPogody = gracz.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
@@ -91,6 +128,8 @@ namespace Gwent_Library
             {
                 foreach (RogDowodcy item in kartyRogDowodcy)
                 {
+                    System.Diagnostics.Debug.WriteLine("Logroggg   akcjaaaaaaaaaaa: Start xD");
+
                     item.Akcja(gracz, item.Umiejscowienie);
                 }
             }
@@ -145,7 +184,8 @@ namespace Gwent_Library
         public static Talia<Karta> GenerateCard()
         {
             Talia<Karta> karty = new Talia<Karta>();
-            Karta Cirilla = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15,  false, " Ciri", CardEffects.Bractwo); Karta Cirilla2 = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15, false, " Ciri", CardEffects.Bractwo);
+            Karta Cirilla = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15,  false, " Ciri", CardEffects.Bractwo); 
+            Karta Cirilla2 = new KartaPiechoty("Cirilla Fiona Elen Riannon", 15, false, " Ciri", CardEffects.Bractwo);
 
             Karta Geralt = new KartaPiechoty("Geralt z Rivii", 5,  false, "Geralt", CardEffects.Bractwo);
             Karta Yennefer = new KartaLucznika("Yennefer z Vengerbergu", 7,  false, "Yennefer", CardEffects.WyskoieMorale);
@@ -156,7 +196,7 @@ namespace Gwent_Library
             Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota", CardEffects.Bractwo);       
             Karta Detmold = new KartaLucznika("Detmold", 6, false, "Detmold", CardEffects.Bractwo);
 
-            Karta Rog5 = new RogDowodcy("Róg dowódcy 3", Umiejscowienie.Piechoty, "Rog");
+            Karta Rog = new RogDowodcy("Róg dowódcy 3", Umiejscowienie.Piechoty, "Rog");
 
             Karta Rog3 = new RogDowodcy("Róg dowódcy 3",Umiejscowienie.Piechoty, "Rog");
             Karta Pozoga1 = new Pozoga("Pożoga 1", "Pozoga");         
@@ -167,30 +207,39 @@ namespace Gwent_Library
 
             Karta foltest = new FoltestZdobywca("FoltestZdobywca", "FoltestZdobywca");
             Karta Manekin = new Manekin("Manekin",Umiejscowienie.Piechoty, "Manekin");
+
+            Karta FoltestDowódcaPółnocy = new FoltestDowódcaPółnocy("FoltestDowódcaPółnocy", "FoltestDowódcaPółnocy");
+            Karta FoltestKrólTemerii = new FoltestKrólTemerii("FoltestKrólTemerii", "FoltestKrólTemerii");
+            Karta FoltestZelaznyWładca = new FoltestZelaznyWładca("FoltestZelaznyWładca", "FoltestZelaznyWładca");
+
+            karty.Add(FoltestDowódcaPółnocy);
+
+            karty.Add(FoltestKrólTemerii);
+            karty.Add(FoltestZelaznyWładca);
+
+
+
             karty.Add(Manekin);
 
+            karty.Add(UlewnyDeszcz1);
+            karty.Add(Pozoga1);
+            karty.Add(CzysteNiebo2);
             karty.Add(Cirilla2);
-            karty.Add(Yennefer);
+            karty.Add(Mroz1);
             karty.Add(foltest);
+            karty.Add(Yennefer3);
+            karty.Add(Balista2);
+            karty.Add(Balista1);
 
-             karty.Add(Rog5);
 
             karty.Add(Cirilla);  
-            karty.Add(Geralt);
-            karty.Add(Pozoga1);
+      
             karty.Add(Rog3);
-            karty.Add(Balista1);
-            karty.Add(UlewnyDeszcz1);
-            karty.Add(Balista2);
-            karty.Add(CzysteNiebo2);
+  
 
-            /*   karty.Add(Mroz1);
-               
-               karty.Add(Geralt);
-               karty.Add(GestaMgla1);      
-               karty.Add(BiednaPierdolonaPiechota1);         
-               karty.Add(Detmold);*/
+            
             return karty;
         }
+       
     }
 }

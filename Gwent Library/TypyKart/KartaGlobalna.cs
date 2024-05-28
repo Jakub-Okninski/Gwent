@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.TypyKart
 {
-    public abstract class KartaGlobalna : KartaSpecjalna
+    public abstract class KartaGlobalna : KartaSpecjalna, ICloneable
     {
         public KartaGlobalna(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

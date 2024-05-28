@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class TrzaskającyMroz : KartaPogody
+    public class TrzaskającyMroz : KartaPogody, ICloneable
     {
         public TrzaskającyMroz (string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

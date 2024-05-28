@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class CardEffects
+    public class CardEffects 
     {
         public static void Bractwo(Karta karta, Plansza plansza)
         {
@@ -28,16 +28,28 @@ namespace Gwent_Library
 
         private static void BractwoHelp<T>(Karta karta, Talia<T> talia, Plansza plansza) where T : KartaJednostki
         {
-            talia.RemoveAll(k => k is KartaJednostki && k.Nazwa.Contains(karta.Nazwa) && k.Effect == Bractwo);
+          //  talia.RemoveAll(k => k is KartaJednostki && k.Nazwa.Contains(karta.Nazwa) && k.Effect == Bractwo);
 
-            var usunieteKarty = plansza.WszystkieKartyGracza.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Bractwo);
+            var kartyInne = plansza.WszystkieKartyGracza.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Bractwo);
 
-            plansza.KartyGraczaWRozgrywce.RemoveAll(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa)
-            && kp.Effect == Bractwo);
-            foreach (T kk in usunieteKarty)
+            foreach (T kk in kartyInne)
             {
                 talia.Add(kk);
             }
+            plansza.WszystkieKartyGracza.RemoveAll(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa)
+        && kp.Effect == Bractwo);
+
+
+            var kartyInne2 = plansza.KartyGraczaWRozgrywce.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Bractwo);
+
+            foreach (T kk in kartyInne2)
+            {
+                talia.Add(kk);
+            }
+
+            plansza.KartyGraczaWRozgrywce.RemoveAll(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa)
+            && kp.Effect == Bractwo);
+           
         }
 
         public static void Wiez(Karta karta, Plansza plansza)

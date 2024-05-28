@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public abstract class Karta
+    public abstract class Karta : ICloneable
     {
         public Karta(string nazwa,  string nazwaZdjecia)
         {
@@ -16,6 +16,15 @@ namespace Gwent_Library
         public string Nazwa {  get; set; }
         public string NazwaZdjecia { get; set; }
         public abstract void PolozKarte(Plansza plansza);
-       
-    } 
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        public override string ToString()
+        {
+            return $"Nazwa: {Nazwa}, NazwaZdjecia: {NazwaZdjecia}";
+        }
+
+    }
 }

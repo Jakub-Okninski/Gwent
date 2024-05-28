@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class GestaMgla : KartaPogody
+    public class GestaMgla : KartaPogody, ICloneable
     {
         public GestaMgla(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {

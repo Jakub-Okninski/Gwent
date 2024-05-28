@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.Karty.KartyDowodcow
 {
-    public class FoltestZelaznyWładca : KartaDowodcy
+    public class FoltestZelaznyWładca : KartaDowodcy, ICloneable
     {
-        public FoltestZelaznyWładca(string nazwa, string nazwaZdjecia, string opisWlasciwosci) : base(nazwa, nazwaZdjecia, "Zniszcz najsilniejszą jednostkę oblężniczą wroga, jeśli suma jednostek oblężniczych jest nie mniejsza niż 10.")
+        public FoltestZelaznyWładca(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Zniszcz najsilniejszą jednostkę oblężniczą wroga, jeśli suma jednostek oblężniczych jest nie mniejsza niż 10.")
         {
         }
 
