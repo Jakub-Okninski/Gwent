@@ -66,15 +66,57 @@ namespace Gwent_Library
                     ostatniGracz = gracz1;
                 }
             }
-            else if (!(gracz1.Play && gracz2.Play))
-            {
-                throw new EndGameException("Koniec rundy");
-            }
+           
 
         }
 
+        public void KonczRunde(Gracz gracz)
+        {
+         
+                if (!gracz1.Play && !gracz1.Play)
+            {
+                PrzliczPunkty(gracz1);
+                PrzliczPunkty(gracz2);
+                if (gracz1.Plansza.PunktySuma> gracz2.Plansza.PunktySuma)
+                {
+                    gracz2.Punkty--;
+                }
+                else if (gracz1.Plansza.PunktySuma < gracz2.Plansza.PunktySuma)
+                {
+                    gracz1.Punkty--;
+                }
+                else if (gracz1.Plansza.PunktySuma == gracz2.Plansza.PunktySuma)
+                {
+                    if (gracz1 == gracz)
+                    {
+                        gracz2.Punkty--;
+                    }
+                    else
+                    {
+                        gracz1.Punkty--;
+                    }
+                }
+                gracz1.Plansza.ResetujPanel();
+                gracz2.Plansza.ResetujPanel();
 
 
+
+            }
+
+        }
+        public void KonczRozgrywke()
+        {
+            if (gracz1.Punkty==0)
+            {
+                throw new EndGameException(gracz2.Imie + " Wygrał !!!");
+            }
+
+            else if (gracz2.Punkty == 0)
+            {
+                throw new EndGameException(gracz1.Imie + " Wygrał !!!");
+            }
+           
+        }
 
         public void WykonajRuch<T>(Gracz gracz, Karta karta, T kartaZamiana) where T : KartaJednostki
         {

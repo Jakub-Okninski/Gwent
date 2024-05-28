@@ -28,8 +28,8 @@ namespace Gwent_App
             form2 = f;
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
-            InitImgPlayer(gracz1, gracz2);
-
+            InitImgPlayer(gracz1, gracz2);  
+            Enabled = true;
 
             GeneratePictureBoxCard(panelGracza, gracz1);
 
@@ -128,10 +128,13 @@ namespace Gwent_App
             SkopiujPictureBoxy(panelOblezniczeGracz1, form2.panelOblezniczeGracz2);
             SkopiujPictureBoxy(panelDystansGracz1, form2.panelDystansGracz2);
             SkopiujPictureBoxy(panelZwarcieGracz1, form2.panelZwarcieGracz2);
-
+         
 
             if (gracz2.Play)
             {
+                labelInfo.Text = "Ruch Gracza ...";
+                form2.labelInfo.Text = "Twój Ruch !!!";
+
                 this.Enabled = false;
                 form2.Enabled = true;
             }
@@ -336,7 +339,10 @@ namespace Gwent_App
                 OdswiezPanel(targetPanel);
                 RefreshCardPositions(sourcePanel);
                 RefreshCardPositions(targetPanel);
-                Czekaj();
+                if (k is not Manekin)
+                {
+                    Czekaj();
+                }
             }
         }
 
@@ -430,6 +436,11 @@ namespace Gwent_App
         }
         private void OdswiezPunktacje()
         {
+
+
+
+
+
             labelDystansGracz1.Text = gracz1.Plansza.PunktyStrzeleckie + "";
             labelZwarcieGracz1.Text = gracz1.Plansza.PunktyPiechoty + "";
             labelOblezniczeGracz1.Text = gracz1.Plansza.PunktyObleznicze + "";
@@ -508,8 +519,7 @@ namespace Gwent_App
         }
         public void PoddajeSie()
         {
-            MessageBox.Show("Podda³ sie", "Gracz sie podda³", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            labelInfo.Text = " Gracz Podda³ Rundê !!!";
         }
         private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
         {
@@ -578,19 +588,21 @@ namespace Gwent_App
 
 
 
-        private void UpdateImgPoints(Gracz gracz1, Gracz gracz2)
+        public void UpdateImgPoints()
         {
-            if (gra.gracz1.Punkty == 1)
+            if (gracz1.Punkty == 1)
             {
                 pictureBoxDrugiPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz1.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
             }
-            if (gra.gracz1.Punkty == 1)
+            if (gracz2.Punkty == 1)
             {
                 pictureBoxDrugiPunktGracz2.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz2.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
 
             }
+            OdswiezPunktacje();
+     
         }
 
         private void InitImgPlayer(Gracz gracz1, Gracz gracz2)
@@ -602,6 +614,8 @@ namespace Gwent_App
         }
         private void InitDefaultInfoComponent(Gracz gracz1, Gracz gracz2)
         {
+            labelInfo.Text = " Trwa Rozgrywka ...";
+
             labelImieGracz1.Text = gracz1.Imie;
             labelImieGracz2.Text = gracz2.Imie;
 
@@ -673,6 +687,88 @@ namespace Gwent_App
 
             this.Enabled = false;
             form2.Enabled = true;
+            System.Diagnostics.Debug.WriteLine( "form111 :  ");
+
+            System.Diagnostics.Debug.WriteLine(gracz1.Imie + " gracz1 :  " + gracz1.Play);
+            System.Diagnostics.Debug.WriteLine(gracz2.Imie + " gracz2 :  " + gracz2.Play);
+            System.Diagnostics.Debug.WriteLine(gra.gracz1.Imie + "gra.gracz1 :  " + gra.gracz1.Play);
+            System.Diagnostics.Debug.WriteLine(gra.gracz2.Imie + "gra.gracz2 :  " + gra.gracz2.Play);
+            if (gracz2.Play==false)
+            {
+                gra.KonczRunde(gracz1);
+                System.Diagnostics.Debug.WriteLine("Log: konczymy rundeeeeeeee xD");
+
+
+                panelWspolnePole.Controls.Clear();
+
+
+                panelRoguZwarcieGracz1.Controls.Clear();
+                panelRoguDystansGracz1.Controls.Clear();
+                panelRoguOblezniczeGracz1.Controls.Clear();
+
+                panelOblezniczeGracz1.Controls.Clear();
+                panelDystansGracz1.Controls.Clear();
+                panelZwarcieGracz1.Controls.Clear();
+
+
+                form2.panelWspolnePole.Controls.Clear();
+
+                form2.panelRoguZwarcieGracz2.Controls.Clear();
+                form2.panelRoguDystansGracz2.Controls.Clear();
+                form2.panelRoguOblezniczeGracz2.Controls.Clear();
+                form2.panelOblezniczeGracz2.Controls.Clear();
+                form2.panelDystansGracz2.Controls.Clear();
+                form2.panelZwarcieGracz2.Controls.Clear();
+
+
+
+                form2.panelWspolnePole.Controls.Clear();
+
+
+                form2.panelRoguZwarcieGracz1.Controls.Clear();
+                form2.panelRoguDystansGracz1.Controls.Clear();
+                form2.panelRoguOblezniczeGracz1.Controls.Clear();
+
+                form2.panelOblezniczeGracz1.Controls.Clear();
+                form2.panelDystansGracz1.Controls.Clear();
+                form2.panelZwarcieGracz1.Controls.Clear();
+
+
+                panelWspolnePole.Controls.Clear();
+
+                panelRoguZwarcieGracz2.Controls.Clear();
+                panelRoguDystansGracz2.Controls.Clear();
+                panelRoguOblezniczeGracz2.Controls.Clear();
+                panelOblezniczeGracz2.Controls.Clear();
+                panelDystansGracz2.Controls.Clear();
+                panelZwarcieGracz2.Controls.Clear();
+
+                UpdateImgPoints();
+               form2.UpdateImgPoints();
+
+
+
+
+
+                gracz1.Play = true;
+
+                gracz2.Play = true;
+
+                panelRoguDystansGracz1.DragEnter += Panel_DragEnter;
+                panelRoguDystansGracz1.DragDrop += Panel_DragDrop;
+                panelRoguOblezniczeGracz1.DragEnter += Panel_DragEnter;
+                panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
+                panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
+                panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
+                try
+                {
+                    gra.KonczRozgrywke();
+                }catch(EndGameException ex)
+                {
+                    MessageBox.Show(ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
 
         }
     }

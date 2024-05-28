@@ -17,25 +17,17 @@ namespace Gwent_App
         public Gra gra;
         private PictureBox selectedPictureBox = null;
         private Karta lastCard = null;
-
-
-        public Form2()
-        {          
-        }
-
-
         public void setForm(Gra g, Form1 f)
         {
-            gracz1 = g.gracz1;
-            gracz2 = g.gracz2;
+            gracz1 = g.gracz2;
+            gracz2 = g.gracz1;
             gra = g;
             form1 = f;
             InitializeComponent();
             InitDefaultInfoComponent(gracz1, gracz2);
             InitImgPlayer(gracz1, gracz2);
-            this.Enabled = false;
 
-
+            Enabled = false;
             GeneratePictureBoxCard(panelGracza, gracz1);
 
             panelGracza.AllowDrop = true;
@@ -57,8 +49,17 @@ namespace Gwent_App
             panelSpecjalnaGracz1.DragDrop += Panel_DragDrop;
             panelWspolnePole.DragEnter += Panel_DragEnter;
             panelWspolnePole.DragDrop += Panel_DragDrop;
-            
+
         }
+
+        public Form2()
+        {
+
+           
+        }
+
+
+
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -132,17 +133,21 @@ namespace Gwent_App
             SkopiujPictureBoxy(panelZwarcieGracz1, form1.panelZwarcieGracz2);
 
 
-            if (gracz1.Play)
+            if (gracz2.Play)
             {
+                labelInfo.Text = "Ruch Gracza ...";
+                form1.labelInfo.Text = "Twój Ruch !!!";
+
                 this.Enabled = false;
                 form1.Enabled = true;
             }
-          
+
 
             //  MessageBox.Show("Ruch Przeciwnika", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // this.Enabled = false;
         }
+
 
 
 
@@ -337,7 +342,11 @@ namespace Gwent_App
                 OdswiezPanel(targetPanel);
                 RefreshCardPositions(sourcePanel);
                 RefreshCardPositions(targetPanel);
-                Czekaj();
+                if (k is not Manekin)
+                {                  
+                    Czekaj();
+                }
+              
             }
         }
 
@@ -501,15 +510,15 @@ namespace Gwent_App
             RefreshCardPositions(sourcePanel);
             RefreshCardPositions(panelGracza);
             OdswiezPanel(sourcePanel);
-            System.Diagnostics.Debug.WriteLine("Log: Stadsadadad23424242rt xD");
-
+          
             Czekaj();
 
 
         }
         public void PoddajeSie()
         {
-            MessageBox.Show("Poddał sie", "Gracz sie poddał", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            labelInfo.Text = " Gracz Poddał Rundę !!!";
+
         }
         private void GeneratePictureBoxCard(Panel panel, Gracz gracz)
         {
@@ -578,19 +587,24 @@ namespace Gwent_App
 
 
 
-        private void UpdateImgPoints(Gracz gracz1, Gracz gracz2)
+        public void UpdateImgPoints()
         {
-            if (gra.gracz1.Punkty == 1)
+           
+
+            if (gracz1.Punkty == 1)
             {
                 pictureBoxDrugiPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz1.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
             }
-            if (gra.gracz1.Punkty == 1)
+            if (gracz2.Punkty == 1)
             {
                 pictureBoxDrugiPunktGracz2.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBoxDrugiPunktGracz2.Image = Image.FromFile("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\szmaragdpusty.PNG");
 
             }
+            OdswiezPunktacje();
+           
+
         }
 
         private void InitImgPlayer(Gracz gracz1, Gracz gracz2)
@@ -602,6 +616,8 @@ namespace Gwent_App
         }
         private void InitDefaultInfoComponent(Gracz gracz1, Gracz gracz2)
         {
+            labelInfo.Text = " Trwa Rozgrywka ...";
+
             labelImieGracz1.Text = gracz1.Imie;
             labelImieGracz2.Text = gracz2.Imie;
 
@@ -668,11 +684,98 @@ namespace Gwent_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gracz2.Play = false;
+            gracz1.Play = false;
             form1.PoddajeSie();
 
             this.Enabled = false;
             form1.Enabled = true;
+
+            System.Diagnostics.Debug.WriteLine(gracz1.Imie+ "gracz1 :  " + gracz1.Play);
+            System.Diagnostics.Debug.WriteLine(gracz2.Imie + "gracz2 :  " + gracz2.Play);
+
+
+            System.Diagnostics.Debug.WriteLine(gra.gracz1.Imie + "gra.gracz1 :  " +gra.gracz1.Play);
+            System.Diagnostics.Debug.WriteLine(gra.gracz2.Imie + "gra.gracz2 :  " + gra.gracz2.Play);
+
+
+            if (gracz2.Play==false)
+            {
+                gra.KonczRunde(gracz1);
+
+
+                panelWspolnePole.Controls.Clear();
+
+
+                panelRoguZwarcieGracz1.Controls.Clear();
+                panelRoguDystansGracz1.Controls.Clear();
+                panelRoguOblezniczeGracz1.Controls.Clear();
+
+                panelOblezniczeGracz1.Controls.Clear();
+                panelDystansGracz1.Controls.Clear();
+                panelZwarcieGracz1.Controls.Clear();
+
+
+                form1.panelWspolnePole.Controls.Clear();
+
+                form1.panelRoguZwarcieGracz2.Controls.Clear();
+                form1.panelRoguDystansGracz2.Controls.Clear();
+                form1.panelRoguOblezniczeGracz2.Controls.Clear();
+                form1.panelOblezniczeGracz2.Controls.Clear();
+                form1.panelDystansGracz2.Controls.Clear();
+                form1.panelZwarcieGracz2.Controls.Clear();
+
+
+
+                form1.panelWspolnePole.Controls.Clear();
+
+
+                form1.panelRoguZwarcieGracz1.Controls.Clear();
+                form1.panelRoguDystansGracz1.Controls.Clear();
+                form1.panelRoguOblezniczeGracz1.Controls.Clear();
+
+                form1.panelOblezniczeGracz1.Controls.Clear();
+                form1.panelDystansGracz1.Controls.Clear();
+                form1.panelZwarcieGracz1.Controls.Clear();
+
+
+                panelWspolnePole.Controls.Clear();
+               
+
+                panelRoguZwarcieGracz2.Controls.Clear();
+                panelRoguDystansGracz2.Controls.Clear();
+                panelRoguOblezniczeGracz2.Controls.Clear();
+                panelOblezniczeGracz2.Controls.Clear();
+                panelDystansGracz2.Controls.Clear();
+                panelZwarcieGracz2.Controls.Clear();
+
+                UpdateImgPoints();
+
+                form1.UpdateImgPoints();
+
+
+
+                panelRoguDystansGracz1.DragEnter += Panel_DragEnter;
+                panelRoguDystansGracz1.DragDrop += Panel_DragDrop;
+                panelRoguOblezniczeGracz1.DragEnter += Panel_DragEnter;
+                panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
+                panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
+                panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
+
+                gracz1.Play = true;
+
+                gracz2.Play = true;
+
+                try
+                {
+                    gra.KonczRozgrywke();
+                }
+                catch (EndGameException ex)
+                {
+                    MessageBox.Show( ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+            }
 
         }
     }

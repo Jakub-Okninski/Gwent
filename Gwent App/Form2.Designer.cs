@@ -63,6 +63,7 @@
             panelRoguOblezniczeGracz2 = new Panel();
             panelWspolnePole = new Panel();
             poddajrundGracz = new Button();
+            labelInfo = new Label();
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).BeginInit();
@@ -336,21 +337,31 @@
             panelWspolnePole.Size = new Size(271, 110);
             panelWspolnePole.TabIndex = 42;
             // 
-            // button1
+            // poddajrundGracz
             // 
-            poddajrundGracz.Location = new Point(143, 778);
-            poddajrundGracz.Name = "Poddaj Rundę";
+            poddajrundGracz.Location = new Point(59, 817);
+            poddajrundGracz.Name = "poddajrundGracz";
             poddajrundGracz.Size = new Size(75, 23);
             poddajrundGracz.TabIndex = 43;
             poddajrundGracz.Text = "Poddaj";
             poddajrundGracz.UseVisualStyleBackColor = true;
             poddajrundGracz.Click += button1_Click;
             // 
+            // labelInfo
+            // 
+            labelInfo.AutoSize = true;
+            labelInfo.Location = new Point(59, 778);
+            labelInfo.Name = "labelInfo";
+            labelInfo.Size = new Size(38, 15);
+            labelInfo.TabIndex = 44;
+            labelInfo.Text = "label1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1620, 900);
+            Controls.Add(labelInfo);
             Controls.Add(poddajrundGracz);
             Controls.Add(panelWspolnePole);
             Controls.Add(panelRoguOblezniczeGracz2);
@@ -435,5 +446,6 @@
         public Panel panelRoguOblezniczeGracz2;
         public Panel panelWspolnePole;
         private Button poddajrundGracz;
+        public Label labelInfo;
     }
 }

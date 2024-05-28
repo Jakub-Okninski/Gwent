@@ -339,7 +339,7 @@
             // 
             // poddajrundGracz
             // 
-            poddajrundGracz.Location = new Point(143, 778);
+            poddajrundGracz.Location = new Point(59, 817);
             poddajrundGracz.Name = "poddajrundGracz";
             poddajrundGracz.Size = new Size(75, 23);
             poddajrundGracz.TabIndex = 43;
@@ -350,9 +350,9 @@
             // labelInfo
             // 
             labelInfo.AutoSize = true;
-            labelInfo.Location = new Point(163, 833);
+            labelInfo.Location = new Point(59, 778);
             labelInfo.Name = "labelInfo";
-            labelInfo.Size = new Size(80, 30);
+            labelInfo.Size = new Size(38, 15);
             labelInfo.TabIndex = 44;
             labelInfo.Text = "label1";
             // 
@@ -446,6 +446,6 @@
         public Panel panelRoguOblezniczeGracz2;
         public Panel panelWspolnePole;
         private Button poddajrundGracz;
-        private Label labelInfo;
+        public Label labelInfo;
     }
 }
