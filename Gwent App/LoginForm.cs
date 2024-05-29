@@ -14,8 +14,10 @@ namespace Gwent_App
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        StartForm startForm;
+        public LoginForm(StartForm startform)
         {
+            startForm = startform;
             InitializeComponent();
             button1.Enabled = true;
             button2.Enabled = true;
@@ -128,7 +130,7 @@ namespace Gwent_App
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            startForm.Close();
             this.Close();
 
         }
@@ -136,8 +138,8 @@ namespace Gwent_App
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
-            StartForm startForm = new StartForm();
             startForm.Show();
+
         }
     }
 }

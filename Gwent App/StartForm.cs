@@ -25,17 +25,17 @@ namespace Gwent_App
         private void button1_Click(object sender, EventArgs e)
         {
 
-            LoginForm loginForm = new LoginForm();;
+            LoginForm loginForm = new LoginForm(this);;
             loginForm.Show();
-            this.Close();
+            this.Hide();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RegisterForm RegisterForm = new RegisterForm(); ;
+            RegisterForm RegisterForm = new RegisterForm(this); ;
             RegisterForm.Show();
-            this.Close();
+            this.Hide();
 
         }
     }

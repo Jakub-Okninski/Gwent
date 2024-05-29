@@ -10,10 +10,7 @@ namespace Gwent_App
         {
 
 
-          StartForm startFrom = new StartForm();
-
-
-
+            StartForm startFrom = new StartForm();
             Application.Run(startFrom);
 
 
@@ -71,8 +68,8 @@ namespace Gwent_App
             Form2 form2 = new Form2();
             Form1 form1 = new Form1(gra, form2);
             form2.setForm(gra, form1);
-            form1.Show();
-
+        
+            Application.Run(form1);
 
 
 

@@ -16,9 +16,11 @@ namespace Gwent_App
 {
     public partial class RegisterForm : Form
     {
-        public RegisterForm()
+        StartForm startForm;
+        public RegisterForm(StartForm startform)
         {
             InitializeComponent();
+            startForm = startform;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,7 +92,7 @@ namespace Gwent_App
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginForm loginForm = new LoginForm();
+            LoginForm loginForm = new LoginForm(startForm);
 
             // Pokaż formularz główny
             loginForm.Show();
