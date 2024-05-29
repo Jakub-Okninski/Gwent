@@ -1,4 +1,4 @@
-using Gwent_Library;
+Ôªøusing Gwent_Library;
 using Gwent_Library.Karty;
 using Gwent_Library.Karty.KartyDowodcow;
 using Gwent_Library.TypyKart;
@@ -12,6 +12,7 @@ namespace Gwent_App
 {
     public partial class Form1 : Form
     {
+        WaveOutEvent outputDevice;
         public Gracz gracz1;
         public Gracz gracz2;
         public Form2 form2;
@@ -24,21 +25,21 @@ namespace Gwent_App
 
 
 
-            WaveOutEvent outputDevice = new WaveOutEvent();
+             outputDevice = new WaveOutEvent();
 
-            // Tworzenie obiektu AudioFileReader, ktÛry odczyta plik düwiÍkowy
+            // Tworzenie obiektu AudioFileReader, kt√≥ry odczyta plik d≈∫wiƒôkowy
             AudioFileReader audioFile = new AudioFileReader("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\gamemusic.wav");
 
-            // Tworzenie obiektu VolumeSampleProvider, ktÛry pozwoli na kontrolowanie g≥oúnoúci
+            // Tworzenie obiektu VolumeSampleProvider, kt√≥ry pozwoli na kontrolowanie g≈Ço≈õno≈õci
             VolumeSampleProvider volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider());
 
-            // Ustawienie poziomu g≥oúnoúci na po≥owÍ (50%)
+            // Ustawienie poziomu g≈Ço≈õno≈õci na po≈Çowƒô (50%)
             volumeProvider.Volume = 0.08f;
 
-            // Przypisanie VolumeSampleProvider jako ürÛd≥a düwiÍku dla WaveOut
+            // Przypisanie VolumeSampleProvider jako ≈∫r√≥d≈Ça d≈∫wiƒôku dla WaveOut
             outputDevice.Init(volumeProvider);
 
-            // RozpoczÍcie odtwarzania düwiÍku
+            // Rozpoczƒôcie odtwarzania d≈∫wiƒôku
             outputDevice.Play();
 
   
@@ -192,7 +193,7 @@ namespace Gwent_App
             if (gracz2.Play)
             {
                 labelInfo.Text = "Ruch Gracza ...";
-                form2.labelInfo.Text = "TwÛj Ruch !!!";
+                form2.labelInfo.Text = "Tw√≥j Ruch !!!";
 
                 this.Enabled = false;
                 form2.Enabled = true;
@@ -314,15 +315,15 @@ namespace Gwent_App
                     }
                     catch (ExceptionDowodca ED)
                     {
-                        MessageBox.Show(ED.Message, "Niez≥y z ciebie taktyk :) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ED.Message, "Niez≈Çy z ciebie taktyk :) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (ExceptionRog ER)
                     {
-                        MessageBox.Show(ER.Message, "RÛg zajÍty", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ER.Message, "R√≥g zajƒôty", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception EX)
                     {
-                        MessageBox.Show(EX.Message, "No to mamy b≥πd:) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(EX.Message, "No to mamy b≈ÇƒÖd:) ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                 }
@@ -480,11 +481,11 @@ namespace Gwent_App
         }
         private void FiltrPanelSpecjalne(Panel panel, KartaDowodcy kartaDowodcy)
         {
-            if (kartaDowodcy is FoltestDowÛdcaPÛ≥nocy)
+            if (kartaDowodcy is FoltestDow√≥dcaP√≥≈Çnocy)
             {
                 AddCardToPanel(new CzysteNiebo("Czyste Niebo Krola Temerii", "CzysteNiebo"), panel);
             }
-            if (kartaDowodcy is FoltestKrÛlTemerii)
+            if (kartaDowodcy is FoltestKr√≥lTemerii)
             {
                 AddCardToPanel(new GestaMgla("Gesta Mgla Krola Temerii", "GestaMgla"), panel);
             }
@@ -530,7 +531,8 @@ namespace Gwent_App
 
         }
 
-      
+       
+
         private void OdswiezPunktacje()
         {
             labelDystansGracz1.Text = gracz1.Plansza.PunktyStrzeleckie + "";
@@ -553,11 +555,54 @@ namespace Gwent_App
             form2.labelOblezniczeGracz1.Text = gracz2.Plansza.PunktyObleznicze + "";
             form2.labelPunktySumaGracz1.Text = gracz2.Plansza.PunktySuma + "";
 
+
+            UpdateCardStrengths(panelZwarcieGracz1);
+            UpdateCardStrengths(panelDystansGracz1);
+            UpdateCardStrengths(panelOblezniczeGracz1);
+            UpdateCardStrengths(panelZwarcieGracz2);
+            UpdateCardStrengths(panelDystansGracz2);
+            UpdateCardStrengths(panelOblezniczeGracz2);
+
+
+            UpdateCardStrengths(form2.panelZwarcieGracz1);
+            UpdateCardStrengths(form2.panelDystansGracz1);
+            UpdateCardStrengths(form2.panelOblezniczeGracz1);
+            UpdateCardStrengths(form2.panelZwarcieGracz2);
+            UpdateCardStrengths(form2.panelDystansGracz2);
+            UpdateCardStrengths(form2.panelOblezniczeGracz2);
+
+        }
+
+        private void UpdateCardStrengths(Panel panel)
+        {
+            foreach (Control innerControl in panel.Controls)
+            {
+                if (innerControl is PictureBox pictureBox)
+                {
+                    foreach (Control pictureBoxControl in pictureBox.Controls)
+                    {
+                        if (pictureBoxControl is Label label && label.Text.Contains("["))
+                        {
+                            if (pictureBox.Tag is KartaJednostki kartaJednostki)
+                            {
+                                if (kartaJednostki.Sila < 10)
+                                {
+                                    label.Text = $"  [{kartaJednostki.Sila}]";
+                                }
+                                else
+                                {
+                                    label.Text = $" [{kartaJednostki.Sila}]";
+                                }
+                            }
+                            break; 
+                        }
+                    }
+                }
+            }
         }
 
 
-       
-     
+
 
         private PictureBox FindPictureBoxByCard<T>(Panel panel, T karta) where T : Karta
         {
@@ -573,32 +618,7 @@ namespace Gwent_App
         }
 
 
-        private void RefreshCardPositions(Panel panel, int pictureBoxSpacing = 10)
-        {
-            if (panel.Controls.Count > 0)
-            {
-                int totalWidth = panel.Controls.Count * panel.Controls[0].Width + (panel.Controls.Count - 1) * pictureBoxSpacing;
-                int panelWidth = panel.ClientSize.Width;        
-                int startX = (panelWidth - totalWidth) / 2;
-                int startY = pictureBoxSpacing;
-                if (totalWidth > panelWidth)
-                {
-                    pictureBoxSpacing = (panelWidth - panel.Controls.Count * panel.Controls[0].Width) / (panel.Controls.Count - 1);
-
-                    startX = pictureBoxSpacing;
-                }
-                foreach (Control control in panel.Controls)
-                {
-                    PictureBox pictureBox = control as PictureBox;
-                    if (pictureBox != null)
-                    {
-                        pictureBox.Location = new Point(startX, startY);
-                        startX += pictureBox.Width + pictureBoxSpacing;
-                    }
-                }
-            }
-        }
-
+       
 
 
 
@@ -654,7 +674,31 @@ namespace Gwent_App
         }
 
 
+        private void RefreshCardPositions(Panel panel, int pictureBoxSpacing = 10)
+        {
+            if (panel.Controls.Count > 0)
+            {
+                int totalWidth = panel.Controls.Count * panel.Controls[0].Width + (panel.Controls.Count - 1) * pictureBoxSpacing;
+                int panelWidth = panel.ClientSize.Width;
+                int startX = (panelWidth - totalWidth) / 2;
+                int startY = pictureBoxSpacing;
+                if (totalWidth > panelWidth)
+                {
+                    pictureBoxSpacing = (panelWidth - panel.Controls.Count * panel.Controls[0].Width) / (panel.Controls.Count - 1);
 
+                    startX = pictureBoxSpacing;
+                }
+                foreach (Control control in panel.Controls)
+                {
+                    PictureBox pictureBox = control as PictureBox;
+                    if (pictureBox != null)
+                    {
+                        pictureBox.Location = new Point(startX, startY);
+                        startX += pictureBox.Width + pictureBoxSpacing;
+                    }
+                }
+            }
+        }
 
         private void AddCardToPanel(Karta karta, Panel panel)
         {
@@ -662,31 +706,140 @@ namespace Gwent_App
             pictureBox.Size = new Size(60, 90);
             pictureBox.BackColor = Color.LightGray;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
+          
 
-            Random random = new Random();
-            pictureBox.BackColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+
+      
+            Label nameLabel = new Label();
+            nameLabel.Text = karta.Nazwa;
+            nameLabel.AutoSize = false;
+            nameLabel.Size = new Size(pictureBox.Width - 8, 25); // Dostosowanie rozmiaru etykiety
+            nameLabel.Font = new Font("Arial", 8); // Dostosowanie rozmiaru czcionki
+            nameLabel.TextAlign = ContentAlignment.BottomCenter; // Umiejscowienie tekstu na dole etykiety
+            nameLabel.BackColor = Color.Transparent;
+            nameLabel.Dock = DockStyle.Bottom;
+
+            Label rowLabel = new Label();
+            rowLabel.Text = GetCardTypeLabel(karta);
+            rowLabel.AutoSize = false;
+            rowLabel.Size = new Size(pictureBox.Width - 8, 25); // Dostosowanie rozmiaru etykiety
+            rowLabel.Font = new Font("Arial", 8, FontStyle.Bold); // Dostosowanie rozmiaru czcionki
+            rowLabel.TextAlign = ContentAlignment.TopCenter; // Umiejscowienie tekstu na g√≥rze etykiety
+            rowLabel.BackColor = Color.Transparent;
+            rowLabel.Dock = DockStyle.Top;
+
+            Label label = new Label();
+            label.AutoSize = true;
+            label.Size = new Size(25, 20);
+            label.Font = new Font("Arial", 8);
+            label.TextAlign = ContentAlignment.TopCenter;
+
+            label.Location = new Point((pictureBox.Width - label.Width) / 2, (pictureBox.Height - label.Height) / 2);
+
+
+
+            if (karta is KartaJednostki k)
+            {
+                if (k.Sila < 10)
+                {
+                    label.Text = $" [{k.Sila}]";
+
+                }
+                else
+                {
+                    label.Text = $"[{k.Sila}]"; 
+
+                }
+
+                if (k.KartaBohatera)
+                {
+                    pictureBox.BackColor = Color.LightYellow;   
+                }
+                if(k.Effect == CardEffects.Bractwo)
+                {
+                    pictureBox.Paint += (sender, e) =>
+                    {
+                        ControlPaint.DrawBorder(e.Graphics, pictureBox.ClientRectangle, Color.Blue, ButtonBorderStyle.Solid);
+                    };
+                }
+                else if (k.Effect == CardEffects.Wiez)
+                {
+                    pictureBox.Paint += (sender, e) =>
+                    {
+                        ControlPaint.DrawBorder(e.Graphics, pictureBox.ClientRectangle, Color.Green, ButtonBorderStyle.Solid);
+                    };
+                }
+                else if (k.Effect == CardEffects.WyskoieMorale)
+                {
+                    pictureBox.Paint += (sender, e) =>
+                    {
+                        ControlPaint.DrawBorder(e.Graphics, pictureBox.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
+                    };
+                }
+
+            }
+
+            pictureBox.Tag = karta;
+
+           pictureBox.Controls.Add(label);
+           pictureBox.Controls.Add(nameLabel);
+            pictureBox.Controls.Add(rowLabel);
 
             pictureBox.MouseDown += PictureBox_MouseDown;
             pictureBox.MouseUp += PictureBox_MouseUp;
             pictureBox.DoubleClick += null;
 
-            Label label = new Label();
-            label.Text = karta.Nazwa;
-            label.AutoSize = true;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.BackColor = Color.Transparent;
-            label.Dock = DockStyle.Top;
-
-            pictureBox.Tag = karta;
-
-            pictureBox.Controls.Add(label);
 
             panel.Controls.Add(pictureBox);
 
-       
             RefreshCardPositions(panel);
-
         }
+
+        private string GetCardTypeLabel(Karta karta)
+        {
+            if (karta is KartaLucznika)
+            {
+                return "≈Åucznik";
+            }
+            else if (karta is KartaPiechoty)
+            {
+                return "Piechota";
+            }
+            else if (karta is KartaObleznika)
+            {
+                return "Oble≈ºnik";
+            }
+            else if (karta is KartaPogody)
+            {
+                return "Pogoda";
+            }
+            else if (karta is RogDowodcy)
+            {
+                return "R√≥g";
+            }
+            else if (karta is Manekin)
+            {
+                return "Manekin";
+            }
+            else if (karta is Pozoga)
+            {
+                return "Pozoga";
+            }
+            else if (karta is KartaDowodcy)
+            {
+                return "Dow√≥dca";
+            }
+            else if (karta is KartaSpecjalna)
+            {
+                return "Specjalna";
+            }
+
+            return string.Empty;
+        }
+
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -755,11 +908,18 @@ namespace Gwent_App
                 panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
                 panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
                 panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
+
+                PlaySound("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\runda.wav");
+
+
+
                 try
                 {
                     gra.KonczRozgrywke();
                 }catch(EndGameException ex)
                 {
+                    Thread.Sleep(2000);
+
                     MessageBox.Show(ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     form2.Close();
                     this.Close();

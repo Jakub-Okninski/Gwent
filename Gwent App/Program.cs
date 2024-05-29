@@ -53,22 +53,7 @@ namespace Gwent_App
             gracz1.UstawPlansze(kopiaKart, KartyWrozgrywce1);
             gracz2.UstawPlansze(kopiaKart2, KartyWrozgrywce2);
            
-            System.Diagnostics.Debug.WriteLine("dupa1 ");
-
-            foreach (Karta k in gracz1.Plansza.WszystkieKartyGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k);
-
-            }
-            System.Diagnostics.Debug.WriteLine(" ");
-
-            foreach (Karta k in gracz1.Plansza.KartyGraczaWRozgrywce)
-            {
-
-                System.Diagnostics.Debug.WriteLine(k);
-
-            }
-            System.Diagnostics.Debug.WriteLine("aa ");
+            
 
             Gra gra = new Gra(gracz1,gracz2);
 
