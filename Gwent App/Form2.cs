@@ -731,6 +731,8 @@ namespace Gwent_App
                 catch (EndGameException ex)
                 {
                     MessageBox.Show(ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    form1.Close();
+                    this.Close();
                 }
             }
         }

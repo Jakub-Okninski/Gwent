@@ -26,6 +26,10 @@ namespace Gwent_Library
             }
         }
 
+        public static void Default(Karta karta, Plansza plansza)
+        {
+            
+        }
         private static void BractwoHelp<T>(Karta karta, Talia<T> talia, Plansza plansza) where T : KartaJednostki
         {
           //  talia.RemoveAll(k => k is KartaJednostki && k.Nazwa.Contains(karta.Nazwa) && k.Effect == Bractwo);

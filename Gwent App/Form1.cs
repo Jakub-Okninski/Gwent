@@ -2,8 +2,11 @@ using Gwent_Library;
 using Gwent_Library.Karty;
 using Gwent_Library.Karty.KartyDowodcow;
 using Gwent_Library.TypyKart;
+using System.Media;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace Gwent_App
 {
@@ -15,10 +18,30 @@ namespace Gwent_App
         public Gra gra;
         private PictureBox selectedPictureBox = null;
         private Karta lastCard = null;
-
-
+    
         public Form1(Gra g, Form2 f)
         {
+
+
+
+            WaveOutEvent outputDevice = new WaveOutEvent();
+
+            // Tworzenie obiektu AudioFileReader, który odczyta plik dŸwiêkowy
+            AudioFileReader audioFile = new AudioFileReader("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\gamemusic.wav");
+
+            // Tworzenie obiektu VolumeSampleProvider, który pozwoli na kontrolowanie g³oœnoœci
+            VolumeSampleProvider volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider());
+
+            // Ustawienie poziomu g³oœnoœci na po³owê (50%)
+            volumeProvider.Volume = 0.08f;
+
+            // Przypisanie VolumeSampleProvider jako Ÿród³a dŸwiêku dla WaveOut
+            outputDevice.Init(volumeProvider);
+
+            // Rozpoczêcie odtwarzania dŸwiêku
+            outputDevice.Play();
+
+  
 
             gracz1 = g.gracz1;
             gracz2 = g.gracz2;
@@ -57,8 +80,28 @@ namespace Gwent_App
             form2.Show();
         }
 
-
-      
+       
+        public void Drop()
+        {
+            PlaySound("D:\\Visual Studio Project My\\Gwent\\Gwent App\\img\\drop.wav");
+     
+        }
+        static void PlaySound(string filePath)
+        {
+            Task.Run(() =>
+            {
+                using (var audioFile = new AudioFileReader(filePath))
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+                    while (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }
+            });
+        }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -123,6 +166,7 @@ namespace Gwent_App
                 {
                     panelWspolnePole.AllowDrop = true;
                 }
+                Drop();
                 selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
             }
         }
@@ -194,7 +238,7 @@ namespace Gwent_App
 
             if (pictureBox != null && targetPanel != null && targetPanel != sourcePanel)
             {
-
+                Drop();
                 Karta k = pictureBox.Tag as Karta;
 
                 sourcePanel.Controls.Remove(pictureBox);
@@ -717,6 +761,8 @@ namespace Gwent_App
                 }catch(EndGameException ex)
                 {
                     MessageBox.Show(ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    form2.Close();
+                    this.Close();
                 }
             }
         }
