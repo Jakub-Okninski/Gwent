@@ -14,6 +14,9 @@ namespace Gwent_Library.Karty
         public RogDowodcy(string nazwa, Umiejscowienie umiejscowienie, string nazwaZdjecia) : base(nazwa, umiejscowienie, nazwaZdjecia)
         {
         }
+        public RogDowodcy() : base()
+        {
+        }
         public override void PolozKarte(Plansza plansza)
         {
             if (!(plansza.KartySpecjalne.Any(karta => (karta is RogDowodcy k && k.Umiejscowienie == this.Umiejscowienie))))

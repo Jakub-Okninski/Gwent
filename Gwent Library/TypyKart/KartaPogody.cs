@@ -12,7 +12,9 @@ namespace Gwent_Library.TypyKart
         public KartaPogody(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
-
+        public KartaPogody() : base()
+        {
+        }
         protected void UstawSilePogody<T>(Talia<T> lista, int sila) where T : KartaJednostki 
         {
 

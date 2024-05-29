@@ -5,10 +5,18 @@ namespace Gwent_App
 {
     internal static class Program
     {
-
         [STAThread]
         static void Main()
         {
+
+
+          StartForm startFrom = new StartForm();
+
+
+
+            Application.Run(startFrom);
+
+
 
             Talia<Karta> karty = Gra.GenerateCard();
             Talia<Karta> karty2 = Gra.GenerateCard();
@@ -52,19 +60,28 @@ namespace Gwent_App
 
             gracz1.UstawPlansze(kopiaKart, KartyWrozgrywce1);
             gracz2.UstawPlansze(kopiaKart2, KartyWrozgrywce2);
-           
-            
 
-            Gra gra = new Gra(gracz1,gracz2);
+
+
+            Gra gra = new Gra(gracz1, gracz2);
 
             System.Diagnostics.Debug.WriteLine("");
 
             System.Diagnostics.Debug.WriteLine("Start Rozgrywki");
             Form2 form2 = new Form2();
             Form1 form1 = new Form1(gra, form2);
-           form2.setForm(gra, form1);
+            form2.setForm(gra, form1);
+            form1.Show();
 
-            Application.Run(form1);
+
+
+
+
+
+        }
+
+        public static void InitPlayer(Player player1, Player player2)
+        {
 
         }
     }

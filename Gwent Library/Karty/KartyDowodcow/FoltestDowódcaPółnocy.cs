@@ -10,6 +10,9 @@ namespace Gwent_Library.Karty.KartyDowodcow
 {
     public class FoltestDowódcaPółnocy : KartaDowodcy, ICloneable
     {
+        public FoltestDowódcaPółnocy() : base()
+        {
+        }
         public FoltestDowódcaPółnocy(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Usuwa wszelkie efekty pogodowe")
         {
         }

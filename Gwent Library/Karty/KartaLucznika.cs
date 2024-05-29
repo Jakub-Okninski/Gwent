@@ -9,7 +9,9 @@ namespace Gwent_Library.Karty
 {
     public class KartaLucznika : KartaJednostki, ICloneable
     {
-
+        public KartaLucznika() : base()
+        {
+        }
         public override void PolozKarte(Plansza plansza)
         {
             plansza.KartyGraczaWRozgrywce.Remove(this);

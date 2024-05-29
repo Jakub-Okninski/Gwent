@@ -10,6 +10,9 @@ namespace Gwent_Library.Karty.KartyDowodcow
 {
     public class FoltestKrólTemerii : KartaDowodcy, ICloneable
     {
+        public FoltestKrólTemerii() : base()
+        {
+        }
         public FoltestKrólTemerii(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Znajduje kartę gęsta mgła i nią zagrywa")
         {
         }

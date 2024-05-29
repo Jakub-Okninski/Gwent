@@ -13,6 +13,11 @@ namespace Gwent_Library.TypyKart
         {
             Umiejscowienie = umiejscowienie;
         }
+
+        public KartaWspoldzielona() : base()
+        {
+            Umiejscowienie = Umiejscowienie.Lucznika;
+        }
         public void UstawUmiejscowienie(Umiejscowienie umiejscowienie)
         {
             Umiejscowienie=umiejscowienie;

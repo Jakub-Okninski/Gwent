@@ -12,7 +12,9 @@ namespace Gwent_Library.Karty
         public UlewnyDeszcz(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
-
+        public UlewnyDeszcz() : base()
+        {
+        }
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             System.Diagnostics.Debug.WriteLine("proba deszczu");

@@ -923,6 +923,7 @@ namespace Gwent_App
                     MessageBox.Show(ex.Message, "Koniec Rozgrywki", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     form2.Close();
                     this.Close();
+                    
                 }
             }
         }

@@ -13,7 +13,9 @@ namespace Gwent_Library.Karty
         public Pozoga(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
-
+        public Pozoga() : base()
+        {
+        }
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
             if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is Pozoga) 

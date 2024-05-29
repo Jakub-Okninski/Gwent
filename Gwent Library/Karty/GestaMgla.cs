@@ -9,6 +9,9 @@ namespace Gwent_Library.Karty
 {
     public class GestaMgla : KartaPogody, ICloneable
     {
+        public GestaMgla() : base()
+        {
+        }
         public GestaMgla(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }

@@ -15,5 +15,10 @@ namespace Gwent_Library.Karty
             OpisWlasciwosci = opisWlasciwosci;  
         }
 
+        public KartaDowodcy() : base()
+        {
+            OpisWlasciwosci ="";
+        }
+
     }
 }

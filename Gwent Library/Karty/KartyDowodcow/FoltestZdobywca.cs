@@ -8,6 +8,9 @@ namespace Gwent_Library.Karty.KartyDowodcow
 {
     public class FoltestZdobywca : KartaDowodcy, ICloneable
     {
+        public FoltestZdobywca() : base()
+        {
+        }
         public FoltestZdobywca(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia, "Podwój siłę wszystkich swoich jednostek oblężniczych (chyba, że został użyty już róg dowódcy).")
         {
         }

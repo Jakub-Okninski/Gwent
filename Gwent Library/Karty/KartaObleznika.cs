@@ -9,6 +9,9 @@ namespace Gwent_Library.Karty
 {
     public class KartaObleznika : KartaJednostki, ICloneable
     {
+        public KartaObleznika() : base()
+        {
+        }
         public override void PolozKarte(Plansza plansza)
         {
             plansza.KartyGraczaWRozgrywce.Remove(this);

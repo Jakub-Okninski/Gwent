@@ -9,15 +9,41 @@ namespace Gwent_App
 {
     public class Player
     {
-        public Player(string name, int winnings, List<Karta> cards)
+        public Player(string name, string password, int winnings, int losing)
         {
             Name = name;
             Winnings = winnings;
-            Cards = cards;
+            Password = password;
+            Losing = losing;
         }
 
-        public string Name { get; set; }    
+        public Player()
+        {
+            Name = "";
+            Password = "";
+            Winnings = 0;
+            Losing = 0;
+        }
+        public Player(string name,string password)
+        {
+            Name = name;
+            Password = password;
+            Winnings = 0;
+            Losing = 0;
+        }
+        public string Name { get; set; }
+        public string Password { get; set; }
         public int Winnings {  get; set; }
-        public List<Karta> Cards { get; set; }  
+        public int Losing { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Player player)
+            {
+                return this.Name.Equals(player.Name) && this.Password.Equals(player.Password);
+            }
+            return false;
+        }
+
     }
 }

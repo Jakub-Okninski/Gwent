@@ -12,7 +12,9 @@ namespace Gwent_Library.Karty
         public Manekin(string nazwa, Umiejscowienie umiejscowienie, string nazwaZdjecia) : base(nazwa, umiejscowienie, nazwaZdjecia)
         {
         }
-
+        public Manekin() : base()
+        {
+        }
         public void Akcja<T> (Gracz gracz, T kartaOld) where T : KartaJednostki
         {
             if (gracz.Plansza.KartyPiechotyGracza.Any(karta =>  karta is KartaPiechoty kJ && kJ == kartaOld)&& this.Umiejscowienie==Umiejscowienie.Piechoty)

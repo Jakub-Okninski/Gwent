@@ -11,6 +11,9 @@ namespace Gwent_Library.TypyKart
         public KartaGlobalna(string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
+        public KartaGlobalna() : base()
+        {
+        }
         public abstract void AkcjaGlobalna(Gracz gracz1, Gracz gracz2);
 
     }

@@ -12,7 +12,9 @@ namespace Gwent_Library.Karty
         public TrzaskającyMroz (string nazwa, string nazwaZdjecia) : base(nazwa, nazwaZdjecia)
         {
         }
-
+        public TrzaskającyMroz() : base()
+        {
+        }
         public override void AkcjaGlobalna(Gracz gracz1, Gracz gracz2)
         {
 

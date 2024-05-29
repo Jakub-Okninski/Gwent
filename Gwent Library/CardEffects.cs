@@ -3,12 +3,14 @@ using Gwent_Library.TypyKart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public class CardEffects 
+    [Serializable]
+    public class CardEffects  
     {
         public static void Bractwo(Karta karta, Plansza plansza)
         {
