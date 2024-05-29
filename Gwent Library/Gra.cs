@@ -63,8 +63,7 @@ namespace Gwent_Library
 
         public void KonczRunde(Gracz gracz)
         {
-         
-                if (!gracz1.Play && !gracz1.Play)
+            if (!gracz1.Play && !gracz1.Play)
             {
                 PrzliczPunkty(gracz1);
                 PrzliczPunkty(gracz2);
@@ -125,17 +124,6 @@ namespace Gwent_Library
             SprawdzRuch(gracz);
             karta.PolozKarte(gracz.Plansza);
 
-
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaa432452342343254gfdgdfgaaaaaaaaaaaaaaaaa1");
-
-            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
-
-
-
             if (karta is Pozoga kP)
             {
                 kP.AkcjaGlobalna(gracz1, gracz2);
@@ -146,36 +134,40 @@ namespace Gwent_Library
             }
             PrzliczPunkty(gracz);
 
-            AkcjaPogody();
 
         }
       
         public void AkcjaPogody()
         {
+
             var kartyPogody = gracz1.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
+            
             if (kartyPogody.Any())
             {
                 foreach (KartaPogody item in kartyPogody)
-                {
-                    System.Diagnostics.Debug.WriteLine(item.ToString());
-
+                {     
                     item.AkcjaGlobalna(gracz1, gracz2);
                     if (item is CzysteNiebo)
                         break;
                 }
+                
             }
             var kartyPogody2 = gracz2.Plansza.KartySpecjalne.Where(karta => karta is KartaPogody);
+
             if (kartyPogody2.Any())
             {
                 foreach (KartaPogody item in kartyPogody2)
                 {
-                    System.Diagnostics.Debug.WriteLine(item.ToString());
-
                     item.AkcjaGlobalna(gracz1, gracz2);
                     if (item is CzysteNiebo)
                         break;
                 }
+
             }
+
+
+          
+
         }
         public void AkcjaRogu(Gracz gracz)
         {
@@ -184,8 +176,6 @@ namespace Gwent_Library
             {
                 foreach (RogDowodcy item in kartyRogDowodcy)
                 {
-                    System.Diagnostics.Debug.WriteLine("Logroggg   akcjaaaaaaaaaaa: Start xD");
-
                     item.Akcja(gracz, item.Umiejscowienie);
                 }
             }
@@ -196,53 +186,10 @@ namespace Gwent_Library
      
 
         private void PrzliczPunkty(Gracz gracz) {
-
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa1specjal");
-
-            foreach (var k in gracz1.Plansza.KartySpecjalne)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
-
-
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa1");
-
-            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
-            ResetujPunkty(gracz);
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa2");
-
-            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
-            AkcjaPogody();
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa3");
-
-            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
+            ResetujPunkty(gracz); 
+            AkcjaPogody();   
             AkcjaRogu(gracz);
-
             PrzliczPunkty();
-
-
-            System.Diagnostics.Debug.WriteLine("dupaaaaaaaaaaaaaaaaaaaaaaaaa4");
-
-            foreach (var k in gracz1.Plansza.KartyOblezniczeGracza)
-            {
-                System.Diagnostics.Debug.WriteLine(k.ToString());
-
-            }
-
-    
         }
         public void PrzliczPunkty()
         {
@@ -287,7 +234,7 @@ namespace Gwent_Library
             Karta Geralt = new KartaPiechoty("Geralt z Rivii", 5,  false, "Geralt", CardEffects.Bractwo);
             Karta Yennefer = new KartaLucznika("Yennefer z Vengerbergu", 7,  false, "Yennefer", CardEffects.WyskoieMorale);
             Karta Yennefer2 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
-            Karta Yennefer3 = new KartaObleznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
+            Karta Yennefer3 = new KartaLucznika("Yennefer z Vengerbergu", 7, false, "Yennefer", CardEffects.WyskoieMorale);
             Karta Balista1 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
             Karta Balista2 = new KartaObleznika("Balista", 6,  false, "Balista", CardEffects.Wiez);
             Karta BiednaPierdolonaPiechota1 = new KartaPiechoty("Biedna Pierdolona Piechota (I)", 1, false, "BiednaPierdolonaPiechota", CardEffects.Bractwo);       
@@ -298,8 +245,22 @@ namespace Gwent_Library
             Karta Rog3 = new RogDowodcy("Róg dowódcy 3",Umiejscowienie.Piechoty, "Rog");
             Karta Pozoga1 = new Pozoga("Pożoga 1", "Pozoga");         
             Karta Mroz1 = new TrzaskającyMroz("Trzaskający mróz 1", "TrzaskającyMroz");          
-            Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");          
-            Karta UlewnyDeszcz1 = new GestaMgla("Ulewny deszcz 1", "UlewnyDeszcz");          
+            Karta GestaMgla1 = new GestaMgla("Gęsta mgła 1", "GestaMgla");    
+            
+
+
+
+
+            Karta UlewnyDeszcz1 = new UlewnyDeszcz("Ulewny deszcz 1", "UlewnyDeszcz");  
+            
+
+
+
+
+
+
+
+
             Karta CzysteNiebo2 = new CzysteNiebo("Czyste niebo 2", "CzysteNiebo");
 
             Karta foltest = new FoltestZdobywca("FoltestZdobywca", "FoltestZdobywca");

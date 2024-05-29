@@ -18,6 +18,8 @@ namespace Gwent_Library.Karty
 
             if (gracz1.Plansza.KartySpecjalne.Any(karta => karta is TrzaskającyMroz) ||gracz2.Plansza.KartySpecjalne.Any(karta => karta is TrzaskającyMroz))
             {
+                System.Diagnostics.Debug.WriteLine("mroz");
+
                 UstawSilePogody(gracz1.Plansza.KartyPiechotyGracza, 1);
                 UstawSilePogody(gracz2.Plansza.KartyPiechotyGracza, 1);             
             }

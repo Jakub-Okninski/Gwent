@@ -10,7 +10,6 @@ namespace Gwent_Library
             Talia<T> clonedTalia = new Talia<T>();
             foreach (T item in this)
             {
-                // Wywołaj metodę Clone() na każdym elemencie typu T
                 clonedTalia.Add((T)item.Clone());
             }
             return clonedTalia;
