@@ -15,6 +15,10 @@ namespace Gwent_App
     public partial class LoginForm : Form
     {
         StartForm startForm;
+        private bool playerflaglogin1 = false;
+        private bool playerflaglogin2 = false;
+        private User p1;
+        private User p2;
         public LoginForm(StartForm startform)
         {
             startForm = startform;
@@ -42,15 +46,13 @@ namespace Gwent_App
 
             label5.Hide();
             label6.Hide();
-
-
+            FormClosing += RegisterForm_FormClosing;
         }
 
-
-        private bool playerflaglogin1 = false;
-        private bool playerflaglogin2 = false;
-        private User p1;
-        private User p2;
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            startForm.Close(); 
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             string playerName = textBox1.Text;
@@ -160,6 +162,7 @@ namespace Gwent_App
         }
         private void button4_Click(object sender, EventArgs e)
         {
+            FormClosing -= RegisterForm_FormClosing;
             startForm.Show();
             this.Close();
         }

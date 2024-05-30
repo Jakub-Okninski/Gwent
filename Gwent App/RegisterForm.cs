@@ -31,11 +31,14 @@ namespace Gwent_App
             localPath = localPath + "\\imgregister.jpg";
             this.BackgroundImage = Image.FromFile(localPath);
             this.BackgroundImageLayout = ImageLayout.Stretch;
-
-
+            FormClosing += RegisterForm_FormClosing;
         }
 
-      
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            startForm.Close();  
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string playerName = textBox1.Text;
@@ -104,11 +107,9 @@ namespace Gwent_App
 
         private void button2_Click(object sender, EventArgs e)
         {
+            FormClosing -= RegisterForm_FormClosing;
             startForm.Show();
             this.Close();
-
-        }
-
-       
+        }     
     }
 }

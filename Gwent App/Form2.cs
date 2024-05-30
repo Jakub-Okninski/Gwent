@@ -20,6 +20,8 @@ namespace Gwent_App
         private PictureBox selectedPictureBox = null;
         private Card lastCard = null;
         string localPath;
+   
+
         public Form2()
         {    
         }
@@ -30,6 +32,8 @@ namespace Gwent_App
             player2 = g.player1;
             game = g;
             form1 = f;
+            FormClosing += RegisterForm_FormClosing;
+
 
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string[] baseDirectoryTab = baseDirectory.Split("Gwent App");
@@ -67,7 +71,10 @@ namespace Gwent_App
             panelWspolnePole.DragDrop += Panel_DragDrop;
 
         }
-   
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            form1.Close();
+        }
         public void Drop()
         {
             PlaySound(localPath + "\\drop.wav");
