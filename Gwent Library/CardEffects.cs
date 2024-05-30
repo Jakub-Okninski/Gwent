@@ -9,113 +9,101 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    [Serializable]
     public class CardEffects  
     {
-        public static void Bractwo(Karta karta, Plansza plansza)
+        public static void Braterstwo(Card card, PlayerBoard playerBoard)
         {
-            if (karta is KartaPiechoty)
-            {        
-                BractwoHelp(karta, plansza.KartyPiechotyGracza, plansza);
-            }
-            else if (karta is KartaLucznika)
-            {          
-                BractwoHelp(karta, plansza.KartyStrzeleckieGracza, plansza);
-            }
-            else if (karta is KartaObleznika)
+            if (card is KartaPiechoty)
             {
-                BractwoHelp(karta, plansza.KartyOblezniczeGracza, plansza);
+                BraterstwoHelp(card, playerBoard.CardsPiechotyPlayer, playerBoard);
+            }
+            else if (card is KartaLucznika)
+            {
+                BraterstwoHelp(card, playerBoard.CardsStrzeleckiePlayer, playerBoard);
+            }
+            else if (card is KartaObleznika)
+            {
+                BraterstwoHelp(card, playerBoard.CardsOblezniczePlayer, playerBoard);
             }
         }
-
-        public static void Default(Karta karta, Plansza plansza)
+        private static void BraterstwoHelp<T>(Card card, Deck<T> deck, PlayerBoard playerBoard) where T : CardWarrior
         {
-            
-        }
-        private static void BractwoHelp<T>(Karta karta, Talia<T> talia, Plansza plansza) where T : KartaJednostki
-        {
-          //  talia.RemoveAll(k => k is KartaJednostki && k.Nazwa.Contains(karta.Nazwa) && k.Effect == Bractwo);
+            var otherCard = playerBoard.PlayerRestOfCards.Where(c => c is CardWarrior cw && cw.Name.Contains(card.Name) && cw.Effect == Braterstwo);
 
-            var kartyInne = plansza.WszystkieKartyGracza.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Bractwo);
-
-            foreach (T kk in kartyInne)
+            foreach (T oc in otherCard)
             {
-                talia.Add(kk);
-            }
-            plansza.WszystkieKartyGracza.RemoveAll(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa)
-        && kp.Effect == Bractwo);
-
-
-            var kartyInne2 = plansza.KartyGraczaWRozgrywce.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Bractwo);
-
-            foreach (T kk in kartyInne2)
-            {
-                talia.Add(kk);
+                deck.Add(oc);
             }
 
-            plansza.KartyGraczaWRozgrywce.RemoveAll(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa)
-            && kp.Effect == Bractwo);
+            playerBoard.PlayerRestOfCards.RemoveAll(c => c is CardWarrior kp && kp.Name.Contains(card.Name) && kp.Effect == Braterstwo);
+
+
+            var otherCard2 = playerBoard.PlayerCardsInGame.Where(c => c is CardWarrior cw && cw.Name.Contains(card.Name) && cw.Effect == Braterstwo);
+
+            foreach (T oc in otherCard2)
+            {
+                deck.Add(oc);
+            }
+
+            playerBoard.PlayerCardsInGame.RemoveAll(c => c is CardWarrior cw && cw.Name.Contains(card.Name)
+            && cw.Effect == Braterstwo);
            
         }
 
-        public static void Wiez(Karta karta, Plansza plansza)
+        public static void Wiez(Card card, PlayerBoard playerBoard)
         {
-            if (karta is KartaPiechoty)
+            if (card is KartaPiechoty)
             {
-                WizeHelp(karta, plansza.KartyPiechotyGracza);
+                WizeHelp(card, playerBoard.CardsPiechotyPlayer);
             }
-            else if (karta is KartaLucznika)
+            else if (card is KartaLucznika)
             {
-                WizeHelp(karta, plansza.KartyStrzeleckieGracza);
+                WizeHelp(card, playerBoard.CardsStrzeleckiePlayer);
             }
-            else if (karta is KartaObleznika)
+            else if (card is KartaObleznika)
             {
-                WizeHelp(karta, plansza.KartyOblezniczeGracza);
+                WizeHelp(card, playerBoard.CardsOblezniczePlayer);
             }
         }
 
 
-        private static void WizeHelp<T>(Karta karta,  Talia<T> talia) where T : KartaJednostki
+        private static void WizeHelp<T>(Card card,  Deck<T> deck) where T : CardWarrior
         {
-            var usunieteKarty = talia.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == Wiez);
-            foreach (KartaJednostki k in usunieteKarty)
+            var otherCard = deck.Where(c => c is CardWarrior cw && cw.Name.Contains(card.Name) && cw.Effect == Wiez);
+            foreach (CardWarrior oc in otherCard)
             {
-                k.DomyslnaSila = k.Default * usunieteKarty.Count();
-               // k.DomyslnaWartosc();
+                oc.ForceTemporary = oc.ForceDefault * otherCard.Count();
             }
         }
 
-
-   
-
-        public static void WyskoieMorale(Karta karta, Plansza plansza)
+        public static void WysokieMorale(Card card, PlayerBoard playerBoard)
         {
-            if (karta is KartaPiechoty)
+            if (card is KartaPiechoty)
             {
-                WyskoieMoraleHelp(karta, plansza.KartyPiechotyGracza);
+                WysokieMoraleHelp(card, playerBoard.CardsPiechotyPlayer);
             }
-            else if (karta is KartaLucznika)
+            else if (card is KartaLucznika)
             {            
-                WyskoieMoraleHelp(karta, plansza.KartyStrzeleckieGracza);
+                WysokieMoraleHelp(card, playerBoard.CardsStrzeleckiePlayer);
             }
-            else if (karta is KartaObleznika)
+            else if (card is KartaObleznika)
             {
-                WyskoieMoraleHelp(karta, plansza.KartyOblezniczeGracza);
+                WysokieMoraleHelp(card, playerBoard.CardsOblezniczePlayer);
             }
 
         }
-        private static void WyskoieMoraleHelp<T>(Karta karta, Talia<T> talia) where T : KartaJednostki
+        private static void WysokieMoraleHelp<T>(Card card, Deck<T> deck) where T : CardWarrior
         {
-            var usunieteKarty = talia.Where(k => k is KartaJednostki kp && kp.Nazwa.Contains(karta.Nazwa) && kp.Effect == WyskoieMorale);
-            foreach (KartaJednostki k in usunieteKarty)
+            var otherCard = deck.Where(c => c is CardWarrior cw && cw.Name.Contains(card.Name) && cw.Effect == WysokieMorale);
+            foreach (CardWarrior cardWarrior in otherCard)
             {
-                if (usunieteKarty.Count() > 1)
+                if (otherCard.Count() > 1)
                 {
-                    k.DomyslnaSila = k.Default + usunieteKarty.Count();
-                    k.DomyslnaWartosc();
+                    cardWarrior.ForceTemporary = cardWarrior.ForceDefault + otherCard.Count();
+                    cardWarrior.setDefaultForce();
                 }
             }
         }
-
+        public static void Default(Card card, PlayerBoard playerBoard) { }
     }
 }

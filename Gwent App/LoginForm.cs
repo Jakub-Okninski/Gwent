@@ -29,8 +29,8 @@ namespace Gwent_App
         }
         private bool playerflaglogin1 = false;
         private bool playerflaglogin2 = false;
-        private Player p1;
-        private Player p2;
+        private User p1;
+        private User p2;
         private void button1_Click(object sender, EventArgs e)
         {
             string playerName = textBox1.Text;
@@ -42,11 +42,11 @@ namespace Gwent_App
                 return;
             }
 
-            var player = new Player(playerName, playerPassword);
+            var player = new User(playerName, playerPassword);
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
 
-            Player playerNew = AuthenticatePlayer(player, filePath);
-            if (playerNew != null && !playerNew.Equals(new Player(textBox2.Text, textBox4.Text)))
+            User playerNew = AuthenticatePlayer(player, filePath);
+            if (playerNew != null && !playerNew.Equals(new User(textBox2.Text, textBox4.Text)))
             {
                 label3.Text = "Oczekujący do rozgrywki...";
                 button1.Enabled = false;
@@ -78,10 +78,10 @@ namespace Gwent_App
                 return;
             }
 
-            var player = new Player(playerName, playerPassword);
+            var player = new User(playerName, playerPassword);
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
-            Player playerNew = AuthenticatePlayer(player, filePath);
-            if (playerNew != null && !playerNew.Equals(new Player(textBox1.Text, textBox3.Text)))
+            User playerNew = AuthenticatePlayer(player, filePath);
+            if (playerNew != null && !playerNew.Equals(new User(textBox1.Text, textBox3.Text)))
             {
                 label4.Text = "Oczekujący do rozgrywki...";
                 button2.Enabled = false;
@@ -103,9 +103,9 @@ namespace Gwent_App
 
 
 
-        public static Player AuthenticatePlayer(Player player, string filePath)
+        public static User AuthenticatePlayer(User player, string filePath)
         {
-            List<Player> players = LoadPlayers(filePath);
+            List<User> players = LoadPlayers(filePath);
 
             foreach (var playerInFile in players)
             {
@@ -117,15 +117,15 @@ namespace Gwent_App
             return null;
         }
 
-        public static List<Player> LoadPlayers(string filePath)
+        public static List<User> LoadPlayers(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                return new List<Player>();
+                return new List<User>();
             }
 
             string jsonString = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<List<Player>>(jsonString) ?? new List<Player>();
+            return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
         }
 
         private void button3_Click(object sender, EventArgs e)

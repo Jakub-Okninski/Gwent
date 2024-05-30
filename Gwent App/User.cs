@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gwent_App
 {
-    public class Player
+    public class User
     {
-        public Player(string name, string password, int winnings, int losing)
+        public User(string name, string password, int winnings, int losing)
         {
             Name = name;
             Winnings = winnings;
@@ -17,14 +17,14 @@ namespace Gwent_App
             Losing = losing;
         }
 
-        public Player()
+        public User()
         {
             Name = "";
             Password = "";
             Winnings = 0;
             Losing = 0;
         }
-        public Player(string name,string password)
+        public User(string name,string password)
         {
             Name = name;
             Password = password;
@@ -38,7 +38,7 @@ namespace Gwent_App
 
         public override bool Equals(object? obj)
         {
-            if (obj is Player player)
+            if (obj is User player)
             {
                 return this.Name.Equals(player.Name) && this.Password.Equals(player.Password);
             }

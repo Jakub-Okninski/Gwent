@@ -15,39 +15,39 @@ namespace Gwent_App
 
 
 
-            Talia<Karta> karty = Gra.GenerateCard();
-            Talia<Karta> karty2 = Gra.GenerateCard();
+            Deck<Card> karty = Game.GenerateCard();
+            Deck<Card> karty2 = Game.GenerateCard();
 
-            Gracz gracz1 = new Gracz("Jakub", karty);
-            Gracz gracz2 = new Gracz("Dawid", karty2);
+            Player gracz1 = new Player("Jakub", karty);
+            Player gracz2 = new Player("Dawid", karty2);
 
             System.Diagnostics.Debug.WriteLine("");
 
 
-            Talia<Karta> kopiaKart = new Talia<Karta>();
-            foreach (Karta karta in karty)
+            Deck<Card> kopiaKart = new Deck<Card>();
+            foreach (Card karta in karty)
             {
-                kopiaKart.Add((Karta)karta.Clone());
+                kopiaKart.Add((Card)karta.Clone());
             }
 
-            Talia<Karta> kopiaKart2 = new Talia<Karta>();
-            foreach (Karta karta in karty2)
+            Deck<Card> kopiaKart2 = new Deck<Card>();
+            foreach (Card karta in karty2)
             {
-                kopiaKart2.Add((Karta)karta.Clone());
+                kopiaKart2.Add((Card)karta.Clone());
             }
 
-            Talia<Karta> KartyWrozgrywce1 = new Talia<Karta>();
+            Deck<Card> KartyWrozgrywce1 = new Deck<Card>();
 
-            Talia<Karta> KartyWrozgrywce2 = new Talia<Karta>();
+            Deck<Card> KartyWrozgrywce2 = new Deck<Card>();
 
             int i = 10;
-            foreach (Karta k in kopiaKart.Take(i).ToList())
+            foreach (Card k in kopiaKart.Take(i).ToList())
             {
 
                 KartyWrozgrywce1.Add(k);
                 kopiaKart.Remove(k);
             }
-            foreach (Karta k in kopiaKart2.Take(i).ToList())
+            foreach (Card k in kopiaKart2.Take(i).ToList())
             {
 
                 KartyWrozgrywce2.Add(k);
@@ -55,12 +55,12 @@ namespace Gwent_App
             }
 
 
-            gracz1.UstawPlansze(kopiaKart, KartyWrozgrywce1);
-            gracz2.UstawPlansze(kopiaKart2, KartyWrozgrywce2);
+            gracz1.SetBoard(kopiaKart, KartyWrozgrywce1);
+            gracz2.SetBoard(kopiaKart2, KartyWrozgrywce2);
 
 
 
-            Gra gra = new Gra(gracz1, gracz2);
+            Game gra = new Game(gracz1, gracz2);
 
             System.Diagnostics.Debug.WriteLine("");
 
@@ -77,7 +77,7 @@ namespace Gwent_App
 
         }
 
-        public static void InitPlayer(Player player1, Player player2)
+        public static void InitPlayer(User player1, User player2)
         {
 
         }

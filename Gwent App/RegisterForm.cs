@@ -34,7 +34,7 @@ namespace Gwent_App
                 return;
             }
 
-            var newPlayer = new Player(playerName, playerPassword);
+            var newPlayer = new User(playerName, playerPassword);
 
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
             RegisterPlayer(newPlayer, filePath);
@@ -43,9 +43,9 @@ namespace Gwent_App
             textBox2.Text = "";
         }
 
-        public static void RegisterPlayer(Player newPlayer, string filePath)
+        public static void RegisterPlayer(User newPlayer, string filePath)
         {
-            List<Player> players = LoadPlayers(filePath);
+            List<User> players = LoadPlayers(filePath);
 
             if (PlayerExists(newPlayer, players))
             {
@@ -59,18 +59,18 @@ namespace Gwent_App
             }
         }
 
-        public static List<Player> LoadPlayers(string filePath)
+        public static List<User> LoadPlayers(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                return new List<Player>();
+                return new List<User>();
             }
 
             string jsonString = File.ReadAllText(filePath);
-            return JsonSerializer.Deserialize<List<Player>>(jsonString) ?? new List<Player>();
+            return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
         }
 
-        public static bool PlayerExists(Player player, List<Player> players)
+        public static bool PlayerExists(User player, List<User> players)
         {
             foreach (var playerInFile in players)
             {
@@ -82,7 +82,7 @@ namespace Gwent_App
             return false;
         }
 
-        public static void SavePlayers(List<Player> players, string filePath)
+        public static void SavePlayers(List<User> players, string filePath)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(players, options);
