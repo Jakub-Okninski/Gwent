@@ -205,7 +205,7 @@
             // 
             pictureBoxZdjecieGracz1.Location = new Point(47, 485);
             pictureBoxZdjecieGracz1.Name = "pictureBoxZdjecieGracz1";
-            pictureBoxZdjecieGracz1.Size = new Size(89, 77);
+            pictureBoxZdjecieGracz1.Size = new Size(77, 77);
             pictureBoxZdjecieGracz1.TabIndex = 16;
             pictureBoxZdjecieGracz1.TabStop = false;
             // 
@@ -213,7 +213,7 @@
             // 
             pictureBoxZdjecieGracz2.Location = new Point(47, 207);
             pictureBoxZdjecieGracz2.Name = "pictureBoxZdjecieGracz2";
-            pictureBoxZdjecieGracz2.Size = new Size(89, 77);
+            pictureBoxZdjecieGracz2.Size = new Size(77, 77);
             pictureBoxZdjecieGracz2.TabIndex = 17;
             pictureBoxZdjecieGracz2.TabStop = false;
             // 
@@ -259,7 +259,7 @@
             // 
             pictureBoxPierwszyPunktGracz1.Location = new Point(254, 485);
             pictureBoxPierwszyPunktGracz1.Name = "pictureBoxPierwszyPunktGracz1";
-            pictureBoxPierwszyPunktGracz1.Size = new Size(38, 34);
+            pictureBoxPierwszyPunktGracz1.Size = new Size(37, 37);
             pictureBoxPierwszyPunktGracz1.TabIndex = 26;
             pictureBoxPierwszyPunktGracz1.TabStop = false;
             // 
@@ -267,7 +267,7 @@
             // 
             pictureBoxDrugiPunktGracz1.Location = new Point(199, 485);
             pictureBoxDrugiPunktGracz1.Name = "pictureBoxDrugiPunktGracz1";
-            pictureBoxDrugiPunktGracz1.Size = new Size(38, 34);
+            pictureBoxDrugiPunktGracz1.Size = new Size(37, 37);
             pictureBoxDrugiPunktGracz1.TabIndex = 27;
             pictureBoxDrugiPunktGracz1.TabStop = false;
             // 
@@ -276,7 +276,7 @@
             pictureBoxPierwszyPunktGracz2.BackColor = Color.White;
             pictureBoxPierwszyPunktGracz2.Location = new Point(254, 250);
             pictureBoxPierwszyPunktGracz2.Name = "pictureBoxPierwszyPunktGracz2";
-            pictureBoxPierwszyPunktGracz2.Size = new Size(38, 34);
+            pictureBoxPierwszyPunktGracz2.Size = new Size(37, 37);
             pictureBoxPierwszyPunktGracz2.TabIndex = 28;
             pictureBoxPierwszyPunktGracz2.TabStop = false;
             // 
@@ -284,7 +284,7 @@
             // 
             pictureBoxDrugiPunktGracz2.Location = new Point(199, 250);
             pictureBoxDrugiPunktGracz2.Name = "pictureBoxDrugiPunktGracz2";
-            pictureBoxDrugiPunktGracz2.Size = new Size(38, 34);
+            pictureBoxDrugiPunktGracz2.Size = new Size(37, 37);
             pictureBoxDrugiPunktGracz2.TabIndex = 29;
             pictureBoxDrugiPunktGracz2.TabStop = false;
             // 

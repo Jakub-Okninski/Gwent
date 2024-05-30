@@ -17,9 +17,15 @@ namespace Gwent_App
         public StartForm()
         {
             InitializeComponent();
-    
-          
-           
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            System.Diagnostics.Debug.WriteLine(baseDirectory);
+            string[] baseDirectoryTab = baseDirectory.Split("Gwent App");
+       
+            string localPath = Path.Combine(baseDirectoryTab[0], "Gwent App", "LocalSources");
+            System.Diagnostics.Debug.WriteLine(localPath);
+            localPath = localPath + "\\imgStart.jpg";
+            this.BackgroundImage = Image.FromFile(localPath);
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button1_Click(object sender, EventArgs e)

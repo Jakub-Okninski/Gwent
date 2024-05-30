@@ -677,6 +677,7 @@ namespace Gwent_App
 
             labelImieGracz1.Text = player1.Name;
             labelImieGracz2.Text = player2.Name;
+  
 
             pictureBoxDrugiPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPierwszyPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;

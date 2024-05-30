@@ -21,8 +21,21 @@ namespace Gwent_App
         {
             InitializeComponent();
             startForm = startform;
+
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            System.Diagnostics.Debug.WriteLine(baseDirectory);
+            string[] baseDirectoryTab = baseDirectory.Split("Gwent App");
+
+            string localPath = Path.Combine(baseDirectoryTab[0], "Gwent App", "LocalSources");
+            System.Diagnostics.Debug.WriteLine(localPath);
+            localPath = localPath + "\\imgregister.jpg";
+            this.BackgroundImage = Image.FromFile(localPath);
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
+
         }
 
+      
         private void button1_Click(object sender, EventArgs e)
         {
             string playerName = textBox1.Text;
@@ -91,11 +104,11 @@ namespace Gwent_App
 
         private void button2_Click(object sender, EventArgs e)
         {
+            startForm.Show();
             this.Close();
-            LoginForm loginForm = new LoginForm(startForm);
 
-            // Pokaż formularz główny
-            loginForm.Show();
         }
+
+       
     }
 }
