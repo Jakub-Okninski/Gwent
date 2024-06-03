@@ -19,15 +19,11 @@ namespace Gwent_Library.TypyKart
                .ToList()
                .ForEach(card => card.Force = force);         
         }
-
         protected void setForceWeather<T>(Deck<T> deck) where T : CardWarrior
         {
             deck.Where(card => !card.IsHero)
                .ToList()
                .ForEach(card => card.Force = card.ForceTemporary);
         }
-
-     
-
     }
 }

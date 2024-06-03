@@ -45,7 +45,6 @@ namespace Gwent_Library.Karty
 
             }
         }
-
         public override string ToString()
         {
             return base.ToString()+ " Location Card " + LocationCard;

@@ -9,8 +9,7 @@ using Gwent_Library.TypyKart;
 namespace Gwent_Library.Karty
 {
     public class GestaMgla : CardWeather, ICloneable
-    {
-      
+    {   
         public GestaMgla(string name) : base(name)
         {
         }

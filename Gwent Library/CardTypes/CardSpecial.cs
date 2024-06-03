@@ -11,8 +11,7 @@ namespace Gwent_Library.TypyKart
     {
         public CardSpecial(string name) : base(name)
         {
-        }
-      
+        } 
         public override void PutCard(PlayerBoard playerBoard)
         {
             playerBoard.PlayerCardsInGame.Remove(this);

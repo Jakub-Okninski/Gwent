@@ -15,7 +15,6 @@ namespace Gwent_Library.Karty
             playerBoard.CardsStrzeleckiePlayer.Add(this);
             Effect?.Invoke(this, playerBoard);
         }
-
         public KartaLucznika(string name, int force, bool isHero, CardEffectDelegate effect) : base(name, force, isHero, effect)
         {
         }

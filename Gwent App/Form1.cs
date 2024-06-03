@@ -37,8 +37,6 @@ namespace Gwent_App
             InitImgPlayer(player1, player2);
             PlayBackgroundMusic();
             Enabled = true;
-
-
             foreach (var cardToAdd in player1.playerBoard.PlayerCardsInGame)
             {
                 AddCardToPanel(cardToAdd, panelGracza);
@@ -64,14 +62,15 @@ namespace Gwent_App
             panelWspolnePole.DragDrop += Panel_DragDrop;
             form2.Show();
         }
-
-       public void PlayBackgroundMusic()
+       public async void PlayBackgroundMusic()
         {
             outputDevice = new WaveOutEvent();       
             AudioFileReader audioFile = new AudioFileReader(localPath + "\\gamemusic.wav");
             VolumeSampleProvider volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider());
             volumeProvider.Volume = 0.08f;
             outputDevice.Init(volumeProvider);
+            await Task.Delay(1000);
+
             outputDevice.Play();
         }
         public void Drop()
@@ -425,6 +424,10 @@ namespace Gwent_App
 
             this.Enabled = false;
             form2.Enabled = true;
+            if (player2.PlayerActiveInRound)
+            {
+                PlaySound(localPath + "\\poddaj.wav");
+            }
 
             if (player2.PlayerActiveInRound == false)
             {
@@ -484,6 +487,9 @@ namespace Gwent_App
                 panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
                 panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
                 panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
+             
+
+                       
 
                 PlaySound(localPath + "\\runda.wav");
                 try
@@ -571,7 +577,6 @@ namespace Gwent_App
                 AddCardToPanel(card, panel);
             }
         }
-
         private void RefreshScores()
         {
             labelDystansGracz1.Text = player1.playerBoard.PointsStrzeleckie + "";
@@ -636,7 +641,6 @@ namespace Gwent_App
                 }
             }
         }
-
         private PictureBox FindPictureBoxByCard<T>(Panel panel, T card) where T : Card
         {
             foreach (PictureBox pictureBox in panel.Controls.OfType<PictureBox>())
@@ -663,7 +667,6 @@ namespace Gwent_App
 
             }
         }
-
         private void InitImgPlayer(Player player1, Player player2)
         {
             pictureBoxZdjecieGracz1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -678,7 +681,6 @@ namespace Gwent_App
             labelImieGracz1.Text = player1.Name;
             labelImieGracz2.Text = player2.Name;
   
-
             pictureBoxDrugiPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxPierwszyPunktGracz1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxDrugiPunktGracz1.Image = Image.FromFile(localPath + "\\szmaragd.PNG");
@@ -687,7 +689,6 @@ namespace Gwent_App
             pictureBoxPierwszyPunktGracz2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxDrugiPunktGracz2.Image = Image.FromFile(localPath + "\\szmaragd.PNG");
             pictureBoxPierwszyPunktGracz2.Image = Image.FromFile(localPath + "\\szmaragd.PNG");
-
         }
         private void RemoveCardFromPanel(PictureBox pictureBox, Panel panel)
         {
@@ -697,7 +698,6 @@ namespace Gwent_App
                 RefreshCardPositions(panel);
             }
         }
-
 
         private void RefreshCardPositions(Panel panel, int pictureBoxSpacing = 10)
         {
@@ -724,7 +724,6 @@ namespace Gwent_App
                 }
             }
         }
-
         private void AddCardToPanel(Card karta, Panel panel)
         {
             PictureBox pictureBox = new PictureBox();
@@ -807,7 +806,6 @@ namespace Gwent_App
             pictureBox.DoubleClick += null;
 
             panel.Controls.Add(pictureBox);
-
             RefreshCardPositions(panel);
         }
         private string GetCardTypeLabel(Card karta)
@@ -848,7 +846,6 @@ namespace Gwent_App
             {
                 return "Specjalna";
             }
-
             return "";
         }
     }

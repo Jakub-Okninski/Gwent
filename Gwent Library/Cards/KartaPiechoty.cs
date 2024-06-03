@@ -19,7 +19,6 @@ namespace Gwent_Library.Karty
             playerBoard.CardsPiechotyPlayer.Add(this);
             Effect?.Invoke(this, playerBoard);
         }
-      
         public KartaPiechoty(string name, int force, bool isHero, CardEffectDelegate effect) : base(name, force, isHero, effect)
         {
         }

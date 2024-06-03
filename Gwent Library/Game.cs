@@ -13,7 +13,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Gwent_Library
 {
-
     public class Game
     {
         public Player player1 { get; set; }
@@ -21,14 +20,16 @@ namespace Gwent_Library
         public Player lastplayer { get; set; }
         public Game(Player p1, Player p2)
         {
-
             System.Diagnostics.Debug.WriteLine("Start Game");
 
             if (p1.AllCardsPlayer.Count < 20)
             {
+                throw new CardException("Zbyt mało kart, gracz: "+p1.Name);
             }
             if (p2.AllCardsPlayer.Count < 20)
             {
+                throw new CardException("Zbyt mało kart, gracz: " + p2.Name);
+
             }
             player1 = p1;
             player2 = p2;
@@ -42,7 +43,8 @@ namespace Gwent_Library
                 if (player != lastplayer)
                 {
                     lastplayer = player;
-                }else{
+                }else
+                {
                     throw new MoveException("Nie twój ruch!");
                 }
             }else if (player.PlayerActiveInRound)
@@ -50,7 +52,9 @@ namespace Gwent_Library
                 if (player == player1)
                 {
                     lastplayer = player2;
-                }else if (player == player2) {
+                }
+                else if (player == player2) 
+                {
                     lastplayer = player1;
                 }
             }     
@@ -155,15 +159,11 @@ namespace Gwent_Library
                 }
             }
             CountPoints(player);
-
-
         }
       
         public void ActionWeather()
         {
-
-            var cards = player1.playerBoard.CardsSpecial.Where(card => card is CardWeather);
-            
+            var cards = player1.playerBoard.CardsSpecial.Where(card => card is CardWeather);        
             if (cards.Any())
             {
                 foreach (CardWeather card in cards)
@@ -175,7 +175,6 @@ namespace Gwent_Library
                 
             }
             var cards2 = player2.playerBoard.CardsSpecial.Where(card => card is CardWeather);
-
             if (cards2.Any())
             {
                 foreach (CardWeather card in cards2)
@@ -238,14 +237,20 @@ namespace Gwent_Library
             player1.playerBoard.PointsSum = player1.playerBoard.PointsPiechoty + player1.playerBoard.PointsStrzeleckie + player1.playerBoard.PointsObleznicze;
             player2.playerBoard.PointsSum = player2.playerBoard.PointsPiechoty + player2.playerBoard.PointsStrzeleckie + player2.playerBoard.PointsObleznicze;
         }
-
-        public static Deck<Card> GenerateCard()
+        public static Deck<Card> GenerateCommanderCard()
         {
             Deck<Card> deck = new Deck<Card>();
             Card FoltestDowódcaPółnocy = new FoltestDowódcaPółnocy("Foltest Dowódca Północy");
             Card FoltestKrólTemerii = new FoltestKrólTemerii("Foltest Król Temerii");
             Card FoltestZdobywca = new FoltestZdobywca("Foltest Zdobywca");
-
+            deck.Add(FoltestDowódcaPółnocy);
+            deck.Add(FoltestKrólTemerii);
+            deck.Add(FoltestZdobywca);
+            return deck;
+        }
+            public static Deck<Card> GenerateCard()
+        {
+            Deck<Card> deck = new Deck<Card>();
             Card Balista1 = new KartaObleznika("Balista", 6, false, CardEffects.Braterstwo);
             Card Balista2 = new KartaObleznika("Balista", 6, false, CardEffects.Braterstwo);
             Card BiednaPiechota = new KartaPiechoty("Biedna Piechota", 1, false, CardEffects.Wiez);
@@ -291,9 +296,7 @@ namespace Gwent_Library
             Card UlewnyDeszcz1 = new UlewnyDeszcz("Ulewny Deszcz");
             Card CzysteNiebo1 = new CzysteNiebo("Czyste Niebo");
 
-            deck.Add(FoltestDowódcaPółnocy);
-            deck.Add(FoltestKrólTemerii);
-            deck.Add(FoltestZdobywca);
+ 
             deck.Add(Balista1);
             deck.Add(Balista2);
             deck.Add(BiednaPiechota);
@@ -338,12 +341,6 @@ namespace Gwent_Library
             deck.Add(UlewnyDeszcz1);
             deck.Add(CzysteNiebo1);
 
-            return deck;
-        }
-
-        public static Deck<Card> GeneratePremiumCard()
-        {
-            Deck<Card> deck = new Deck<Card>();
 
             Card Cirilla = new KartaPiechoty("Cirilla", 15, true, CardEffects.Default);
             Card Emiel = new KartaPiechoty("Emiel Regis", 5, true, CardEffects.Default);
@@ -351,12 +348,10 @@ namespace Gwent_Library
             Card Jaskier = new KartaPiechoty("Jaskier", 2, true, CardEffects.WysokieMorale);
             Card Triss = new KartaPiechoty("Triss", 7, true, CardEffects.Default);
             Card Vesemir = new KartaPiechoty("Vesemir", 6, true, CardEffects.Default);
-            Card Villentretenmerth = new KartaPiechoty("Villentretenmerth", 7, true,CardEffects.Default);
+            Card Villentretenmerth = new KartaPiechoty("Villentretenmerth", 7, true, CardEffects.Default);
             Card Yennefer = new KartaLucznika("Yennefer", 7, true, CardEffects.Default);
             Card Zoltan = new KartaPiechoty("Zoltan", 5, true, CardEffects.Default);
 
-
-         
             Card Manekin2 = new Manekin("Manekin", LocationCard.Piechoty);
             Card Manekin3 = new Manekin("Manekin", LocationCard.Piechoty);
             Card Rog2 = new RogDowodcy("Rog Dowodcy", LocationCard.Piechoty);
@@ -384,17 +379,42 @@ namespace Gwent_Library
             deck.Add(Vesemir);
             deck.Add(Villentretenmerth);
             deck.Add(Yennefer);
-            deck.Add(Zoltan);  
+            deck.Add(Zoltan);
             deck.Add(Manekin2);
             deck.Add(Manekin3);
             deck.Add(Rog2);
             deck.Add(Rog3);
             deck.Add(Pozoga3);
-            deck.Add(TrzaskającyMroz3);  
+            deck.Add(TrzaskającyMroz3);
             deck.Add(GestaMgla3);
             deck.Add(UlewnyDeszcz2);
             deck.Add(CzysteNiebo2);
+
             return deck;
         }
+        public static Deck<Card> GenerateRandomCard(Deck<Card> deck, int n)
+        {
+            if (n > deck.Count)
+            {
+                throw new ArgumentException("Ilość elementów do zwrócenia nie może być większa niż długość talii");
+            }
+
+            Random rand = new Random();
+            Deck<Card> selectedCards = new Deck<Card>();
+            HashSet<int> selectedIndices = new HashSet<int>();
+
+            while (selectedCards.Count < n)
+            {
+                int index = rand.Next(deck.Count);
+                if (selectedIndices.Add(index))
+                {
+                    selectedCards.Add(deck[index]);
+                    deck.Remove(deck[index]);
+                }
+            }
+
+            return selectedCards;
+        }
+  
     }
 }

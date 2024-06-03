@@ -1,6 +1,9 @@
 using Gwent_Library;
 using Gwent_Library.Karty;
 using NAudio.CoreAudioApi;
+using NAudio.Wave.SampleProviders;
+using NAudio.Wave;
+using System.Media;
 
 namespace Gwent_App
 {
@@ -12,103 +15,130 @@ namespace Gwent_App
 
         public static User u1 = null;
         public static User u2 = null;
+
+        public static bool flag = true;
         [STAThread]
         static void Main()
         {
 
-            StartForm startFrom = new StartForm();
-            Application.Run(startFrom);
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string[] baseDirectoryTab = baseDirectory.Split("Gwent App");
+            System.Diagnostics.Debug.WriteLine(baseDirectoryTab[0]);
+            string localPath = Path.Combine(baseDirectoryTab[0], "Gwent App", "LocalSources");
 
-            if (player1 != null && player2 != null) {
 
- 
-                Game game = new Game(player1, player2);
+            while (flag)
+            {
+                WaveOutEvent outputDevice = new WaveOutEvent();
+                AudioFileReader audioFile = new AudioFileReader(localPath + "\\main.wav");
+                VolumeSampleProvider volumeProvider = new VolumeSampleProvider(audioFile.ToSampleProvider());
+                volumeProvider.Volume = 0.08f;
+                outputDevice.Init(volumeProvider);
+                outputDevice.Play();
 
-                System.Diagnostics.Debug.WriteLine("Start Rozgrywki");
-                Form2 form2 = new Form2();
-                Form1 form1 = new Form1(game, form2);
-                form2.setForm(game, form1);
+                StartForm startFrom = new StartForm();
+                Application.Run(startFrom);
 
-                Application.Run(form1);
-                try
+                outputDevice.Stop();
+
+                if (player1 != null && player2 != null)
                 {
-                    Player winner = game.ReturnWinner();
 
-                    string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
-                    List<User> users = RegisterForm.LoadPlayers(filePath);
 
-                    if (winner == player1)
+                    Game game = new Game(player1, player2);
+
+                    System.Diagnostics.Debug.WriteLine("Start Rozgrywki");
+                    Form2 form2 = new Form2();
+                    Form1 form1 = new Form1(game, form2);
+                    form2.setForm(game, form1);
+
+                    SoundPlayer soundPlayer = new SoundPlayer(localPath + "\\intro.wav");
+                    soundPlayer.Play();
+                    Application.Run(form1);
+
+                    try
                     {
-                        u1.Winnings++;
-                        u2.Losing++;
-                        UpdateUser(users,u1);
-                        UpdateUser(users, u2);
+
+                        Player winner = game.ReturnWinner();
+
+                        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
+                        List<User> users = RegisterForm.LoadPlayers(filePath);
+
+                        if (winner == player1)
+                        {
+                            u1.Winnings++;
+                            u2.Losing++;
+                            UpdateUser(users, u1);
+                            UpdateUser(users, u2);
+                        }
+                        if (winner == player2)
+                        {
+                            u2.Winnings++;
+                            u1.Losing++;
+                            UpdateUser(users, u1);
+                            UpdateUser(users, u2);
+                        }
+                        RegisterForm.SavePlayers(users, filePath);
+
+
                     }
-                    if (winner == player2)
+                    catch (EndGameException ex)
                     {
-                        u2.Winnings++;
-                        u1.Losing++;
-                        UpdateUser(users, u1);
-                        UpdateUser(users, u2);
+
+                        MessageBox.Show(ex.Message, "Wyst¹pi³ B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    RegisterForm.SavePlayers(users, filePath);
+                    player1 = null;
+                    player2 = null;
+
+                }
+
+            }
 
            
-                }
-                catch (EndGameException ex) {
-
-                    MessageBox.Show(ex.Message, "Wyst¹pi³ B³¹d", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                player1 = null;
-                player2 = null;
-
-    }
         }
         public static void InitPlayer(User user1, User user2)
         {
             u1 = user1;
             u2 = user2;
-            Deck<Card> cards = Game.GenerateCard();
-            Deck<Card> cards2 = Game.GenerateCard();
 
-            player1 = new Player(user1.Name, cards);
-            player2 = new Player(user2.Name, cards2);
+            Deck<Card> cards = Game.GenerateRandomCard(Game.GenerateCommanderCard(),1);
+            Deck<Card> cards2 = Game.GenerateRandomCard(Game.GenerateCommanderCard(),1);
+            cards.AddRange(Game.GenerateRandomCard(Game.GenerateCard(), 15));
+            cards2.AddRange(Game.GenerateRandomCard(Game.GenerateCard(), 15));
+         
+
+            player1 = new Player(user1.Name, Game.GenerateCard());
+            player2 = new Player(user2.Name, Game.GenerateCard());
 
 
 
-            Deck<Card> copyCards = new Deck<Card>();
-            foreach (Card card in cards)
+            Deck<Card> restCards = new Deck<Card>();
+            Deck<Card> restCards2 = new Deck<Card>();
+
+
+            foreach (var card in player1.AllCardsPlayer)
             {
-                copyCards.Add((Card)card.Clone());
+                Card clonedCard = (Card)card.Clone();
+                restCards.Add(clonedCard);
             }
 
-            Deck<Card> copyCards2 = new Deck<Card>();
-            foreach (Card card in cards2)
+            foreach (var card in player1.AllCardsPlayer)
             {
-                copyCards2.Add((Card)card.Clone());
-            }
-
-            Deck<Card> CardInGames = new Deck<Card>();
-
-            Deck<Card> CardInGames2 = new Deck<Card>();
-
-            int i = 10;
-            foreach (Card c in copyCards.Take(i).ToList())
-            {
-
-                CardInGames.Add(c);
-                copyCards.Remove(c);
-            }
-            foreach (Card c in copyCards2.Take(i).ToList())
-            {
-
-                CardInGames2.Add(c);
-                copyCards2.Remove(c);
+                Card clonedCard = (Card)card.Clone();
+                restCards2.Add(clonedCard);
             }
 
 
-            player1.SetBoard(copyCards, CardInGames);
-            player2.SetBoard(copyCards2, CardInGames2);
+            Deck<Card> CardInGames = Game.GenerateRandomCard(restCards, 15);
+            Deck<Card> CardInGames2 = Game.GenerateRandomCard(restCards2, 15);
+            CardInGames.AddRange(Game.GenerateRandomCard(Game.GenerateCommanderCard(), 1));
+            CardInGames2.AddRange(Game.GenerateRandomCard(Game.GenerateCommanderCard(), 1));
+
+
+
+
+            player1.SetBoard(restCards, CardInGames);
+            player2.SetBoard(restCards2, CardInGames2);
         }
 
         public static void UpdateUser(List<User>users, User user)

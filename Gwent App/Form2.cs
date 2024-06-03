@@ -430,6 +430,12 @@ namespace Gwent_App
             this.Enabled = false;
             form1.Enabled = true;
 
+
+            if (player2.PlayerActiveInRound)
+            {
+                PlaySound(localPath + "\\poddaj.wav");
+            }
+
             if (player2.PlayerActiveInRound == false)
             {
                 game.RundEnd(player1);

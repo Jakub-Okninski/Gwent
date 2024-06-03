@@ -23,6 +23,5 @@ namespace Gwent_Library
         {
             return $"Name: {Name}, ";
         }
-
     }
 }

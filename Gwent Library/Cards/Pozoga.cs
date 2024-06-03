@@ -14,7 +14,6 @@ namespace Gwent_Library.Karty
         public Pozoga(string name) : base(name)
         {
         }
-       
         public override void GlobalActionBoard(Player player1, Player player2)
         {
             if (player1.playerBoard.CardsSpecial.Any(card => card is Pozoga) 

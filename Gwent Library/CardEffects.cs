@@ -73,6 +73,8 @@ namespace Gwent_Library
             foreach (CardWarrior oc in otherCard)
             {
                 oc.ForceTemporary = oc.ForceDefault * otherCard.Count();
+                oc.setDefaultForce();
+
             }
         }
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gwent_App
 {
@@ -19,10 +20,14 @@ namespace Gwent_App
         private bool playerflaglogin2 = false;
         private User p1;
         private User p2;
+      
         public LoginForm(StartForm startform)
         {
             startForm = startform;
             InitializeComponent();
+            textBox3.PasswordChar = '*';
+            textBox4.PasswordChar = '*';
+
             button1.Enabled = true;
             button2.Enabled = true;
             button3.Enabled = false;
@@ -30,7 +35,10 @@ namespace Gwent_App
             textBox3.Enabled = true;
             textBox2.Enabled = true;
             textBox4.Enabled = true;
-
+            label4.Visible = false;
+            label3.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
 
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             System.Diagnostics.Debug.WriteLine(baseDirectory);
@@ -41,11 +49,7 @@ namespace Gwent_App
             localPath = localPath + "\\loginimg.jpeg";
             this.BackgroundImage = Image.FromFile(localPath);
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            label4.Hide();
-            label3.Hide();
-
-            label5.Hide();
-            label6.Hide();
+           
             FormClosing += RegisterForm_FormClosing;
         }
 
@@ -61,7 +65,7 @@ namespace Gwent_App
             if (string.IsNullOrWhiteSpace(playerName) || string.IsNullOrWhiteSpace(playerPassword))
             {
                 label3.Text = "Błędne dane.";
-                label3.Show();
+                label3.Visible = true;
 
                 return;
             }
@@ -73,13 +77,13 @@ namespace Gwent_App
             if (playerNew != null && !playerNew.Equals(new User(textBox2.Text, textBox4.Text)))
             {
                 label3.Text = "Oczekujący do rozgrywki...";
-                label3.Show();
+                label3.Visible = true;
                 button1.Enabled = false;
                 textBox1.Enabled = false;
                 textBox3.Enabled = false;
                 playerflaglogin1 = true;
                 label5.Text = "Wygrane: " + playerNew.Winnings + " | Przegrane: " + playerNew.Losing;
-                label5.Show();
+                label5.Visible = true;
                 p1 = playerNew;
                 if (playerflaglogin2)
                 {
@@ -92,7 +96,7 @@ namespace Gwent_App
                 label3.Text = "Błędne dane.";
             
             }
-            label3.Show();
+            label3.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -103,7 +107,7 @@ namespace Gwent_App
             if (string.IsNullOrWhiteSpace(playerName) || string.IsNullOrWhiteSpace(playerPassword))
             {  
                 label4.Text = "Błędne dane.";
-                label4.Show();
+                label4.Visible = true;
                 return;
             }
 
@@ -112,13 +116,13 @@ namespace Gwent_App
             User playerNew = AuthenticatePlayer(player, filePath);
             if (playerNew != null && !playerNew.Equals(new User(textBox1.Text, textBox3.Text)))
             {
-                label4.Text = "Oczekujący do rozgrywki...";        
+                label4.Text = "Oczekujący do rozgrywki...";
                 button2.Enabled = false;
                 playerflaglogin2 = true;
                 textBox2.Enabled = false;
                 textBox4.Enabled = false;
                 label6.Text = "Wygrane: " + playerNew.Winnings + " | Przegrane: " + playerNew.Losing;
-                label6.Show();
+                label6.Visible = true;
                 p2 = playerNew;
                 if (playerflaglogin1)
                 {
@@ -129,7 +133,7 @@ namespace Gwent_App
             {
                 label4.Text = "Błędne dane.";
             }
-            label4.Show();
+            label4.Visible = true;
         }
         public static User AuthenticatePlayer(User player, string filePath)
         {
@@ -166,7 +170,5 @@ namespace Gwent_App
             startForm.Show();
             this.Close();
         }
-
-      
     }
 }

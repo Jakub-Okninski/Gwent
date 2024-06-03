@@ -13,7 +13,6 @@ namespace Gwent_Library.Karty
         public Manekin(string name, LocationCard location) : base(name, location)
         {
         }
-      
         public void ManekinAction<T> (Player player, T oldCard) where T : CardWarrior
         {
             if (player.playerBoard.CardsPiechotyPlayer.Any(card =>  card is KartaPiechoty kp && kp == oldCard)&& this.LocationCard == LocationCard.Piechoty)
