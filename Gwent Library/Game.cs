@@ -28,7 +28,7 @@ namespace Gwent_Library
             }
             if (p2.AllCardsPlayer.Count < 20)
             {
-                throw new CardException("Zbyt mało kart, gracz: " + p2.Name);
+                throw new CardException("Zbyt mało kart, gracz: "+p2.Name);
 
             }
             player1 = p1;

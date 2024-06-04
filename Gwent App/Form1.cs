@@ -358,7 +358,6 @@ namespace Gwent_App
                     FilterPanelRogu(panelRoguOblezniczeGracz2, player2.playerBoard, LocationCard.Obleznika);
 
                     AddCardCommanderPanel(panelWspolnePole, cc);
-                    RefreshPanelSpecial(panelWspolnePole);
                 }
 
                 RefreshScores();
@@ -368,6 +367,10 @@ namespace Gwent_App
                 {
                     NewMove();
                 }
+                RefreshPanelSpecial(panelWspolnePole);
+                form2.RefreshPanelSpecial(panelWspolnePole);
+
+
             }
         }
         private void PictureBox_DoubleClick(object sender, EventArgs e)
@@ -519,7 +522,7 @@ namespace Gwent_App
                 }
             }
         }
-        private void RefreshPanelSpecial(Panel panel)
+        public void RefreshPanelSpecial(Panel panel)
         {
             var pictureBoxes = panel.Controls.OfType<PictureBox>().ToList();
 

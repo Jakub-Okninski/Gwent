@@ -43,7 +43,7 @@ namespace Gwent_App
             InitializeComponent();
             InitDefaultInfoComponent(player1, player2);
             InitImgPlayer(player1, player2);
-            Enabled = true;
+            Enabled = false;
 
 
             foreach (var cardToAdd in player1.playerBoard.PlayerCardsInGame)
@@ -341,6 +341,7 @@ namespace Gwent_App
                     FilterPanelPozoga(form1.panelOblezniczeGracz2, player1.playerBoard.CardsOblezniczePlayer);
                     FilterPanelManekin(form1.panelOblezniczeGracz1, player2.playerBoard, LocationCard.Obleznika);
                     FilterPanelManekin(form1.panelOblezniczeGracz2, player1.playerBoard, LocationCard.Obleznika);
+
                 }
                 else if (c is CardWarrior cw && cw.Effect == CardEffects.Braterstwo)
                 {
@@ -363,7 +364,6 @@ namespace Gwent_App
                     FilterPanelRogu(panelRoguOblezniczeGracz2, player2.playerBoard, LocationCard.Obleznika);
 
                     AddCardCommanderPanel(panelWspolnePole, cc);
-                    RefreshPanelSpecial(panelWspolnePole);
                 }
 
                 RefreshScores();
@@ -373,6 +373,10 @@ namespace Gwent_App
                 {
                     NewMove();
                 }
+                RefreshPanelSpecial(panelWspolnePole);
+                form1.RefreshPanelSpecial(panelWspolnePole);
+
+
             }
         }
         private void PictureBox_DoubleClick(object sender, EventArgs e)
@@ -523,7 +527,7 @@ namespace Gwent_App
                 }
             }
         }
-        private void RefreshPanelSpecial(Panel panel)
+        public void RefreshPanelSpecial(Panel panel)
         {
             var pictureBoxes = panel.Controls.OfType<PictureBox>().ToList();
 

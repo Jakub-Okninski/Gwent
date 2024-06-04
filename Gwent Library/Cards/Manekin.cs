@@ -18,17 +18,20 @@ namespace Gwent_Library.Karty
             if (player.playerBoard.CardsPiechotyPlayer.Any(card =>  card is KartaPiechoty kp && kp == oldCard)&& this.LocationCard == LocationCard.Piechoty)
             {
                 player.playerBoard.CardsPiechotyPlayer.RemoveAll(card=> card== oldCard);
+                oldCard.ForceTemporary=oldCard.ForceDefault;
                 player.playerBoard.PlayerCardsInGame.Add(oldCard);
             }
             else if(player.playerBoard.CardsStrzeleckiePlayer.Any(card => card is KartaLucznika kl && kl == oldCard) && this.LocationCard == LocationCard.Lucznika)
             {
                 player.playerBoard.CardsStrzeleckiePlayer.RemoveAll(card => card == oldCard);
+                oldCard.ForceTemporary = oldCard.ForceDefault;
                 player.playerBoard.PlayerCardsInGame.Add(oldCard);
 
             }
             else if (player.playerBoard.CardsOblezniczePlayer.Any(card => card is KartaObleznika ko && ko == oldCard) && this.LocationCard == LocationCard.Obleznika)
             {
                 player.playerBoard.CardsOblezniczePlayer.RemoveAll(card => card == oldCard);
+                oldCard.ForceTemporary = oldCard.ForceDefault;
                 player.playerBoard.PlayerCardsInGame.Add(oldCard);
 
             }
