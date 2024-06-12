@@ -17,13 +17,12 @@ namespace Gwent_Library.TypyKart
         public int ForceDefault { get; }
         public bool IsHero { get; set; }
         public CardEffectDelegate Effect { get; set; }
-        public CardWarrior(string name, int force, bool isHero, CardEffectDelegate effect) : base(name)
+        public CardWarrior(string name, int force, bool isHero) : base(name)
         {
             ForceTemporary = force;
             ForceDefault = force;
             Force = force;
             IsHero = isHero;
-            Effect = effect;
         }
         public virtual void setDefaultForce()
         {

@@ -12,6 +12,7 @@ namespace Gwent_Library.Karty
     {   
         public GestaMgla(string name) : base(name)
         {
+            Description = "Siła wszystkich jednostek strzeleckich przyjmuje wartość 1.";
         }
         public override void GlobalActionBoard(Player player1, Player player2)
         {

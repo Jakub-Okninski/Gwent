@@ -12,6 +12,7 @@ namespace Gwent_Library.Karty
     {
         public Manekin(string name, LocationCard location) : base(name, location)
         {
+            Description = "Zamień z kartą na planszy i cofnij tę kartę na rękę";
         }
         public void ManekinAction<T> (Player player, T oldCard) where T : CardWarrior
         {

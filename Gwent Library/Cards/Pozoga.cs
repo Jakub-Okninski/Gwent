@@ -13,6 +13,7 @@ namespace Gwent_Library.Karty
     {
         public Pozoga(string name) : base(name)
         {
+            Description = "Niszczy najsilniejszą kartę lub karty na polu bitwy.";
         }
         public override void GlobalActionBoard(Player player1, Player player2)
         {

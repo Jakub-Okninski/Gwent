@@ -49,7 +49,6 @@ namespace Gwent_App
                 MessageBox.Show("Please enter both name and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             var newPlayer = new User(playerName, playerPassword);
 
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "players.json");
@@ -81,7 +80,6 @@ namespace Gwent_App
             {
                 return new List<User>();
             }
-
             string jsonString = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
         }
@@ -97,14 +95,12 @@ namespace Gwent_App
             }
             return false;
         }
-
         public static void SavePlayers(List<User> players, string filePath)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(players, options);
             File.WriteAllText(filePath, jsonString);
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             FormClosing -= RegisterForm_FormClosing;

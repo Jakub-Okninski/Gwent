@@ -106,6 +106,5 @@ namespace Gwent_Library
                 }
             }
         }
-        public static void Default(Card card, PlayerBoard playerBoard) { }
     }
 }

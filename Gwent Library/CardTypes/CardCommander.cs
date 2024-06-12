@@ -9,7 +9,6 @@ namespace Gwent_Library.Karty
 {
     public abstract class CardCommander : CardGlobal, ICloneable
     {
-        public string Description { get; set;}
         public CardCommander(string name,  string description) : base(name)
         {
             Description = description;  

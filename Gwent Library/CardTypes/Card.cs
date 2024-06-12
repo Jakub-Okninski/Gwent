@@ -9,9 +9,12 @@ namespace Gwent_Library
     public abstract class Card : ICloneable
     {
         public string Name { get; set; }
+        public string ImgName { get; }
+        public string Description { get; set; }
         public Card(string name)
         {
             Name = name;
+            ImgName=name;
         }
         public abstract void PutCard(PlayerBoard playerBoard);
 

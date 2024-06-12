@@ -20,13 +20,13 @@ namespace Gwent_App
         private PictureBox selectedPictureBox = null;
         private Card lastCard = null;
         string localPath;
+        private InfoForm infoForm;
         public Form1(Game g, Form2 f)
         {       
             player1 = g.player1;
             player2 = g.player2;
             game = g;
             form2 = f;
-            
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string[] baseDirectoryTab = baseDirectory.Split("Gwent App");
             System.Diagnostics.Debug.WriteLine(baseDirectoryTab[0]);
@@ -61,8 +61,15 @@ namespace Gwent_App
             panelWspolnePole.DragEnter += Panel_DragEnter;
             panelWspolnePole.DragDrop += Panel_DragDrop;
             form2.Show();
+            FormClosing += RegisterForm_FormClosing;
         }
-       public async void PlayBackgroundMusic()
+     
+        private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            outputDevice.Stop();
+        }
+
+        public async void PlayBackgroundMusic()
         {
             outputDevice = new WaveOutEvent();       
             AudioFileReader audioFile = new AudioFileReader(localPath + "\\gamemusic.wav");
@@ -70,7 +77,6 @@ namespace Gwent_App
             volumeProvider.Volume = 0.08f;
             outputDevice.Init(volumeProvider);
             await Task.Delay(1000);
-
             outputDevice.Play();
         }
         public void Drop()
@@ -100,64 +106,81 @@ namespace Gwent_App
             selectedPictureBox = sender as PictureBox;
             Panel sourcePanel = selectedPictureBox.Parent as Panel;
             var card = selectedPictureBox.Tag;
-
-            if (sourcePanel.Name.Contains("panelGracza"))
+            if (e.Button == MouseButtons.Right)
             {
-                panelZwarcieGracz1.AllowDrop = false;
-                panelDystansGracz1.AllowDrop = false;
-                panelOblezniczeGracz1.AllowDrop = false;
-                panelRoguDystansGracz1.AllowDrop = false;
-                panelRoguOblezniczeGracz1.AllowDrop = false;
-                panelRoguZwarcieGracz1.AllowDrop = false;
-                panelSpecjalnaGracz1.AllowDrop = false;
-                panelWspolnePole.AllowDrop = false;
-
-                if (card is KartaPiechoty)
+                if (infoForm != null && !infoForm.IsDisposed)
                 {
-                    panelZwarcieGracz1.AllowDrop = true;
+                    infoForm.Close();
                 }
-                else if (card is KartaLucznika)
+                if(card is Card c)
                 {
-                    panelDystansGracz1.AllowDrop = true;
-                }
-                else if (card is KartaObleznika)
-                {
-                    panelOblezniczeGracz1.AllowDrop = true;
-                }
-                else if (card is Manekin)
+                    infoForm = new InfoForm(c);
+                    infoForm.Show();
+                }        
+            }
+            else
+            {
+                if (sourcePanel.Name.Contains("panelGracza"))
                 {
                     panelZwarcieGracz1.AllowDrop = false;
                     panelDystansGracz1.AllowDrop = false;
                     panelOblezniczeGracz1.AllowDrop = false;
+                    panelRoguDystansGracz1.AllowDrop = false;
+                    panelRoguOblezniczeGracz1.AllowDrop = false;
+                    panelRoguZwarcieGracz1.AllowDrop = false;
+                    panelSpecjalnaGracz1.AllowDrop = false;
+                    panelWspolnePole.AllowDrop = false;
 
-                    foreach (Control control in panelZwarcieGracz1.Controls){
-                        if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
-                            panelZwarcieGracz1.AllowDrop = true;          
+                    if (card is KartaPiechoty)
+                    {
+                        panelZwarcieGracz1.AllowDrop = true;
                     }
-                    foreach (Control control in panelDystansGracz1.Controls){
-                        if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
-                            panelDystansGracz1.AllowDrop = true;           
+                    else if (card is KartaLucznika)
+                    {
+                        panelDystansGracz1.AllowDrop = true;
                     }
-                    foreach (Control control in panelOblezniczeGracz1.Controls) {
-                        if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
-                            panelOblezniczeGracz1.AllowDrop = true; 
-                    }   
+                    else if (card is KartaObleznika)
+                    {
+                        panelOblezniczeGracz1.AllowDrop = true;
+                    }
+                    else if (card is Manekin)
+                    {
+                        panelZwarcieGracz1.AllowDrop = false;
+                        panelDystansGracz1.AllowDrop = false;
+                        panelOblezniczeGracz1.AllowDrop = false;
+
+                        foreach (Control control in panelZwarcieGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
+                                panelZwarcieGracz1.AllowDrop = true;
+                        }
+                        foreach (Control control in panelDystansGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
+                                panelDystansGracz1.AllowDrop = true;
+                        }
+                        foreach (Control control in panelOblezniczeGracz1.Controls)
+                        {
+                            if (control is PictureBox pictureBox && pictureBox.Tag is CardWarrior)
+                                panelOblezniczeGracz1.AllowDrop = true;
+                        }
+                    }
+                    else if (card is RogDowodcy)
+                    {
+                        panelRoguDystansGracz1.AllowDrop = true;
+                        panelRoguOblezniczeGracz1.AllowDrop = true;
+                        panelRoguZwarcieGracz1.AllowDrop = true;
+                    }
+                    else if (card is CardCommander)
+                    {
+                        panelSpecjalnaGracz1.AllowDrop = true;
+                    }
+                    else if (card is CardSpecial)
+                    {
+                        panelWspolnePole.AllowDrop = true;
+                    }
+                    selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
                 }
-                else if (card is RogDowodcy)
-                { 
-                    panelRoguDystansGracz1.AllowDrop = true;
-                    panelRoguOblezniczeGracz1.AllowDrop = true;
-                    panelRoguZwarcieGracz1.AllowDrop = true;
-                }
-                else if (card is CardCommander)
-                {
-                    panelSpecjalnaGracz1.AllowDrop = true;
-                }
-                else if (card is CardSpecial)
-                {
-                    panelWspolnePole.AllowDrop = true;
-                }
-                selectedPictureBox.DoDragDrop(selectedPictureBox, DragDropEffects.Move);
             }
         }
 
@@ -216,6 +239,11 @@ namespace Gwent_App
 
         private void Panel_DragDrop(object sender, DragEventArgs e)
         {
+
+            if (infoForm!=null && !infoForm.IsDisposed)
+            {
+                infoForm.Close();
+            }
             PictureBox pictureBox = e.Data.GetData(typeof(PictureBox)) as PictureBox;
 
             Panel sourcePanel = pictureBox.Parent as Panel;
@@ -811,7 +839,7 @@ namespace Gwent_App
             panel.Controls.Add(pictureBox);
             RefreshCardPositions(panel);
         }
-        private string GetCardTypeLabel(Card karta)
+        public static string GetCardTypeLabel(Card karta)
         {
             if (karta is KartaLucznika)
             {

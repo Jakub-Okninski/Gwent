@@ -251,42 +251,98 @@ namespace Gwent_Library
             public static Deck<Card> GenerateCard()
         {
             Deck<Card> deck = new Deck<Card>();
-            Card Balista1 = new KartaObleznika("Balista", 6, false, CardEffects.Braterstwo);
-            Card Balista2 = new KartaObleznika("Balista", 6, false, CardEffects.Braterstwo);
-            Card BiednaPiechota = new KartaPiechoty("Biedna Piechota", 1, false, CardEffects.Wiez);
-            Card BiednaPiechota2 = new KartaPiechoty("Biedna Piechota", 1, false, CardEffects.Wiez);
-            Card BiednaPiechota3 = new KartaPiechoty("Biedna Piechota", 1, false, CardEffects.Wiez);
-            Card Detmold = new KartaLucznika("Detmold", 6, false, CardEffects.Default);
-            Card Esterad = new KartaPiechoty("Esterad Thyssen", 10, false, CardEffects.Default);
-            Card Filippa = new KartaObleznika("Filippa Eilhart", 10, false, CardEffects.Default);
-            Card JanNatalis = new KartaPiechoty("Jan Natalis", 10, false, CardEffects.Default);
-            Card Katapulta1 = new KartaObleznika("Katapulta", 8, false, CardEffects.Wiez);
-            Card Katapulta2 = new KartaObleznika("Katapulta", 8, false, CardEffects.Wiez);
-            Card KeiraMetz = new KartaLucznika("Keira Metz", 5, false, CardEffects.Default);
-            Card Komandos1 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false, CardEffects.Wiez);
-            Card Komandos2 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false, CardEffects.Wiez);
-            Card Komandos3 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false, CardEffects.Wiez);
-            Card KsiążęStennis = new KartaPiechoty("Książę Stennis", 5, false, CardEffects.Default);
-            Card MistrzOblezeń1 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false, CardEffects.WysokieMorale);
-            Card MistrzOblezeń2 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false, CardEffects.WysokieMorale);
-            Card MistrzOblezeń3 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false, CardEffects.WysokieMorale);
-            Card RedańskiPiechur1 = new KartaPiechoty("Redański piechur", 1, false, CardEffects.Default);
-            Card RedańskiPiechur2 = new KartaPiechoty("Redański piechur", 1, false, CardEffects.Default);
-            Card Rębacze1 = new KartaLucznika("Rębacze z Crinfrid", 5, false, CardEffects.Wiez);
-            Card Rębacze2 = new KartaLucznika("Rębacze z Crinfrid", 5, false, CardEffects.Wiez);
-            Card Rębacze3 = new KartaLucznika("Rębacze z Crinfrid", 5, false, CardEffects.Wiez);
-            Card SabrinaGlevissig = new KartaPiechoty("Sabrina Glevissig", 4, false, CardEffects.Default);
-            Card ShealaDeTancarville = new KartaPiechoty("Sheala de Tancarville", 5, false, CardEffects.Default);
-            Card SheldonSkaggs = new KartaPiechoty("Sheldon Skaggs", 4, false, CardEffects.Default);
-            Card SigismundDijkstra = new KartaLucznika("Sigismund Dijkstra", 4, false, CardEffects.Default);
-            Card Talar = new KartaObleznika("Talar", 1, false,  CardEffects.Default);
-            Card Trebusz1 = new KartaObleznika("Trebusz", 6, false, CardEffects.Braterstwo);
-            Card Trebusz2 = new KartaObleznika("Trebusz", 6, false, CardEffects.Braterstwo);
-            Card WieżaObleżnicza = new KartaObleznika("Wieża oblężnicza", 6, false, CardEffects.Default);
-            Card VernonRoche = new KartaPiechoty("Vernon Roche", 10, false, CardEffects.Default);
-            Card Ves = new KartaPiechoty("Ves", 5, false, CardEffects.Default);
-            Card YarpenZigrin = new KartaPiechoty("Yarpen Zigrin", 2, false, CardEffects.Default);
-            Card ZygfrydZDenesle = new KartaPiechoty("Zygfryd z Denesle", 5, false, CardEffects.Default);
+            Card Balista1 = new KartaObleznika("Balista", 6, false)
+            {
+                Effect = CardEffects.Braterstwo
+            };
+
+
+            Card Balista2 = new KartaObleznika("Balista", 6, false)
+            {
+                Effect = CardEffects.Braterstwo
+            };
+            Card BiednaPiechota = new KartaPiechoty("Biedna Piechota", 1, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card BiednaPiechota2 = new KartaPiechoty("Biedna Piechota", 1, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card BiednaPiechota3 = new KartaPiechoty("Biedna Piechota", 1, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Detmold = new KartaLucznika("Detmold", 6, false);
+            Card Esterad = new KartaPiechoty("Esterad Thyssen", 10, false);
+            Card Filippa = new KartaObleznika("Filippa Eilhart", 10, false);
+            Card JanNatalis = new KartaPiechoty("Jan Natalis", 10, false);
+            Card Katapulta1 = new KartaObleznika("Katapulta", 8, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Katapulta2 = new KartaObleznika("Katapulta", 8, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card KeiraMetz = new KartaLucznika("Keira Metz", 5, false);
+            Card Komandos1 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Komandos2 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Komandos3 = new KartaPiechoty("Komandos Niebieskich Pasów", 4, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card KsiążęStennis = new KartaPiechoty("Książę Stennis", 5, false);
+            Card MistrzOblezeń1 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false)
+            {
+                Effect = CardEffects.WysokieMorale
+            };
+            Card MistrzOblezeń2 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false)
+            {
+                Effect = CardEffects.WysokieMorale
+            };
+            Card MistrzOblezeń3 = new KartaPiechoty("Mistrz oblężeń z Kaedwen", 1, false)
+            {
+                Effect = CardEffects.WysokieMorale
+            };
+            Card RedańskiPiechur1 = new KartaPiechoty("Redański piechur", 1, false);
+            Card RedańskiPiechur2 = new KartaPiechoty("Redański piechur", 1, false);
+            Card Rębacze1 = new KartaLucznika("Rębacze z Crinfrid", 5, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Rębacze2 = new KartaLucznika("Rębacze z Crinfrid", 5, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card Rębacze3 = new KartaLucznika("Rębacze z Crinfrid", 5, false)
+            {
+                Effect = CardEffects.Wiez
+            };
+            Card SabrinaGlevissig = new KartaPiechoty("Sabrina Glevissig", 4, false);
+            Card ShealaDeTancarville = new KartaPiechoty("Sheala de Tancarville", 5, false);
+            Card SheldonSkaggs = new KartaPiechoty("Sheldon Skaggs", 4, false);
+            Card SigismundDijkstra = new KartaLucznika("Sigismund Dijkstra", 4, false);
+            Card Talar = new KartaObleznika("Talar", 1, false);
+            Card Trebusz1 = new KartaObleznika("Trebusz", 6, false)
+            {
+                Effect = CardEffects.Braterstwo
+            };
+            Card Trebusz2 = new KartaObleznika("Trebusz", 6, false)
+            {
+                Effect = CardEffects.Braterstwo
+            };
+            Card WieżaObleżnicza = new KartaObleznika("Wieża oblężnicza", 6, false);
+            Card VernonRoche = new KartaPiechoty("Vernon Roche", 10, false);
+            Card Ves = new KartaPiechoty("Ves", 5, false);
+            Card YarpenZigrin = new KartaPiechoty("Yarpen Zigrin", 2, false);
+            Card ZygfrydZDenesle = new KartaPiechoty("Zygfryd z Denesle", 5, false);
 
             Card Manekin1 = new Manekin("Manekin", LocationCard.Piechoty);
             Card Rog1 = new RogDowodcy("Rog Dowodcy", LocationCard.Piechoty);
@@ -342,15 +398,18 @@ namespace Gwent_Library
             deck.Add(CzysteNiebo1);
 
 
-            Card Cirilla = new KartaPiechoty("Cirilla", 15, true, CardEffects.Default);
-            Card Emiel = new KartaPiechoty("Emiel Regis", 5, true, CardEffects.Default);
-            Card Geralt = new KartaPiechoty("Geralt", 15, true, CardEffects.Default);
-            Card Jaskier = new KartaPiechoty("Jaskier", 2, true, CardEffects.WysokieMorale);
-            Card Triss = new KartaPiechoty("Triss", 7, true, CardEffects.Default);
-            Card Vesemir = new KartaPiechoty("Vesemir", 6, true, CardEffects.Default);
-            Card Villentretenmerth = new KartaPiechoty("Villentretenmerth", 7, true, CardEffects.Default);
-            Card Yennefer = new KartaLucznika("Yennefer", 7, true, CardEffects.Default);
-            Card Zoltan = new KartaPiechoty("Zoltan", 5, true, CardEffects.Default);
+            Card Cirilla = new KartaPiechoty("Cirilla", 15, true);
+            Card Emiel = new KartaPiechoty("Emiel Regis", 5, true);
+            Card Geralt = new KartaPiechoty("Geralt", 15, true);
+            Card Jaskier = new KartaPiechoty("Jaskier", 2, true)
+            {
+                Effect = CardEffects.WysokieMorale
+            };
+            Card Triss = new KartaPiechoty("Triss", 7, true);
+            Card Vesemir = new KartaPiechoty("Vesemir", 6, true);
+            Card Villentretenmerth = new KartaPiechoty("Villentretenmerth", 7, true);
+            Card Yennefer = new KartaLucznika("Yennefer", 7, true);
+            Card Zoltan = new KartaPiechoty("Zoltan", 5, true);
 
             Card Manekin2 = new Manekin("Manekin", LocationCard.Piechoty);
             Card Manekin3 = new Manekin("Manekin", LocationCard.Piechoty);

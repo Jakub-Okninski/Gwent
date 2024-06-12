@@ -12,6 +12,7 @@ namespace Gwent_Library.Karty
     {
         public CzysteNiebo(string name) : base(name)
         {
+            Description = "Odrzuca wszystkie karty Trzaskającego mrozu, Ulewnego deszczu i Gęstej mgły znajdujące się na polu bitwy.";
         }
         public override void GlobalActionBoard(Player player1, Player player2)
         {

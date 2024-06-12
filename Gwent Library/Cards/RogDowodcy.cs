@@ -14,6 +14,7 @@ namespace Gwent_Library.Karty
     {
         public RogDowodcy(string name, LocationCard locationCard) : base(name, locationCard)
         {
+            Description = "Podwaja siłę jednostek w rzędzie. Zasięg ograniczony do jednego rzędu. Efekt nie kumuluje.";
         }
         public override void PutCard(PlayerBoard playerBoard)
         {

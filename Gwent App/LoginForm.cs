@@ -19,8 +19,7 @@ namespace Gwent_App
         private bool playerflaglogin1 = false;
         private bool playerflaglogin2 = false;
         private User p1;
-        private User p2;
-      
+        private User p2; 
         public LoginForm(StartForm startform)
         {
             startForm = startform;
@@ -48,8 +47,7 @@ namespace Gwent_App
             System.Diagnostics.Debug.WriteLine(localPath);
             localPath = localPath + "\\loginimg.jpeg";
             this.BackgroundImage = Image.FromFile(localPath);
-            this.BackgroundImageLayout = ImageLayout.Stretch;
-           
+            this.BackgroundImageLayout = ImageLayout.Stretch;         
             FormClosing += RegisterForm_FormClosing;
         }
 
@@ -66,7 +64,6 @@ namespace Gwent_App
             {
                 label3.Text = "Błędne dane.";
                 label3.Visible = true;
-
                 return;
             }
 
@@ -89,12 +86,10 @@ namespace Gwent_App
                 {
                     button3.Enabled = true;
                 }
-
             }
             else
             {
-                label3.Text = "Błędne dane.";
-            
+                label3.Text = "Błędne dane.";       
             }
             label3.Visible = true;
         }

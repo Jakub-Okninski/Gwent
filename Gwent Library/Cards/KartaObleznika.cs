@@ -15,8 +15,9 @@ namespace Gwent_Library.Karty
             playerBoard.CardsOblezniczePlayer.Add(this);
             Effect?.Invoke(this, playerBoard);
         }
-        public KartaObleznika(string nazwa, int force, bool isHero, CardEffectDelegate effect) : base(nazwa, force, isHero, effect)
+        public KartaObleznika(string nazwa, int force, bool isHero) : base(nazwa, force, isHero)
         {
+            Description = "Jednostka pola oblężniczego.";
         }
     }
 }
