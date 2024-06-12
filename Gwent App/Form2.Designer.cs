@@ -86,6 +86,9 @@
             // 
             // panelDystansGracz1
             // 
+            panelDystansGracz1.BackColor = Color.White;
+            panelDystansGracz1.BackgroundImage = Properties.Resources.l;
+            panelDystansGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelDystansGracz1.Location = new Point(644, 521);
             panelDystansGracz1.Name = "panelDystansGracz1";
             panelDystansGracz1.Size = new Size(897, 110);
@@ -93,6 +96,8 @@
             // 
             // panelOblezniczeGracz1
             // 
+            panelOblezniczeGracz1.BackgroundImage = Properties.Resources.b;
+            panelOblezniczeGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelOblezniczeGracz1.Location = new Point(644, 649);
             panelOblezniczeGracz1.Name = "panelOblezniczeGracz1";
             panelOblezniczeGracz1.Size = new Size(897, 110);
@@ -100,6 +105,8 @@
             // 
             // panelZwarcieGracz1
             // 
+            panelZwarcieGracz1.BackgroundImage = Properties.Resources.m;
+            panelZwarcieGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelZwarcieGracz1.Location = new Point(644, 394);
             panelZwarcieGracz1.Name = "panelZwarcieGracz1";
             panelZwarcieGracz1.Size = new Size(897, 110);
@@ -107,6 +114,8 @@
             // 
             // panelOblezniczeGracz2
             // 
+            panelOblezniczeGracz2.BackgroundImage = Properties.Resources.b;
+            panelOblezniczeGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelOblezniczeGracz2.Location = new Point(644, 12);
             panelOblezniczeGracz2.Name = "panelOblezniczeGracz2";
             panelOblezniczeGracz2.Size = new Size(897, 110);
@@ -114,6 +123,9 @@
             // 
             // panelDystansGracz2
             // 
+            panelDystansGracz2.BackColor = Color.Transparent;
+            panelDystansGracz2.BackgroundImage = Properties.Resources.l;
+            panelDystansGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelDystansGracz2.Location = new Point(644, 141);
             panelDystansGracz2.Name = "panelDystansGracz2";
             panelDystansGracz2.Size = new Size(897, 110);
@@ -121,6 +133,9 @@
             // 
             // panelZwarcieGracz2
             // 
+            panelZwarcieGracz2.BackColor = Color.Transparent;
+            panelZwarcieGracz2.BackgroundImage = Properties.Resources.m;
+            panelZwarcieGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelZwarcieGracz2.Location = new Point(644, 269);
             panelZwarcieGracz2.Name = "panelZwarcieGracz2";
             panelZwarcieGracz2.Size = new Size(897, 110);
@@ -189,6 +204,8 @@
             // 
             // panelSpecjalnaGracz1
             // 
+            panelSpecjalnaGracz1.BackgroundImage = Properties.Resources.d;
+            panelSpecjalnaGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelSpecjalnaGracz1.Location = new Point(131, 602);
             panelSpecjalnaGracz1.Name = "panelSpecjalnaGracz1";
             panelSpecjalnaGracz1.Size = new Size(106, 130);
@@ -196,6 +213,8 @@
             // 
             // panelSpecjalnaGracz2
             // 
+            panelSpecjalnaGracz2.BackgroundImage = Properties.Resources.d;
+            panelSpecjalnaGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelSpecjalnaGracz2.Location = new Point(131, 33);
             panelSpecjalnaGracz2.Name = "panelSpecjalnaGracz2";
             panelSpecjalnaGracz2.Size = new Size(106, 130);
@@ -257,6 +276,7 @@
             // 
             // pictureBoxPierwszyPunktGracz1
             // 
+            pictureBoxPierwszyPunktGracz1.BackColor = Color.Transparent;
             pictureBoxPierwszyPunktGracz1.Location = new Point(254, 485);
             pictureBoxPierwszyPunktGracz1.Name = "pictureBoxPierwszyPunktGracz1";
             pictureBoxPierwszyPunktGracz1.Size = new Size(37, 37);
@@ -265,6 +285,7 @@
             // 
             // pictureBoxDrugiPunktGracz1
             // 
+            pictureBoxDrugiPunktGracz1.BackColor = Color.Transparent;
             pictureBoxDrugiPunktGracz1.Location = new Point(199, 485);
             pictureBoxDrugiPunktGracz1.Name = "pictureBoxDrugiPunktGracz1";
             pictureBoxDrugiPunktGracz1.Size = new Size(37, 37);
@@ -273,7 +294,7 @@
             // 
             // pictureBoxPierwszyPunktGracz2
             // 
-            pictureBoxPierwszyPunktGracz2.BackColor = Color.White;
+            pictureBoxPierwszyPunktGracz2.BackColor = Color.Transparent;
             pictureBoxPierwszyPunktGracz2.Location = new Point(254, 250);
             pictureBoxPierwszyPunktGracz2.Name = "pictureBoxPierwszyPunktGracz2";
             pictureBoxPierwszyPunktGracz2.Size = new Size(37, 37);
@@ -282,6 +303,7 @@
             // 
             // pictureBoxDrugiPunktGracz2
             // 
+            pictureBoxDrugiPunktGracz2.BackColor = Color.Transparent;
             pictureBoxDrugiPunktGracz2.Location = new Point(199, 250);
             pictureBoxDrugiPunktGracz2.Name = "pictureBoxDrugiPunktGracz2";
             pictureBoxDrugiPunktGracz2.Size = new Size(37, 37);
@@ -290,6 +312,8 @@
             // 
             // panelRoguOblezniczeGracz1
             // 
+            panelRoguOblezniczeGracz1.BackgroundImage = Properties.Resources.r1;
+            panelRoguOblezniczeGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguOblezniczeGracz1.Location = new Point(505, 649);
             panelRoguOblezniczeGracz1.Name = "panelRoguOblezniczeGracz1";
             panelRoguOblezniczeGracz1.Size = new Size(133, 110);
@@ -297,6 +321,8 @@
             // 
             // panelRoguDystansGracz1
             // 
+            panelRoguDystansGracz1.BackgroundImage = Properties.Resources.r1;
+            panelRoguDystansGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguDystansGracz1.Location = new Point(505, 521);
             panelRoguDystansGracz1.Name = "panelRoguDystansGracz1";
             panelRoguDystansGracz1.Size = new Size(133, 110);
@@ -304,6 +330,8 @@
             // 
             // panelRoguZwarcieGracz1
             // 
+            panelRoguZwarcieGracz1.BackgroundImage = Properties.Resources.r1;
+            panelRoguZwarcieGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguZwarcieGracz1.Location = new Point(505, 394);
             panelRoguZwarcieGracz1.Name = "panelRoguZwarcieGracz1";
             panelRoguZwarcieGracz1.Size = new Size(133, 110);
@@ -311,6 +339,8 @@
             // 
             // panelRoguZwarcieGracz2
             // 
+            panelRoguZwarcieGracz2.BackgroundImage = Properties.Resources.r1;
+            panelRoguZwarcieGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguZwarcieGracz2.Location = new Point(505, 269);
             panelRoguZwarcieGracz2.Name = "panelRoguZwarcieGracz2";
             panelRoguZwarcieGracz2.Size = new Size(133, 110);
@@ -318,6 +348,8 @@
             // 
             // panelRoguDystansGracz2
             // 
+            panelRoguDystansGracz2.BackgroundImage = Properties.Resources.r1;
+            panelRoguDystansGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguDystansGracz2.Location = new Point(505, 141);
             panelRoguDystansGracz2.Name = "panelRoguDystansGracz2";
             panelRoguDystansGracz2.Size = new Size(133, 110);
@@ -325,6 +357,8 @@
             // 
             // panelRoguOblezniczeGracz2
             // 
+            panelRoguOblezniczeGracz2.BackgroundImage = Properties.Resources.r1;
+            panelRoguOblezniczeGracz2.BackgroundImageLayout = ImageLayout.Zoom;
             panelRoguOblezniczeGracz2.Location = new Point(505, 12);
             panelRoguOblezniczeGracz2.Name = "panelRoguOblezniczeGracz2";
             panelRoguOblezniczeGracz2.Size = new Size(133, 110);
@@ -332,6 +366,8 @@
             // 
             // panelWspolnePole
             // 
+            panelWspolnePole.BackgroundImage = Properties.Resources.s;
+            panelWspolnePole.BackgroundImageLayout = ImageLayout.Zoom;
             panelWspolnePole.Location = new Point(59, 332);
             panelWspolnePole.Name = "panelWspolnePole";
             panelWspolnePole.Size = new Size(271, 110);
@@ -364,12 +400,6 @@
             Controls.Add(labelInfo);
             Controls.Add(poddajrundGracz);
             Controls.Add(panelWspolnePole);
-            Controls.Add(panelRoguOblezniczeGracz2);
-            Controls.Add(panelRoguDystansGracz2);
-            Controls.Add(panelRoguZwarcieGracz2);
-            Controls.Add(panelRoguZwarcieGracz1);
-            Controls.Add(panelRoguDystansGracz1);
-            Controls.Add(panelRoguOblezniczeGracz1);
             Controls.Add(pictureBoxDrugiPunktGracz2);
             Controls.Add(pictureBoxDrugiPunktGracz1);
             Controls.Add(pictureBoxPierwszyPunktGracz1);
@@ -381,25 +411,31 @@
             Controls.Add(pictureBoxZdjecieGracz1);
             Controls.Add(panelSpecjalnaGracz2);
             Controls.Add(panelSpecjalnaGracz1);
-            Controls.Add(panelGracza);
             Controls.Add(labelOblezniczeGracz2);
             Controls.Add(labelDystansGracz2);
             Controls.Add(labelZwarcieGracz2);
             Controls.Add(labelZwarcieGracz1);
             Controls.Add(labelDystansGracz1);
             Controls.Add(labelOblezniczeGracz1);
-            Controls.Add(panelDystansGracz1);
-            Controls.Add(panelZwarcieGracz2);
+            Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(panelDystansGracz2);
             Controls.Add(panelOblezniczeGracz2);
+            Controls.Add(panelRoguOblezniczeGracz2);
+            Controls.Add(panelRoguDystansGracz2);
+            Controls.Add(panelRoguZwarcieGracz2);
+            Controls.Add(panelZwarcieGracz2);
+            Controls.Add(panelRoguZwarcieGracz1);
             Controls.Add(panelZwarcieGracz1);
+            Controls.Add(panelDystansGracz1);
+            Controls.Add(panelRoguDystansGracz1);
+            Controls.Add(panelRoguOblezniczeGracz1);
+            Controls.Add(panelGracza);
             Controls.Add(panelOblezniczeGracz1);
-            Controls.Add(pictureBoxPierwszyPunktGracz2);
             Controls.Add(backgroundPictureBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form1";
             StartPosition = FormStartPosition.Manual;
-            Text = "Gracz 2";
+            Text = "Gracz 1";
             ((System.ComponentModel.ISupportInitialize)backgroundPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxZdjecieGracz2).EndInit();
