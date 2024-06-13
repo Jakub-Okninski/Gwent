@@ -148,9 +148,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(365, 240);
+            button3.Location = new Point(274, 718);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(231, 38);
             button3.TabIndex = 12;
             button3.Text = "Start";
             button3.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(768, 768);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label6);
@@ -186,7 +186,7 @@
             Controls.Add(label1);
             Controls.Add(textBox1);
             Name = "LoginForm";
-            Text = "LoginForm";
+            Text = "Logowanie";
             ResumeLayout(false);
             PerformLayout();
         }

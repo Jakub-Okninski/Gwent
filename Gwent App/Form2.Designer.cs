@@ -86,7 +86,7 @@
             // 
             // panelDystansGracz1
             // 
-            panelDystansGracz1.BackColor = Color.White;
+            panelDystansGracz1.BackColor = Color.Transparent;
             panelDystansGracz1.BackgroundImage = Properties.Resources.l;
             panelDystansGracz1.BackgroundImageLayout = ImageLayout.Zoom;
             panelDystansGracz1.Location = new Point(644, 521);

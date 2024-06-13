@@ -33,31 +33,31 @@ namespace Gwent_App
             card = c;
             if (card is KartaLucznika)
             {
-                localPath2 = localPath + "\\luk.jpg";
+                localPath2 = localPath + "\\infoluk.jpg";
             }
             else if (card is KartaPiechoty)
             {
-                localPath2 = localPath + "\\miecz.jpg";
+                localPath2 = localPath + "\\infomiecz.jpg";
             }
             else if (card is KartaObleznika)
             {
-                localPath2 = localPath + "\\balista.jpg";
+                localPath2 = localPath + "\\infobalista.jpg";
             }
             else if (card is CardWarrior)
             {
-                localPath2 = localPath + "\\korona.jpg";
+                localPath2 = localPath + "\\infokorona.jpg";
             }
             else if (card is RogDowodcy)
             {
-                localPath2 = localPath + "\\rog.jpg";
+                localPath2 = localPath + "\\inforog.jpg";
             }
             else if (card is Manekin)
             {
-                localPath2 = localPath + "\\manekin.jpg";
+                localPath2 = localPath + "\\infomanekin.jpg";
             }
             else
             {
-                localPath2 = localPath + "\\rozdzka.jpg";
+                localPath2 = localPath + "\\inforozdzka.jpg";
             }
 
             try
@@ -69,8 +69,7 @@ namespace Gwent_App
                 pictureBox1.Image = Image.FromFile(localPath + "\\" + c.ImgName + ".jpg");
             }
             catch (Exception e){ }
-        
-          
+         
             label6.Text = c.Description + "";
             if (card is CardWarrior CW)
             {

@@ -68,7 +68,6 @@ namespace Gwent_App
         {
             outputDevice.Stop();
         }
-
         public async void PlayBackgroundMusic()
         {
             outputDevice = new WaveOutEvent();       
@@ -99,7 +98,6 @@ namespace Gwent_App
                 }
             });
         }
-
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             //git
@@ -183,7 +181,6 @@ namespace Gwent_App
                 }
             }
         }
-
         private void NewMove()
         {
             SkopiujPictureBoxy(panelWspolnePole, form2.panelWspolnePole);
@@ -201,7 +198,6 @@ namespace Gwent_App
             SkopiujPictureBoxy(form2.panelDystansGracz1, panelDystansGracz2);
             SkopiujPictureBoxy(form2.panelZwarcieGracz1, panelZwarcieGracz2);
 
-
             if (player2.PlayerActiveInRound)
             {
                 labelInfo.Text = "Ruch Gracza ...";
@@ -212,8 +208,6 @@ namespace Gwent_App
             }
             RefreshScores();
         }
-
-
         private void PictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             selectedPictureBox = null;
@@ -236,7 +230,6 @@ namespace Gwent_App
 
             RefreshCardPositions(panelDocelowy);
         }
-
         private void Panel_DragDrop(object sender, DragEventArgs e)
         {
 
@@ -397,8 +390,6 @@ namespace Gwent_App
                 }
                 RefreshPanelSpecial(panelWspolnePole);
                 form2.RefreshPanelSpecial(panelWspolnePole);
-
-
             }
         }
         private void PictureBox_DoubleClick(object sender, EventArgs e)
@@ -448,7 +439,6 @@ namespace Gwent_App
             panelGracza.DragDrop += Panel_DragDrop;
             NewMove();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             player1.PlayerActiveInRound = false;
@@ -518,10 +508,7 @@ namespace Gwent_App
                 panelRoguOblezniczeGracz1.DragDrop += Panel_DragDrop;
                 panelRoguZwarcieGracz1.DragEnter += Panel_DragEnter;
                 panelRoguZwarcieGracz1.DragDrop += Panel_DragDrop;
-             
-
-                       
-
+                               
                 PlaySound(localPath + "\\runda.wav");
                 try
                 {
@@ -537,7 +524,6 @@ namespace Gwent_App
                 }
             }
         }
-
         private void FilterPanelBractwo<T>(Deck<T> deck, CardWarrior cw, Panel panel) where T : CardWarrior
         {
             var cards = deck.Where(karta => karta is CardWarrior && karta.Name == cw.Name && cw.Effect == CardEffects.Braterstwo);

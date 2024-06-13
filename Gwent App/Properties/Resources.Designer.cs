@@ -83,6 +83,16 @@ namespace Gwent_App.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap grajbutton {
+            get {
+                object obj = ResourceManager.GetObject("grajbutton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap l {
             get {
                 object obj = ResourceManager.GetObject("l", resourceCulture);
@@ -116,6 +126,16 @@ namespace Gwent_App.Properties {
         internal static System.Drawing.Bitmap r1 {
             get {
                 object obj = ResourceManager.GetObject("r1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rejestracjaprzyciisk {
+            get {
+                object obj = ResourceManager.GetObject("rejestracjaprzyciisk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

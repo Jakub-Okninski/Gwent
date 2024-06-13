@@ -135,7 +135,6 @@ namespace Gwent_Library
             }
 
             CountPoints(player);
-    
         }
 
         public void MakeMove(Player player, Card card)

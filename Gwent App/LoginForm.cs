@@ -45,12 +45,11 @@ namespace Gwent_App
 
             string localPath = Path.Combine(baseDirectoryTab[0], "Gwent App", "LocalSources");
             System.Diagnostics.Debug.WriteLine(localPath);
-            localPath = localPath + "\\loginimg.jpeg";
+            localPath = localPath + "\\loginimg.jpg";
             this.BackgroundImage = Image.FromFile(localPath);
             this.BackgroundImageLayout = ImageLayout.Stretch;         
             FormClosing += RegisterForm_FormClosing;
         }
-
         private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             startForm.Close(); 
@@ -93,7 +92,6 @@ namespace Gwent_App
             }
             label3.Visible = true;
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             string playerName = textBox2.Text;

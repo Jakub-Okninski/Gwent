@@ -116,9 +116,6 @@ namespace Gwent_App
             }
             else
             {
-
-
-
                 if (sourcePanel.Name.Contains("panelGracza"))
                 {
                     panelZwarcieGracz1.AllowDrop = false;

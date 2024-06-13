@@ -34,33 +34,37 @@
             // 
             // button1
             // 
-            button1.Location = new Point(363, 279);
+            button1.BackColor = Color.Sienna;
+            button1.BackgroundImage = Properties.Resources.grajbutton;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Location = new Point(216, 620);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(340, 68);
             button1.TabIndex = 0;
-            button1.Text = "Zagraj";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(363, 327);
+            button2.BackColor = Color.Sienna;
+            button2.BackgroundImage = Properties.Resources.rejestracjaprzyciisk;
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            button2.Location = new Point(216, 675);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(340, 62);
             button2.TabIndex = 1;
-            button2.Text = "Rejestracja";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // StartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(768, 768);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "StartForm";
-            Text = "StartForm";
+            Text = "Gwent";
             ResumeLayout(false);
         }
 
