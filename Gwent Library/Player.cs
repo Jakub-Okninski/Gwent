@@ -35,7 +35,6 @@ namespace Gwent_Library
                 throw new EndGameException("Gracz "+ Name + " stracił wszystkie punkty! ");
             }
         }
-
         public override bool Equals(object? obj)
         {
             if (obj == null || !(obj is Player))

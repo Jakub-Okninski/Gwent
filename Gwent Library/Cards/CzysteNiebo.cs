@@ -8,7 +8,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class CzysteNiebo : CardWeather, ICloneable
+    public class CzysteNiebo : CardWeather
     {
         public CzysteNiebo(string name) : base(name)
         {

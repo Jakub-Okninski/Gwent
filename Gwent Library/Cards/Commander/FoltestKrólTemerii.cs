@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace Gwent_Library.Karty.KartyDowodcow
 {
-    public class FoltestKrólTemerii : CardCommander, ICloneable
+    public class FoltestKrólTemerii : CardCommander
     {
         public FoltestKrólTemerii(string name) : base(name, "Znajduje kartę gęsta mgła i nią zagrywa")
         {

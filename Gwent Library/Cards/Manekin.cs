@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Gwent_Library.Karty
 {
-    public class Manekin : CardAllField, ICloneable
+    public class Manekin : CardAllField
     {
         public Manekin(string name, LocationCard location) : base(name, location)
         {

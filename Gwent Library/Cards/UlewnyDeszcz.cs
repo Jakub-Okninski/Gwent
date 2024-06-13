@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Gwent_Library.Karty
 {
-    public class UlewnyDeszcz : CardWeather, ICloneable
+    public class UlewnyDeszcz : CardWeather
     {
         public UlewnyDeszcz(string name) : base(name)
         {

@@ -10,7 +10,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class RogDowodcy : CardAllField, ICloneable
+    public class RogDowodcy : CardAllField
     {
         public RogDowodcy(string name, LocationCard locationCard) : base(name, locationCard)
         {
