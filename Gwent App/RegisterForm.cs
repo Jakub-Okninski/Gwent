@@ -33,12 +33,10 @@ namespace Gwent_App
             this.BackgroundImageLayout = ImageLayout.Stretch;
             FormClosing += RegisterForm_FormClosing;
         }
-
         private void RegisterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             startForm.Close();  
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             string playerName = textBox1.Text;
@@ -57,7 +55,6 @@ namespace Gwent_App
             textBox1.Text = "";
             textBox2.Text = "";
         }
-
         public static void RegisterPlayer(User newPlayer, string filePath)
         {
             List<User> players = LoadPlayers(filePath);
@@ -73,7 +70,6 @@ namespace Gwent_App
                 MessageBox.Show("Player registered successfully.", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         public static List<User> LoadPlayers(string filePath)
         {
             if (!File.Exists(filePath))

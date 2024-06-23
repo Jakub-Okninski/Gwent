@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library.TypyKart
 {
-    public abstract class CardAllField : CardSpecial, ICloneable
+    public abstract class CardAllField : CardSpecial
     {
         public LocationCard LocationCard;
         public CardAllField(string name, LocationCard locationCard) : base(name)

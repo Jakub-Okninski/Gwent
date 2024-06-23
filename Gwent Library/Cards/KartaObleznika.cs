@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaObleznika : CardWarrior, ICloneable
+    public class KartaObleznika : CardWarrior
     {
         public override void PutCard(PlayerBoard playerBoard)
         {

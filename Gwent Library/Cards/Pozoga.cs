@@ -9,7 +9,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class Pozoga : CardGlobal, ICloneable
+    public class Pozoga : CardGlobal
     {
         public Pozoga(string name) : base(name)
         {

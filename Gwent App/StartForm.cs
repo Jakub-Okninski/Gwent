@@ -31,7 +31,6 @@ namespace Gwent_App
         {
             Program.flag = false;   
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm(this); ;

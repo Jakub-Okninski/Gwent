@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Gwent_Library.Karty.KartyDowodcow
 {
-    public class FoltestZdobywca : CardCommander, ICloneable
+    public class FoltestZdobywca : CardCommander
     {
         public FoltestZdobywca(string name) : base(name, "Podwaja siłę wszystkich swoich jednostek oblężniczych (chyba, że został użyty już róg dowódcy).")
         {

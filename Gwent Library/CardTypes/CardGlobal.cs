@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Gwent_Library.TypyKart
 {
-    public abstract class CardGlobal : CardSpecial, ICloneable
+    public abstract class CardGlobal : CardSpecial
     {
         public CardGlobal(string name) : base(name)
         {

@@ -111,7 +111,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(768, 768);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(button2);
@@ -121,7 +121,7 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "RegisterForm";
-            Text = "RegisterForm";
+            Text = "Rejestracja";
             ResumeLayout(false);
             PerformLayout();
         }

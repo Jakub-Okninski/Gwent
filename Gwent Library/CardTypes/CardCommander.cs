@@ -7,7 +7,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public abstract class CardCommander : CardGlobal, ICloneable
+    public abstract class CardCommander : CardGlobal
     {
         public CardCommander(string name,  string description) : base(name)
         {

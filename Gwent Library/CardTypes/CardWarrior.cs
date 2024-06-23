@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Gwent_Library.TypyKart
 {
     public delegate void CardEffectDelegate (CardWarrior karta, PlayerBoard plansza);
-    public abstract class CardWarrior : Card, ICloneable
+    public abstract class CardWarrior : Card
     {
         public int Force { get; set; }
         public int ForceTemporary { get; set; }

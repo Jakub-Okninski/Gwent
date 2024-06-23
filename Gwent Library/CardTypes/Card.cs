@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gwent_Library
 {
-    public abstract class Card : ICloneable
+    public abstract class Card
     {
         public string Name { get; set; }
         public string ImgName { get; }

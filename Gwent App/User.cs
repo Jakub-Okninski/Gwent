@@ -16,7 +16,6 @@ namespace Gwent_App
             Password = password;
             Losing = losing;
         }
-
         public User()
         {
             Name = "";

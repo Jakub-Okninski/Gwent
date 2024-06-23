@@ -11,7 +11,7 @@ using Gwent_Library.TypyKart;
 
 namespace Gwent_Library.Karty
 {
-    public class KartaPiechoty : CardWarrior, ICloneable
+    public class KartaPiechoty : CardWarrior
     {
         public override void PutCard(PlayerBoard playerBoard)
         {
